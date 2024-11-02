@@ -1,3 +1,0 @@
-# Diagramas
-
-## Diagrama de classes
