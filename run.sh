@@ -22,4 +22,11 @@ fi
 
 ./$OUTPUT
 
+# "$?" is aspecial variable in Bash that holds the exit status of the last command.
+if [ $? -eq 0 ]; then
+    echo "Program executed successfully!"
+else
+    echo "Failed to run the program!"
+fi
+
 rm -f $OUTPUT
