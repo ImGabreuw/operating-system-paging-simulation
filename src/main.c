@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
 
     /*
         Caminho de execucao:
-            1) Criar processo (Struct, nao um processo real)
+            1)Criar processo (Struct, nao um processo real)
             2)Dividir em Paginas
             3)Mapear as Paginas para Frames
     

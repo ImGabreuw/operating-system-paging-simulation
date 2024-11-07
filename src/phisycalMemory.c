@@ -31,8 +31,8 @@ int getFreeFrameCount(PhysicalMemory* pm){
 
 bool releaseFrame(PhysicalMemory* pm,int  frameNumber){
     for(int frame_idx = 0; frame_idx < pm->size; frame_idx++){
-        if(pm->frames[frame_idx].frameNumber == frameNumber){
-            pm->frames[frame_idx].isOccupied = false;
+        if(pm->frames[frame_idx]->frameNumber == frameNumber){
+            pm->frames[frame_idx]->isOccupied = false;
             return true;
         }
     }
@@ -41,7 +41,7 @@ bool releaseFrame(PhysicalMemory* pm,int  frameNumber){
 
 bool writeToFrame(PhysicalMemory* pm,int frameNumber, char *data){
     for(int frame_idx = 0; frame_idx < pm->size; frame_idx++){
-        if(pm->frames[frame_idx].frameNumber == frameNumber){
+        if(pm->frames[frame_idx]->frameNumber == frameNumber){
             setData(&pm->frames[frame_idx],data);
             return true;
         }
@@ -51,8 +51,8 @@ bool writeToFrame(PhysicalMemory* pm,int frameNumber, char *data){
 
 char* readFromFrame(PhysicalMemory* pm, int frameNumber){
     for(int frame_idx = 0; frame_idx < pm->size; frame_idx++){
-        if(pm->frames[frame_idx].frameNumber == frameNumber)
-            return pm->frames[frame_idx].data;
+        if(pm->frames[frame_idx]->frameNumber == frameNumber)
+            return pm->frames[frame_idx]->data;
     }
     return NULL;
 }
