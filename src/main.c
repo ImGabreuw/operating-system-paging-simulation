@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "logicalMemory.h";
-#include "physicalMemory.h";
-#include "process_structures.h";
+#include "logicalMemory.h"
+#include "physicalMemory.h"
+#include "process_structures.h"
 
 
 #define PROCESS_SIZE (8192) // Tamanho total do processo em bytes
-#define PAGE_SIZE (4096)     // Tamanho de cada página em bytes
 #define NUMBER_OF_PAGES (PROCESS_SIZE / PAGE_SIZE)
 #define PHYSICAL_MEMORY_SIZE (16384) // Tamanho total da memória física
 #define NUMBER_OF_FRAMES 4

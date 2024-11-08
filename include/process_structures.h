@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "logicalMemory.h";
+#include "logicalMemory.h"
 
 //PAGE TABLE ENTRY
 typedef struct{
@@ -16,9 +16,9 @@ typedef struct{
 
 PageTableEntry* create_pte(PageTableEntry* pte,int pageNumber, int frameNumber);
 
-void markDirty(PageTableEntry* p_entry);
+void pagetable_mark_dirty(PageTableEntry* p_entry);
 
-void markClean(PageTableEntry* p_entry);
+void pagetable_mark_clean(PageTableEntry* p_entry);
 
 void validate(PageTableEntry* p_entry);
 

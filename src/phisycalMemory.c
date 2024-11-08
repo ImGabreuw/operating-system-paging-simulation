@@ -25,7 +25,7 @@ void setData(Frame *f, char* data){
 }
 
 void clear(Frame *f){
-    f->data = realloc(&f->data, f->frameSize);
+    f->data = NULL;
 }
 
 void loadPage(Page* p, Frame* f){
@@ -80,7 +80,7 @@ bool releaseFrame(PhysicalMemory* pm,int  frameNumber){
 bool writeToFrame(PhysicalMemory* pm,int frameNumber, char *data){
     for(int frame_idx = 0; frame_idx < pm->size; frame_idx++){
         if(pm->frames[frame_idx]->frameNumber == frameNumber){
-            setData(&pm->frames[frame_idx],data);
+            setData(pm->frames[frame_idx],data);
             return true;
         }
     }

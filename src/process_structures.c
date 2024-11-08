@@ -3,9 +3,10 @@
 #include <stdlib.h>
 #include "process_structures.h"
 
-//Metodos de PageTableEntry
+// Metodos de PageTableEntry
 
-PageTableEntry* create_pte(PageTableEntry* pte,int pageNumber, int frameNumber){
+PageTableEntry *create_pte(PageTableEntry *pte, int pageNumber, int frameNumber)
+{
     pte->pageNumber = pageNumber;
     pte->frameNumber = frameNumber;
     pte->isDirty = false;
@@ -13,92 +14,111 @@ PageTableEntry* create_pte(PageTableEntry* pte,int pageNumber, int frameNumber){
     return pte;
 }
 
-void markDirty(PageTableEntry* p_entry){
-    p_entry->isDirty=true;
+void pagetable_mark_dirty(PageTableEntry *p_entry)
+{
+    p_entry->isDirty = true;
 }
 
-void markClean(PageTableEntry* p_entry){
-    p_entry->isDirty=false;
+void pagetable_mark_clean(PageTableEntry *p_entry)
+{
+    p_entry->isDirty = false;
 }
 
-void validate(PageTableEntry* p_entry){
-    p_entry->isValid=true;
+void validate(PageTableEntry *p_entry)
+{
+    p_entry->isValid = true;
 }
 
-void invalidate(PageTableEntry* p_entry){
-    p_entry->isValid=false;
+void invalidate(PageTableEntry *p_entry)
+{
+    p_entry->isValid = false;
 }
 
-//Metodos de PageTable
-PageTable* create_pta(PageTable* pta, int numberOfPages){
-    pta->entries = (PageTableEntry**)malloc(sizeof(PageTableEntry*));
-
+// Metodos de PageTable
+PageTable *create_pta(PageTable *pta, int numberOfPages)
+{
+    pta->entries = (PageTableEntry **)malloc(sizeof(PageTableEntry *));
+    pta->numberOfPages = numberOfPages;
+    return pta;
 }
 
-bool addMapping(PageTable *pagetable, int pageNum, int frameNum){
+bool addMapping(PageTable *pagetable, int pageNum, int frameNum)
+{
     int entry_idx = 0;
-    
-    //Procurar o proximo espaco vazio
-    while(entry_idx < pagetable->numberOfPages && pagetable->entries[entry_idx] != NULL) 
+
+    // Procurar o proximo espaco vazio
+    while (entry_idx < pagetable->numberOfPages && pagetable->entries[entry_idx] != NULL)
         entry_idx++;
-    
-    //Inserir o novo registro
-    if(entry_idx < pagetable->numberOfPages){
+
+    // Inserir o novo registro
+    if (entry_idx < pagetable->numberOfPages)
+    {
         pagetable->entries[entry_idx]->frameNumber = frameNum;
         pagetable->entries[entry_idx]->frameNumber = pageNum;
-        return true; 
+        return true;
     }
-    
-    //nao encontrou espaco
-    return false;
 
+    // nao encontrou espaco
+    return false;
 }
 
+bool removeMapping(PageTable *pagetable, int pageNum)
+{
 
-bool removeMapping(PageTable *pagetable,int pageNum){
-
-    //Procurar registro
-    for(int entry_idx = 0; entry_idx < pagetable->entries; entry_idx++){
-        if(pagetable->entries[entry_idx]->pageNumber == pageNum){
+    // Procurar registro
+    for (int entry_idx = 0; entry_idx < pagetable->numberOfPages; entry_idx++)
+    {
+        if (pagetable->entries[entry_idx]->pageNumber == pageNum)
+        {
             pagetable->entries[entry_idx]->pageNumber = -1;
             pagetable->entries[entry_idx]->frameNumber = -1;
-            return true; //encontrou e removeu
+            return true; // encontrou e removeu
         }
     }
     return false; // nao encontrou
 }
 
-int getFrameNumber(PageTable *pagetable,int pageNum){
-    //Procurar registro
-    for(int entry_idx = 0; entry_idx < pagetable->entries; entry_idx++){
-        if(pagetable->entries[entry_idx]->pageNumber == pageNum){
-            return pagetable->entries[entry_idx]->frameNumber; //encontrou
+int getFrameNumber(PageTable *pagetable, int pageNum)
+{
+    // Procurar registro
+    for (int entry_idx = 0; entry_idx < pagetable->numberOfPages; entry_idx++)
+    {
+        if (pagetable->entries[entry_idx]->pageNumber == pageNum)
+        {
+            return pagetable->entries[entry_idx]->frameNumber; // encontrou
         }
     }
 
-    
-    return -1; //nao encontrou
+    return -1; // nao encontrou
 }
 
-bool isPageValid(PageTable *pagetable,int pageNum){
-    
-    for(int entry_idx = 0; entry_idx < pagetable->entries; entry_idx++){
-        if(pagetable->entries[entry_idx]->pageNumber == pageNum){
+bool isPageValid(PageTable *pagetable, int pageNum)
+{
+
+    for (int entry_idx = 0; entry_idx < pagetable->numberOfPages; entry_idx++)
+    {
+        if (pagetable->entries[entry_idx]->pageNumber == pageNum)
+        {
             return pagetable->entries[entry_idx]->isValid;
         }
     }
+
+    return false;
 }
 
-//Metodos de Processo
-Process* create_p(int pid, int firstAddress, int lastAddress, int size, PageTable* pg, LogicalMemory* lm ){
-    Process *p;
+// Metodos de Processo
+Process *create_p(int pid, int firstAddress, int lastAddress, int size, PageTable *pg, LogicalMemory *lm)
+{
+    Process *p = (Process *)malloc(sizeof(Process));
     p->pid = pid;
     p->size = size;
     p->pageTable = pg;
     p->logicalMemory = lm;
-    p->addressesCount = lastAddress-firstAddress;
-    for(int address_idx = 0; address_idx < p->addressesCount; address_idx++){
-        p->accessSequence[address_idx] = firstAddress+address_idx;
+    p->addressesCount = lastAddress - firstAddress;
+    for (int address_idx = 0; address_idx < p->addressesCount; address_idx++)
+    {
+        p->accessSequence[address_idx] = firstAddress + address_idx;
     }
 
+    return p;
 }

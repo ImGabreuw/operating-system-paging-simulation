@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "logicalMemory.h";
+#include "logicalMemory.h"
 
 #define FRAME_SIZE (4096)
 
