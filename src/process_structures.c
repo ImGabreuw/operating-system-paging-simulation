@@ -36,7 +36,8 @@ bool addMapping(PageTable *pagetable, int pageNum, int frameNum){
         return true; 
     }
     
-    return false; //nao encontrou espaco
+    //nao encontrou espaco
+    return false;
 
 }
 
