@@ -32,7 +32,6 @@ typedef struct {
 
 Page* getPage(LogicalMemory* lm, int pageNumber);
 
-//TODO: Implementar
 Page* createPages(LogicalMemory* lm, int processSize);
 
 #endif
