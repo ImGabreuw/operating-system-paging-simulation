@@ -29,7 +29,22 @@ Page* getPage(LogicalMemory* lm, int pageNumber){
 }
 
 
-//TODO: Implementar
-Page* createPages(LogicalMemory* lm, int processSize);
+Page* createPages(LogicalMemory* lm, int processSize){
+
+    int pagesNeeded = (processSize + PAGE_SIZE - 1) / PAGE_SIZE; 
+
+    lm->pages = (Page**) malloc(pagesNeeded * sizeof(Page*));  
+    lm->size = pagesNeeded;  
+
+    for (int i = 0; i < pagesNeeded; i++) {
+        Page* page = (Page*) malloc(sizeof(Page));  
+        page->pageNumber = i;                       
+        page->isDirty = false;                      
+        page->frameNumber = -1;                    
+
+        lm->pages[i] = page;  
+    }
+
+    return lm->pages[0];  
 
 

@@ -22,8 +22,26 @@ void clear(Frame *f){
 
 //Metodos de Physical Memory
 
-//TODO: Implementar
-Frame* allocateFrame(PhysicalMemory* pm);
+
+Frame* allocateFrame(PhysicalMemory* pm) {
+    if (pm->freeFrameCount <= 0) {
+        return NULL;  
+    }
+
+    // Percorre os quadros para encontrar um livre
+    for (int i = 0; i < pm->size; i++) {
+        if (!pm->frames[i]->isOccupied) {  
+            pm->frames[i]->isOccupied = true;     
+            pm->frames[i]->data = (char*)malloc(FRAME_SIZE); 
+            memset(pm->frames[i]->data, 0, FRAME_SIZE);       
+
+            pm->freeFrameCount--;  
+            return pm->frames[i];  
+        }
+    }
+
+    return NULL;  
+}
 
 int getFreeFrameCount(PhysicalMemory* pm){
     return pm->freeFrameCount;

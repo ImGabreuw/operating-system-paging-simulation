@@ -1,5 +1,6 @@
 #ifndef LOGICAL_MEMORY
 #define LOGICAL_MEMORY
+#define PAGE_SIZE 4096
 
 
 #include <stdio.h>
