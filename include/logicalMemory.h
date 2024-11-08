@@ -34,4 +34,6 @@ Page* getPage(LogicalMemory* lm, int pageNumber);
 
 Page* createPages(LogicalMemory* lm, int processSize);
 
+
+
 #endif

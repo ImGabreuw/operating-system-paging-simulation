@@ -37,7 +37,11 @@ void unloadPage(Frame* f){
 }
 
 //Metodos de Physical Memory
-
+PhysicalMemory* create_pm(PhysicalMemory* pm,int size){
+    pm->size = size;
+    pm->frameSize = FRAME_SIZE;
+    return pm;
+}
 
 Frame* allocateFrame(PhysicalMemory* pm) {
     if (pm->freeFrameCount <= 0) {

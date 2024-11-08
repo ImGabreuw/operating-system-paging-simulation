@@ -76,6 +76,7 @@ int getFrameNumber(PageTable *pagetable,int pageNum){
         }
     }
 
+    
     return -1; //nao encontrou
 }
 

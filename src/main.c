@@ -24,13 +24,6 @@ Lucas Zanini da Silva           - 10417361
 Código fonte: https://github.com/ImGabreuw/operating-system-paging-simulation
 */
 
-int toPhysicalAddress(int logicalAddress){
-    int offset = logicalAddress % FRAME_SIZE;
-    int frame = logicalAddress/FRAME_SIZE;
-
-    return FRAME_SIZE*frame + offset;
-}
-
 
 int main(int argc, char const *argv[]) {
     // Inicializa a memória física
@@ -102,5 +95,16 @@ int main(int argc, char const *argv[]) {
     free(process.pageTable);
 
     printf("Processo %d criado com sucesso e mapeado para a memória física.\n", process.pid);
+
+    printf("\nTraduzindo Pagina %d...\n", 1);
+    int frameNumber = getFrameNumber(process.pageTable,1);
+    if(frameNumber > -1){
+        printf("Frame correspondente: %d\n",frameNumber);
+    } else printf("Nao houve correspondencia!\n");
+    
+    printf("Teste de Page Fault: Pagina %d existe? ",50);
+    if(getPage(&logicalMemory,50) == NULL) printf("PAGE FAULT!\n");
+    else printf("SIM!\n");
+
     return EXIT_SUCCESS;
 }

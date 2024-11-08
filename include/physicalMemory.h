@@ -44,7 +44,7 @@ typedef struct{
 PhysicalMemory* create_pm(PhysicalMemory* pm,int size);
 
 
-Frame* allocateFrames(PhysicalMemory* pm);
+Frame* allocateFrame(PhysicalMemory* pm);
 
 int getFreeFrameCount(PhysicalMemory* pm);
 
