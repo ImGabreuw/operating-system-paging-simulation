@@ -2,16 +2,21 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "process_structures.h"
+#include "physicalMemory.h"
+#include "logicalMemory.h"
+
+#define MAX_ACCESSES (1000)
+
 
 // Metodos de PageTableEntry
 
-PageTableEntry *create_pte(PageTableEntry *pte, int pageNumber, int frameNumber)
+int create_pte(PageTableEntry *pte, int pageNumber, int frameNumber)
 {
     pte->pageNumber = pageNumber;
     pte->frameNumber = frameNumber;
     pte->isDirty = false;
     pte->isValid = false;
-    return pte;
+    return 0;
 }
 
 void pagetable_mark_dirty(PageTableEntry *p_entry)
@@ -35,30 +40,29 @@ void invalidate(PageTableEntry *p_entry)
 }
 
 // Metodos de PageTable
-PageTable *create_pta(PageTable *pta, int numberOfPages)
+int create_pta(PageTable *pta, int numberOfPages)
 {
     pta->entries = (PageTableEntry **)malloc(sizeof(PageTableEntry *));
     pta->numberOfPages = numberOfPages;
-    return pta;
+    return 0;
 }
 
 bool addMapping(PageTable *pagetable, int pageNum, int frameNum)
 {
     int entry_idx = 0;
 
-    // Procurar o proximo espaco vazio
-    while (entry_idx < pagetable->numberOfPages && pagetable->entries[entry_idx] != NULL)
+    // Procurar a pagina esperada
+    while (entry_idx < pagetable->numberOfPages && pagetable->entries[entry_idx]->pageNumber != pageNum)
         entry_idx++;
 
     // Inserir o novo registro
     if (entry_idx < pagetable->numberOfPages)
     {
         pagetable->entries[entry_idx]->frameNumber = frameNum;
-        pagetable->entries[entry_idx]->frameNumber = pageNum;
         return true;
     }
 
-    // nao encontrou espaco
+    // nao encontrou a pagina
     return false;
 }
 
@@ -107,18 +111,25 @@ bool isPageValid(PageTable *pagetable, int pageNum)
 }
 
 // Metodos de Processo
-Process *create_p(int pid, int firstAddress, int lastAddress, int size, PageTable *pg, LogicalMemory *lm)
+int create_p(Process* p,int pid, int addressesCount, int size)
 {
-    Process *p = (Process *)malloc(sizeof(Process));
     p->pid = pid;
     p->size = size;
-    p->pageTable = pg;
-    p->logicalMemory = lm;
-    p->addressesCount = lastAddress - firstAddress;
-    for (int address_idx = 0; address_idx < p->addressesCount; address_idx++)
-    {
-        p->accessSequence[address_idx] = firstAddress + address_idx;
-    }
+    p->pageTable = (PageTable*) malloc(sizeof(PageTable));
+    p->logicalMemory = (LogicalMemory*) malloc(sizeof(LogicalMemory));
+    p->addressesCount = addressesCount;
+    p->accessSequence = (int *) calloc(MAX_ACCESSES,sizeof(int));
 
-    return p;
+    return 0;
+}
+
+//MMU: metodo de traducao
+
+int translateAddress(Process* p, LogicalMemory* lm, int logicalAddress){
+    int pageNum = logicalAddress/FRAME_SIZE;
+    Page* page= getPage(lm,pageNum);
+    if(page->isLoaded) return -1;
+    int offset = logicalAddress%FRAME_SIZE;
+    int frameNum = getFrameNumber(p->pageTable,pageNum);
+    return frameNum*FRAME_SIZE+offset;
 }

@@ -25,40 +25,35 @@ Código fonte: https://github.com/ImGabreuw/operating-system-paging-simulation
 
 
 int main(int argc, char const *argv[]) {
+    
     // Inicializa a memória física
     PhysicalMemory physicalMemory;
-    physicalMemory.size = NUMBER_OF_FRAMES;
-    physicalMemory.frames = malloc(NUMBER_OF_FRAMES * sizeof(Frame*));
-    physicalMemory.freeFrameCount = NUMBER_OF_FRAMES;
+    create_pm(&physicalMemory,NUMBER_OF_FRAMES*4096);
+
 
     for (int i = 0; i < NUMBER_OF_FRAMES; i++) {
-        physicalMemory.frames[i] = (Frame*) malloc(sizeof(Frame));
-        physicalMemory.frames[i]->frameNumber = i;
-        physicalMemory.frames[i]->isOccupied = false;
+        physicalMemory.frames[i] = (Frame*) malloc(NUMBER_OF_FRAMES*sizeof(Frame));
+        create_fr(physicalMemory.frames[i],i,FRAME_SIZE);
     }
 
     // Criação do processo
     Process process;
-    process.pid = 1;
-    process.size = PROCESS_SIZE;
-    process.pageTable = (PageTable*) malloc(sizeof(PageTable));
-    process.pageTable->entries = malloc(NUMBER_OF_PAGES * sizeof(PageTableEntry*));
+    create_p(&process,1,1000,PROCESS_SIZE);
     process.pageTable->numberOfPages = NUMBER_OF_PAGES;
+    process.pageTable->entries = (PageTableEntry**) malloc(NUMBER_OF_PAGES * sizeof(PageTableEntry*));
 
     for (int i = 0; i < NUMBER_OF_PAGES; i++) {
-        process.pageTable->entries[i] = NULL; // Inicializa as entradas como vazias
+        process.pageTable->entries[i] = (PageTableEntry *) malloc(NUMBER_OF_PAGES*sizeof(PageTableEntry));
+        create_pte(process.pageTable->entries[i],i,-1);
     }
 
     // Divisão do processo em páginas
     LogicalMemory logicalMemory;
-    logicalMemory.size = NUMBER_OF_PAGES;
-    logicalMemory.pages = malloc(NUMBER_OF_PAGES * sizeof(Page*));
+    create_lm(&logicalMemory,NUMBER_OF_PAGES,PAGE_SIZE,PROCESS_SIZE);
 
     for (int i = 0; i < NUMBER_OF_PAGES; i++) {
         logicalMemory.pages[i] = (Page*) malloc(sizeof(Page));
-        logicalMemory.pages[i]->pageNumber = i;
-        logicalMemory.pages[i]->frameNumber = -1; // Nenhum frame alocado inicialmente
-        logicalMemory.pages[i]->isDirty = false;
+        create_pg(logicalMemory.pages[i],i,1);
     }
 
     process.logicalMemory = &logicalMemory;
@@ -69,6 +64,8 @@ int main(int argc, char const *argv[]) {
         
         if (allocatedFrame != NULL) {
             logicalMemory.pages[i]->frameNumber = allocatedFrame->frameNumber;
+            logicalMemory.pages[i]->isLoaded = true;
+
 
             // Adiciona o mapeamento na tabela de páginas
             addMapping(process.pageTable, logicalMemory.pages[i]->pageNumber, allocatedFrame->frameNumber);
@@ -95,15 +92,10 @@ int main(int argc, char const *argv[]) {
 
     printf("Processo %d criado com sucesso e mapeado para a memória física.\n", process.pid);
 
-    printf("\nTraduzindo Pagina %d...\n", 1);
-    int frameNumber = getFrameNumber(process.pageTable,1);
-    if(frameNumber > -1){
-        printf("Frame correspondente: %d\n",frameNumber);
-    } else printf("Nao houve correspondencia!\n");
-    
-    printf("Teste de Page Fault: Pagina %d existe? ",50);
-    if(getPage(&logicalMemory,50) == NULL) printf("PAGE FAULT!\n");
-    else printf("SIM!\n");
+    //Semana 2
+   //int access = 200;
+   //int physicalAccess = translateAddress(&process,&logicalMemory,access);
+   //printf("Acesso logico %d corresponde a %d", access,physicalAccess);
 
     return EXIT_SUCCESS;
 }

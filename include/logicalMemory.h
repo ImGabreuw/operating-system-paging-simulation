@@ -15,7 +15,7 @@ typedef struct {
     bool isLoaded;
 }Page;
 
-Page* create_pg(Page *pg,int pageNumber, int processID);
+int create_pg(Page *pg,int pageNumber, int processID);
 
 void markDirty(Page *p);
 
@@ -28,7 +28,7 @@ typedef struct {
     Page** pages;
 }LogicalMemory;
 
-LogicalMemory* create_lm(LogicalMemory* lm,int size, int pageSize);
+int create_lm(LogicalMemory* lm,int size, int pageSize, int processSize);
 
 Page* getPage(LogicalMemory* lm, int pageNumber);
 

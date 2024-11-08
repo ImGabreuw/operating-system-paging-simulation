@@ -7,13 +7,12 @@
 #define FRAME_SIZE (4096)
 
 //Metodos de Frame
-Frame* create_fr(Frame* fr,int frameNumber, int frameSize, char* data){
+int create_fr(Frame* fr,int frameNumber, int frameSize){
     fr->frameNumber = frameNumber;
     fr->pageNumber = -1; //Nao ocupado
     fr->frameSize = frameSize;
     fr->isOccupied = false;
-    strcpy(fr->data,data);
-    return fr;
+    return 0;
 }
 
 char* getData(Frame *f){
@@ -37,10 +36,12 @@ void unloadPage(Frame* f){
 }
 
 //Metodos de Physical Memory
-PhysicalMemory* create_pm(PhysicalMemory* pm,int size){
+int create_pm(PhysicalMemory* pm,int size){
     pm->size = size;
     pm->frameSize = FRAME_SIZE;
-    return pm;
+    pm->frames = (Frame **)malloc(size/FRAME_SIZE * sizeof(Frame *));
+    pm->freeFrameCount = size/FRAME_SIZE;
+    return 0;
 }
 
 Frame* allocateFrame(PhysicalMemory* pm) {
@@ -52,7 +53,7 @@ Frame* allocateFrame(PhysicalMemory* pm) {
     for (int i = 0; i < pm->size; i++) {
         if (!pm->frames[i]->isOccupied) {  
             pm->frames[i]->isOccupied = true;     
-            pm->frames[i]->data = (char*)malloc(FRAME_SIZE); 
+            pm->frames[i]->data = (char*)malloc(FRAME_SIZE * sizeof(char)); 
             memset(pm->frames[i]->data, 0, FRAME_SIZE);       
 
             pm->freeFrameCount--;  

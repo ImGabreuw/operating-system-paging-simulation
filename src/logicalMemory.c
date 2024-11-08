@@ -4,12 +4,12 @@
 #include "logicalMemory.h"
 
 //Metodos de Page
-Page* create_pg(Page *pg,int pageNumber, int processID){
+int create_pg(Page *pg,int pageNumber, int processID){
     pg->pageNumber = pageNumber;
     pg->processID = processID;
     pg->isDirty = false;
     pg->isLoaded = false;
-    return pg;
+    return 0;
 }
 
 void markDirty(Page *p){
@@ -23,11 +23,11 @@ void markClean(Page *p){
 
 //Metodos de LogicalMemory
 
-LogicalMemory* create_lm(LogicalMemory* lm,int size, int pageSize){
+int create_lm(LogicalMemory* lm,int size, int pageSize, int processSize){
     lm->size = size;
     lm->pageSize = pageSize;
-    lm->pages = (Page**)malloc(sizeof(Page*));
-    return lm;
+    lm->pages = (Page**)malloc(processSize/pageSize * sizeof(Page*));
+    return 0;
 }
 
 Page* getPage(LogicalMemory* lm, int pageNumber){
@@ -40,9 +40,7 @@ Page* getPage(LogicalMemory* lm, int pageNumber){
 
 Page* createPages(LogicalMemory* lm, int processSize){
 
-    int pagesNeeded = (processSize + PAGE_SIZE - 1) / PAGE_SIZE; 
-
-    lm->pages = (Page**) malloc(pagesNeeded * sizeof(Page*));  
+    int pagesNeeded = processSize / PAGE_SIZE; 
     lm->size = pagesNeeded;  
 
     for (int i = 0; i < pagesNeeded; i++) {

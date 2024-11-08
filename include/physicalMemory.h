@@ -18,7 +18,7 @@ typedef struct{
 
 }Frame;
 
-Frame* create_fr(Frame* fr,int frameNumber, int frameSize, char* data);
+int create_fr(Frame* fr,int frameNumber, int frameSize);
 
 void loadPage(Page* p, Frame* f);
 
@@ -41,7 +41,7 @@ typedef struct{
 
 }PhysicalMemory;
 
-PhysicalMemory* create_pm(PhysicalMemory* pm,int size);
+int create_pm(PhysicalMemory* pm,int size);
 
 
 Frame* allocateFrame(PhysicalMemory* pm);
