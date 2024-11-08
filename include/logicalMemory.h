@@ -15,13 +15,11 @@ typedef struct {
     bool isLoaded;
 }Page;
 
+Page* create_pg(Page *pg,int pageNumber, int processID);
+
 void markDirty(Page *p);
 
 void markClean(Page *p);
-
-void loadPage(Page* p, int frameNumber);
-
-void unloadPage(Page* p);
 
 //LOGICAL MEMORY
 typedef struct {
@@ -29,6 +27,8 @@ typedef struct {
     int pageSize;
     Page** pages;
 }LogicalMemory;
+
+LogicalMemory* create_lm(LogicalMemory* lm,int size, int pageSize);
 
 Page* getPage(LogicalMemory* lm, int pageNumber);
 

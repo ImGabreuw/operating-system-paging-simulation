@@ -7,6 +7,14 @@
 #define FRAME_SIZE (4096)
 
 //Metodos de Frame
+Frame* create_fr(Frame* fr,int frameNumber, int frameSize, char* data){
+    fr->frameNumber = frameNumber;
+    fr->pageNumber = -1; //Nao ocupado
+    fr->frameSize = frameSize;
+    fr->isOccupied = false;
+    strcpy(fr->data,data);
+    return fr;
+}
 
 char* getData(Frame *f){
     return f->data;
@@ -18,6 +26,14 @@ void setData(Frame *f, char* data){
 
 void clear(Frame *f){
     f->data = realloc(&f->data, f->frameSize);
+}
+
+void loadPage(Page* p, Frame* f){
+    f->pageNumber = p->pageNumber;
+}
+
+void unloadPage(Frame* f){
+    f->pageNumber = -1;
 }
 
 //Metodos de Physical Memory

@@ -14,6 +14,8 @@ typedef struct{
 
 }PageTableEntry;
 
+PageTableEntry* create_pte(PageTableEntry* pte,int pageNumber, int frameNumber);
+
 void markDirty(PageTableEntry* p_entry);
 
 void markClean(PageTableEntry* p_entry);
@@ -28,6 +30,8 @@ typedef struct{
     PageTableEntry** entries;
     int numberOfPages;
 }PageTable;
+
+PageTable* create_pta(PageTable* pta, int numberOfPages);
 
 bool addMapping(PageTable *pagetable, int pageNum, int frameNum);
 
@@ -48,7 +52,7 @@ typedef struct {
     LogicalMemory* logicalMemory;
 }Process;
 
-    
+Process* create_p(int pid, int firstAddress, int lastAddress, int size, PageTable* pg, LogicalMemory* lm );
 
 
 #endif

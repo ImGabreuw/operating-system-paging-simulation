@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "process_structures.h"
 
 //Metodos de PageTableEntry
+
+PageTableEntry* create_pte(PageTableEntry* pte,int pageNumber, int frameNumber){
+    pte->pageNumber = pageNumber;
+    pte->frameNumber = frameNumber;
+    pte->isDirty = false;
+    pte->isValid = false;
+    return pte;
+}
 
 void markDirty(PageTableEntry* p_entry){
     p_entry->isDirty=true;
@@ -21,6 +30,10 @@ void invalidate(PageTableEntry* p_entry){
 }
 
 //Metodos de PageTable
+PageTable* create_pta(PageTable* pta, int numberOfPages){
+    pta->entries = (PageTableEntry**)malloc(sizeof(PageTableEntry*));
+
+}
 
 bool addMapping(PageTable *pagetable, int pageNum, int frameNum){
     int entry_idx = 0;
@@ -73,4 +86,18 @@ bool isPageValid(PageTable *pagetable,int pageNum){
             return pagetable->entries[entry_idx]->isValid;
         }
     }
+}
+
+//Metodos de Processo
+Process* create_p(int pid, int firstAddress, int lastAddress, int size, PageTable* pg, LogicalMemory* lm ){
+    Process *p;
+    p->pid = pid;
+    p->size = size;
+    p->pageTable = pg;
+    p->logicalMemory = lm;
+    p->addressesCount = lastAddress-firstAddress;
+    for(int address_idx = 0; address_idx < p->addressesCount; address_idx++){
+        p->accessSequence[address_idx] = firstAddress+address_idx;
+    }
+
 }

@@ -1,8 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include "logicalMemory.h";
 
 //Metodos de Page
+Page* create_pg(Page *pg,int pageNumber, int processID){
+    pg->pageNumber = pageNumber;
+    pg->processID = processID;
+    pg->isDirty = false;
+    pg->isLoaded = false;
+    return pg;
+}
+
 void markDirty(Page *p){
     p->isDirty = true;
 }
@@ -11,16 +20,16 @@ void markClean(Page *p){
     p->isDirty = false;
 }
 
-void loadPage(Page* p, int frameNumber){
-    p->frameNumber = frameNumber;
-}
-
-void unloadPage(Page* p){
-    p->frameNumber = -1;
-}
-
 
 //Metodos de LogicalMemory
+
+LogicalMemory* create_lm(LogicalMemory* lm,int size, int pageSize){
+    lm->size = size;
+    lm->pageSize = pageSize;
+    lm->pages = (Page**)malloc(sizeof(Page*));
+    return lm;
+}
+
 Page* getPage(LogicalMemory* lm, int pageNumber){
     for (int page_idx = 0; page_idx < lm->size; page_idx++){
         if(lm->pages[page_idx]->pageNumber == pageNumber) return lm->pages[page_idx];

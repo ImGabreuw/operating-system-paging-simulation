@@ -24,6 +24,13 @@ Lucas Zanini da Silva           - 10417361
 Código fonte: https://github.com/ImGabreuw/operating-system-paging-simulation
 */
 
+int toPhysicalAddress(int logicalAddress){
+    int offset = logicalAddress % FRAME_SIZE;
+    int frame = logicalAddress/FRAME_SIZE;
+
+    return FRAME_SIZE*frame + offset;
+}
+
 
 int main(int argc, char const *argv[]) {
     // Inicializa a memória física
