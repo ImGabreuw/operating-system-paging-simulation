@@ -2,7 +2,7 @@
 #define LOG_COMMON_H
 
 #include <stdio.h>
-//#include <pthread.h>
+
 typedef enum
 {
     LOG_INFO,

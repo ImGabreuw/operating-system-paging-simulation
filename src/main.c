@@ -10,7 +10,7 @@
 #define PHYSICAL_MEMORY_SIZE (16384) // Tamanho total da memória física
 #define NUMBER_OF_FRAMES 4
 
-//#include "log.h"
+#include "log.h"
 
 /*
 Integrantes:
