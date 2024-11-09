@@ -6,7 +6,7 @@ TEST_DIR="./test"
 
 OUTPUT="main"
 
-CFLAGS="-Wall -Werror -I$INCLUDE_DIR -I$INCLUDE_DIR/test -I$INCLUDE_DIR/config -pthread"
+CFLAGS="-Wall -Werror -I$INCLUDE_DIR -I$INCLUDE_DIR/common -I$INCLUDE_DIR/config -pthread"
 
 SRC_FILES=$(find $SRC_DIR -name "*.c" ! -path "$TEST_DIR/*")
 
