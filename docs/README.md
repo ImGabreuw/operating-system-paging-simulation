@@ -5,123 +5,120 @@
 ```mermaid
 classDiagram
     class Page {
-      - int pageNumber
-      - int frameNumber
-      - int processID
-      - bool isDirty
-      - bool isLoaded
-      + markDirty() void
-      + markClean() void
-      + loadPage(frameNumber: int) void
-      + unloadPage() void
+      - int page_number
+      - int pid
+      - bool is_dirty
+      - bool is_loaded
+      + page_mark_dirty() void
+      + page_mark_clean() void
     }
 
    class Frame {
-      - int frameNumber
+      - int frame_number
       - int size
       - char[] data
-      - bool isOccupied
-      + getData() char[]
-      + setData(data: char[]) void
+      - bool is_occupied
+      + get_data() char[]
+      + set_data(data: char[]) void
       + clear() void
    }
 
    class PageTable {
       - PageTableEntry[] entries
-      - int numberOfPages
-      + addMapping(pageNum: int, frameNum: int) void
-      + removeMapping(pageNum: int) void
-      + getFrameNumber(pageNum: int) int
-      + isPageValid(pageNum: int) bool
+      - int number_of_pages
+      + add_mapping(page_number: int, frame_number: int) void
+      + remove_mapping(page_number: int) void
+      + get_frame_number(page_number: int) int
+      + is_page_valid(page_number: int) bool
    }
 
    class PageTableEntry {
-      - int pageNumber
-      - int frameNumber
-      - bool isValid
-      - bool isDirty
-      + markDirty() void
-      + markClean() void
+      - int page_number
+      - int frame_number
+      - bool is_valid
+      - bool is_dirty
+      + mark_dirty() void
+      + mark_clean() void
       + validate()
       + invalidate()
    }
 
    class MemoryManagementUnit {
-      -LogicalMemory logicalMemory
-      -PhysicalMemory physicalMemory
+      -LogicalMemory logical_memory
+      -PhysicalMemory physical_memory
       -Disk disk
-      -ProcessManager processManager
-      +translateAddress(virtualAddress: int) int
-      +handlePageFault(pageNumber: int) void 
-      +loadProcess(process: Process) void
-      +accessMemory(virtualAddress: int) void
+      -ProcessManager process_manager
+      +translate_address(virtual_address: int) int
+      +handle_page_fault(page_number: int) void 
+      +load_process(process: Process) void
+      +access_memory(virtual_address: int) void
    }
 
    class LogicalMemory {
       -int size
-      -int pageSize
+      -int page_size
       -Page[] pages
-      +getPage(pageNumber: int) Page
-      +createPages(processSize: int) Page[]
+      +get_page(page_number: int) Page
+      +create_pages(processSize: int) Page[]
    }
 
    class PhysicalMemory {
       -int size
-      -int frameSize
+      -int frame_size
       -Frame[] frames
-      -int freeFrameCount
-      -int accessDelay
-      +allocateFrame() Frame
-      +getFreeFrameCount() int
-      +releaseFrame(frameNumber: int)
-      +writeToFrame(frameNumber: int, data: char[])
-      +readFromFrame(frameNumber: int) char[]
+      -int free_frame_count
+      -int access_delay
+      +allocate_frame() Frame
+      +get_free_frame_count() int
+      +release_frame(frame_number: int) void
+      +write_to_frame(frame_number: int, data: char[]) void
+      +read_from_frame(frame_number: int) char[]
    }
 
    class Disk {
       -int size
-      -SwapArea swapArea
-      -int accessDelay
-      +readPage(pageNumber: int) Page
-      +writePage(page: Page): void
-      +allocateSwapSpace(size: int) int
-      +releaseSwapSpace(swapAddress: int) void
+      -SwapArea swap_area
+      -int access_delay
+      +read_page(page_number: int) Page
+      +write_page(page: Page): void
+      +allocate_swap_space(size: int) int
+      +release_swap_space(swap_address: int) void
    }
 
     class SwapArea {
         - int size
-        - SwappedPageEntry[] swappedPages
-        - int[] freeBlocks
-        - int entryCount
-        - int freeBlockCount
-        + allocateBlock() int
-        + readBlock(blockNumber: int) char[]
-        + writeBlock(blockNumber: int, data: char[])
+        - SwappedPageEntry[] swapped_pages
+        - int[] free_blocks
+        - int entry_count
+        - int free_block_count
+        + allocate_block() int
+        + read_block(block_number: int) char[]
+        + write_block(block_number: int, data: char[])
     }
 
     class SwappedPageEntry {
-        - int pageNumber
+        - int page_number
         - Page* page
     }
 
    class Process {
       -int pid
       -int size
-      -PageTable pageTable
-      -int[] accessSequence
-      +getPage(pageNumber: int) Page
-      +accessAddress(virtualAddress: int) void
-      +allocatePages(): void
+      -PageTable page_table
+      -int[] access_sequence
+      +get_page(page_number: int) Page
+      +access_address(virtual_address: int) void
+      +allocate_pages(): void
    }
 
    class ProcessManager {
-      - Process[] runningProcesses  
-      - Queue readyQueue            
+      - Process[] running_processes  
+      - Queue ready_queue            
       - int quantum                 
-      + createProcess(size: int) Process
-      + terminateProcess(pid: int) void
-      + scheduleProcess(process: Process)
-      + runScheduledProcesses() void
+      + create_process(size: int) Process
+      + terminate_process(pid: int) void
+      + schedule_process(process: Process)
+      + run_scheduled_processes() void
     }
 
    class ConfigurationProperty {
@@ -131,8 +128,8 @@ classDiagram
 
     class ConfigurationManager {
         - ConfigurationProperty[] properties  
-        + loadProperties(filePath: char[])
-        + getProperty(path: char[])
+        + load_properties(filePath: char[])
+        + get_property(path: char[])
     }
 
    MemoryManagementUnit --> LogicalMemory
@@ -161,47 +158,35 @@ classDiagram
 
 A estrutura `Page` representa uma página virtual, essencial para o gerenciamento de memória em sistemas operacionais. Ela mantém informações sobre a localização da página na memória, seu estado de modificação e a associação a um processo específico.
 
-1. `pageNumber` (int):
+1. `page_number` (int):
 
    Identificador único da página no espaço de endereçamento virtual do processo. Facilita a localização da página durante operações de gerenciamento.
 
-2. `frameNumber` (int):
-
-   Número do quadro na memória RAM onde a página está carregada. Um valor de -1 indica que a página não está presente na RAM.
-
-3. `processID` (int):
+2. `pid` (int):
 
    Identificador do processo proprietário da página. Permite a distinção entre páginas de diferentes processos.
 
-4. `isDirty` (bool):
+3. `is_dirty` (bool):
 
    Indica se a página foi modificada (true) ou não (false). Importante para determinar se a página precisa ser escrita de volta (sincronização) na memória secundária.
 
-5. `isLoaded` (bool):
+4. `is_loaded` (bool):
 
    Indica se a página está carregada na RAM (true) ou não (false). Facilita a verificação do status de carregamento da página.
 
-6. `markDirty()`:
+5. `mark_dirty()`:
 
-   Marca a página como suja, definindo `isDirty` como true. Usado quando o conteúdo da página é alterado após ter sido carregado na memória RAM.
+   Marca a página como suja, definindo `is_dirty` como true. Usado quando o conteúdo da página é alterado após ter sido carregado na memória RAM.
 
-7. `markClean()`:
+6. `mark_clean()`:
 
-   Marca a página como limpa, definindo `isDirty` como false. Utilizado após a escrita da página de volta ao disco.
-
-8. `loadPage(frameNumber: int)`:
-
-   Carrega a página em um quadro de memória específico, atualizando `isLoaded` para `true` e registrando o número do quadro. Necessário para gerenciar o carregamento de páginas na memória.
-
-9. `unloadPage()`:
-
-   Remove a página da RAM, definindo `isLoaded` como false e `frameNumber` como -1. Necessário para a implementação de algoritmos de substituição de páginas (utilizamos o algoritmo FIFO).
+   Marca a página como limpa, definindo `is_dirty` como false. Utilizado após a escrita da página de volta ao disco.
 
 ### Estrutura `Frame`
 
 A estrutura `Frame` representa um quadro na memória física, onde as páginas dos processos são carregadas. Os quadros são unidades de alocação que permitem ao sistema operacional gerenciar a memória eficientemente, garantindo o acesso rápido às páginas ativas.
 
-1. `frameNumber` (int):
+1. `frame_number` (int):
 
    Identificador único do quadro na memória física, utilizado para localizá-lo durante as operações de gerenciamento.
 
@@ -213,21 +198,21 @@ A estrutura `Frame` representa um quadro na memória física, onde as páginas d
 
    Armazena o conteúdo da página carregada no quadro. Alternativa para `byte[]` representando o armazenamento de dados no formato binário.
 
-4. `isOccupied` (bool):
+4. `is_occupied` (bool):
 
    Indica se o quadro está ocupado por uma página (`true`) ou disponível (`false`). Importante para o gerenciamento de memória.
 
-5. `getData()`:
+5. `get_data()`:
 
    Retorna o conteúdo do quadro, permitindo acesso aos dados da página atualmente carregada.
 
-6. `setData(data: char[])`:
+6. `set_data(data: char[])`:
 
    Define o conteúdo do quadro, possibilitando carregar ou atualizar a página armazenada.
 
 7. `clear()`:
 
-   Limpa o conteúdo do quadro e define `isOccupied` como `false`, liberando-o para novas páginas e garantindo a integridade dos dados.
+   Limpa o conteúdo do quadro e define `is_occupied` como `false`, liberando-o para novas páginas e garantindo a integridade dos dados.
 
 ### Estrutura `PageTable`
 
@@ -237,23 +222,23 @@ A `PageTable` representa a tabela de páginas de um processo. Ela mantém o mape
 
    Vetor que armazena as entradas de tabela de páginas (`PageTableEntry`). Cada entrada do vetor corresponde a uma página virtual específica e armazena o mapeamento e o estado da página.
 
-2. `numberOfPages` (`int`):
+2. `number_of_pages` (`int`):
 
    Representa o número total de páginas que a tabela pode gerenciar, limitando o alcance de `entries` e estabelecendo uma estrutura definida para o mapeamento de memória do processo.
 
-3. `addMapping(pageNum: int, frameNum: int)`:
+3. `add_mapping(page_number: int, frame_number: int)`:
 
-   Adiciona um mapeamento entre uma página virtual e um quadro físico. Atualiza a entrada da página virtual especificada (`pageNum`) com o número do quadro físico (`frameNum`) e marca a entrada como válida.
+   Adiciona um mapeamento entre uma página virtual e um quadro físico. Atualiza a entrada da página virtual especificada (`page_number`) com o número do quadro físico (`frame_number`) e marca a entrada como válida.
 
-4. `removeMapping(pageNum: int)`:
+4. `remove_mapping(page_number: int)`:
 
    Remove o mapeamento de uma página virtual, invalidando a entrada correspondente. Quando uma página é removida da memória, esse método garante que o sistema não mantenha informações desatualizadas ou incorretas sobre o mapeamento.
 
-5. `getFrameNumber(pageNum: int) int`:
+5. `get_frame_number(page_number: int) int`:
 
    Retorna o número do quadro físico associado à página virtual especificada. Lança uma falha de página se a entrada for inválida.
 
-6. `isPageValid(pageNum: int) bool`:
+6. `is_page_valid(page_number: int) bool`:
 
    Verifica se a página virtual especificada está válida (isto é, carregada na memória física). Este método permite que o sistema detecte se a página pode ser acessada ou se é necessário carregar a página (page fault).
 
@@ -261,15 +246,15 @@ A `PageTable` representa a tabela de páginas de um processo. Ela mantém o mape
 
 A `PageTableEntry` representa uma entrada individual na tabela de páginas (`PageTable`), armazenando informações sobre o quadro físico, o status de validade e o status de modificação de uma página virtual.
 
-1. `pageNumber` (int):
+1. `page_number` (int):
 
    O número da página virtual que esta entrada representa. Este campo age como a "chave" para facilitar a localização do mapeamento associado a uma página específica.
 
-2. `frameNumber` (`int`):
+2. `frame_number` (`int`):
 
    Número do quadro físico onde a página virtual correspondente está carregada. Este campo representa o "valor" para a tradução de endereços virtuais em físicos.
 
-3. `isValid` (`bool`):
+3. `is_valid` (`bool`):
 
    Flag que indica se a entrada é válida.
 
@@ -278,37 +263,37 @@ A `PageTableEntry` representa uma entrada individual na tabela de páginas (`Pag
 
 Na literatura, este campo é referenciado como `present`, porém como essa flag não indica apenas se a página está presente na memória física, mas também mostra se o mapeamento entre página e quadro está válido foi decido manter o tempo `valid` para que o página está em um estado válido na memória física e o mapeamento também se encontra válido.
 
-4. `isDirty` (`bool`):
+4. `is_dirty` (`bool`):
 
    Flag que indica se a página foi modificada desde que foi carregada. Um valor `true` significa que a página sofreu alterações e precisa ser gravada no disco se for removida da memória.
 
-   A presença do campo `isDirty` tanto em `Page` quanto em `PageTableEntry` permite diferenciar o estado de modificação da página em memória virtual (`Page`) e o status de sua última cópia no quadro físico (`PageTableEntry`).
+   A presença do campo `is_dirty` tanto em `Page` quanto em `PageTableEntry` permite diferenciar o estado de modificação da página em memória virtual (`Page`) e o status de sua última cópia no quadro físico (`PageTableEntry`).
 
-5. `markDirty()`:
+5. `mark_dirty()`:
 
-   Marca a entrada como "suja" (`isDirty = true`), sinalizando que a página foi modificada. Este método garante que o estado de modificação da página seja refletido corretamente na tabela.
+   Marca a entrada como "suja" (`is_dirty = true`), sinalizando que a página foi modificada. Este método garante que o estado de modificação da página seja refletido corretamente na tabela.
 
-6. `markClean()`:
+6. `mark_clean()`:
 
-   Marca a entrada como "limpa" (`isDirty = false`), indicando que a página não possui alterações pendentes.
+   Marca a entrada como "limpa" (`is_dirty = false`), indicando que a página não possui alterações pendentes.
 
 7. `validate()`:
 
-   Marca a entrada como válida (`isValid = true`), sinalizando que a página foi carregada na memória física e está disponível para acesso. Este método é chamado durante o carregamento da página.
+   Marca a entrada como válida (`is_valid = true`), sinalizando que a página foi carregada na memória física e está disponível para acesso. Este método é chamado durante o carregamento da página.
 
 - `invalidate()`:
 
-  Marca a entrada como inválida (`isValid = false`), sinalizando que a página foi removida da memória física e que acessos futuros resultarão em falha de página.
+  Marca a entrada como inválida (`is_valid = false`), sinalizando que a página foi removida da memória física e que acessos futuros resultarão em falha de página.
 
 ### Estrutura `MemoryManagementUnit` (MMU)
 
 A `MemoryManagementUnit` (MMU) é responsável pela tradução de endereços lógicos para endereços físicos, controle de faltas de página e carregamento de processos no simulador de paginação. Essa unidade gerencia as interações entre a memória lógica, memória física e disco, além de coordenar processos e suas requisições de memória.
 
-1. `logicalMemory`: 
+1. `logical_memory`: 
    
    Armazena as representações de memória lógica do sistema, incluindo as páginas dos processos.
   
-2. `physicalMemory`: 
+2. `physical_memory`: 
    
    Armazena o conteúdo da memória física, composta por frames alocados conforme as necessidades dos processos.
 
@@ -316,27 +301,27 @@ A `MemoryManagementUnit` (MMU) é responsável pela tradução de endereços ló
    
    Representa a memória secundária (disco), onde as páginas não carregadas na memória física são mantidas, sendo acessadas em casos de faltas de página.
 
-4. `processManager`: 
+4. `process_manager`: 
    
    Coordena o controle e o gerenciamento de processos, incluindo o carregamento e a remoção de processos da memória.
 
-5. `translateAddress(virtualAddress: int) int`: 
+5. `translate_address(virtual_address: int) int`: 
    
    Traduz um endereço lógico para seu endereço físico correspondente, utilizando a tabela de páginas para mapear a página lógica a um quadro na memória física.
 
-6. `handlePageFault(pageNumber: int)`: 
+6. `handle_page_fault(page_number: int)`: 
    
    Gera uma interrupção de falta de página e gerencia o carregamento da página necessária a partir do disco para a memória física. Executa um delay para simular o tempo de acesso à memória secundária.
 
-   Em caso de falta de página (page fault), o processo atual é interrompido para que a MMU possa carregar a página faltante do disco para a memória física, operação que envolve um tempo de acesso mais lento. Como essa transferência é uma operação de I/O, a CPU permanece ociosa durante sua execução. Para otimizar o uso da CPU e evitar períodos de ociosidade, o simulador notifica o processManager, que escalona o próximo processo na fila de prontos enquanto o carregamento da página ocorre. Dessa forma, a CPU continua em operação, e o processo interrompido é retomado somente quando a página faltante é carregada, garantindo um fluxo de execução mais eficiente.
+   Em caso de falta de página (page fault), o processo atual é interrompido para que a MMU possa carregar a página faltante do disco para a memória física, operação que envolve um tempo de acesso mais lento. Como essa transferência é uma operação de I/O, a CPU permanece ociosa durante sua execução. Para otimizar o uso da CPU e evitar períodos de ociosidade, o simulador notifica o process_manager, que escalona o próximo processo na fila de prontos enquanto o carregamento da página ocorre. Dessa forma, a CPU continua em operação, e o processo interrompido é retomado somente quando a página faltante é carregada, garantindo um fluxo de execução mais eficiente.
 
-7. `loadProcess(process: Process)`: 
+7. `load_process(process: Process)`: 
    
    Carrega um novo processo na memória lógica e física (inicialização do processo), alocando espaço na memória lógica, mapeando a tabela de páginas para o processo e reservando quadros físicos disponíveis na memória física para acomodar suas páginas.
 
-8. `accessMemory(virtualAddress: int)`: 
+8. `access_memory(virtual_address: int)`: 
    
-   Acessa a memória com um endereço lógico, traduzindo-o para um endereço físico e, em caso de falha, aciona o `handlePageFault` para recuperação da página.
+   Acessa a memória com um endereço lógico, traduzindo-o para um endereço físico e, em caso de falha, aciona o `handle_page_fault` para recuperação da página.
 
 ### Estrutura `LogicalMemory`
 
@@ -346,7 +331,7 @@ A estrutura `LogicalMemory` representa a memória lógica no simulador de pagina
 
    Define o limite de espaço que pode ser utilizado pela memória lógica. Necessário para alocação e cálculo de páginas.
 
-2. `int pageSize`:  
+2. `int page_size`:  
    
    Define o tamanho individual das páginas, permitindo calcular o número total de páginas necessárias para armazenar um processo e facilita a divisão de endereços lógicos.
 
@@ -354,13 +339,13 @@ A estrutura `LogicalMemory` representa a memória lógica no simulador de pagina
 
    Mantém o conjunto de páginas disponíveis, facilitando o acesso e o gerenciamento das páginas ativas na memória lógica.
 
-4. `getPage(pageNumber: int) Page`:  
+4. `get_page(page_number: int) Page`:  
    
    Retorna a página correspondente ao número de página fornecido. Permite o acesso direto a uma página específica, necessária para traduzir endereços lógicos e verificar se a página já está carregada.
 
-2. `createPages(processSize: int) Page[]`:  
+2. `create_pages(processSize: int) Page[]`:  
    
-   Cria e retorna um array de páginas com base no tamanho do processo. Realiza a divisão do processo em páginas, garantindo que cada processo tenha a quantidade de páginas adequada de acordo com seu tamanho e o `pageSize` configurado.
+   Cria e retorna um array de páginas com base no tamanho do processo. Realiza a divisão do processo em páginas, garantindo que cada processo tenha a quantidade de páginas adequada de acordo com seu tamanho e o `page_size` configurado.
 
 ### Estrutura `PhysicalMemory`
 
@@ -370,7 +355,7 @@ A estrutura `PhysicalMemory` gerencia a alocação e acesso aos frames da memór
    
    Especifica o tamanho total da memória física. Define o limite de espaço disponível na memória física para alocação de frames, sendo essencial para calcular o número total de frames possíveis.
 
-2. `int frameSize`:  
+2. `int frame_size`:  
    
    Define o tamanho de cada frame da memória física. Determina a granularidade da alocação e permite dividir a memória física em unidades que correspondem aos frames.
 
@@ -378,32 +363,32 @@ A estrutura `PhysicalMemory` gerencia a alocação e acesso aos frames da memór
    
    Mantém o estado de cada frame presentes na memória física, facilitando o acesso e a atualização dos dados armazenados nos frames individuais.
 
-4. `int freeFrameCount`:  
+4. `int free_frame_count`:  
    
    Contador de frames livres na memória física. Controla o número de frames disponíveis, auxiliando na gestão de alocação e substituição, e evita tentativas de alocar frames quando não há espaço.
 
-5. `int accessDelay`:  
+5. `int access_delay`:  
    
    Delay de acesso para simulação de operações com a memória física.
 
-6. `allocateFrame() Frame`:  
-   - Aloca um frame livre e retorna uma referência ao frame alocado. Esse processo consiste na busca um frame disponível, reduzindo o `freeFrameCount` e atualizando o estado da memória física para acomodar novas páginas.
+6. `allocate_frame() Frame`:  
+   - Aloca um frame livre e retorna uma referência ao frame alocado. Esse processo consiste na busca um frame disponível, reduzindo o `free_frame_count` e atualizando o estado da memória física para acomodar novas páginas.
 
-7. `getFreeFrameCount() int`:  
+7. `get_free_frame_count() int`:  
    
    Retorna o número de frames livres. Proporciona ao MMU a situação da memória física, se há espaço suficiente para novas alocações.
 
-8. `releaseFrame(frameNumber: int)`:  
+8. `release_frame(frame_number: int)`:  
    
-   Libera o frame especificado, tornando-o disponível novamente. Ele faz isso atualizando o estado do frame para livre e incrementa `freeFrameCount`, permitindo reutilização do frame liberado para novas alocações.
+   Libera o frame especificado, tornando-o disponível novamente. Ele faz isso atualizando o estado do frame para livre e incrementa `free_frame_count`, permitindo reutilização do frame liberado para novas alocações.
 
-9. `writeToFrame(frameNumber: int, data: char[])`:  
+9. `write_to_frame(frame_number: int, data: char[])`:  
    
-   Armazena informações no frame designado, incluindo a aplicação de `accessDelay` para simulação de tempo de escrita.
+   Armazena informações no frame designado, incluindo a aplicação de `access_delay` para simulação de tempo de escrita.
 
-10. `readFromFrame(frameNumber: int) char[]`:
+10. `read_from_frame(frame_number: int) char[]`:
     
-    Recupera dados do frame solicitado, aplicando `accessDelay` para simulação de tempo de leitura.
+    Recupera dados do frame solicitado, aplicando `access_delay` para simulação de tempo de leitura.
 
 ### Estrutura `Disk`
 
@@ -413,34 +398,34 @@ A estrutura `Disk` é projetada para simular o comportamento de uma unidade de d
    
    Representa o tamanho total da área de disco disponível para operações de swap. Esse campo define a capacidade máxima do espaço de swap.
 
-2. `swapArea` (SwapArea)  
+2. `swap_area` (SwapArea)  
    
    Instância da estrutura `SwapArea`, que gerencia o espaço de swap usado para armazenar páginas movidas da memória principal. Contém endereços de página e funções auxiliares para alocar e liberar espaço em disco.
 
-3. `accessDelay` (int)  
+3. `access_delay` (int)  
    
    Tempo de atraso simulado para operações de leitura e escrita no disco, em milissegundos. Este atraso reflete o tempo de acesso mais lento do disco em comparação com a memória principal.
 
 
-4. `readPage(pageNumber: int) Page`  
+4. `read_page(page_number: int) Page`  
    
-   Esse método acessa o disco para localizar e retornar a página especificada pelo parâmetro `pageNumber`. 
+   Esse método acessa o disco para localizar e retornar a página especificada pelo parâmetro `page_number`. 
    
-   Durante uma falha de página (page fault), quando uma página solicitada por um processo não está na memória física, o simulador busca a página correspondente no disco usando `readPage`. O método localiza a página no espaço de swap, simula o atraso de leitura com `accessDelay`, e retorna a instância de `Page` ao chamador para que ela possa ser carregada na memória física.
+   Durante uma falha de página (page fault), quando uma página solicitada por um processo não está na memória física, o simulador busca a página correspondente no disco usando `read_page`. O método localiza a página no espaço de swap, simula o atraso de leitura com `access_delay`, e retorna a instância de `Page` ao chamador para que ela possa ser carregada na memória física.
 
-5. `writePage(page: Page) void`  
+5. `write_page(page: Page) void`  
    
-   O método `writePage` recebe uma instância de `Page` para ser escrita no disco. Esse processo ocorre especificamente quando a página tem a flag `isDirty = true`, indicando que seus dados foram modificados desde que ela foi carregada na memória física e, portanto, é necessário sincronizar essas alterações com o disco. Isso acontece durante a substituição de páginas, em que uma página precisa ser temporariamente removida da memória principal para liberar espaço para uma nova página.
+   O método `write_page` recebe uma instância de `Page` para ser escrita no disco. Esse processo ocorre especificamente quando a página tem a flag `is_dirty = true`, indicando que seus dados foram modificados desde que ela foi carregada na memória física e, portanto, é necessário sincronizar essas alterações com o disco. Isso acontece durante a substituição de páginas, em que uma página precisa ser temporariamente removida da memória principal para liberar espaço para uma nova página.
    
    Isso ocorre em situações de substituição de páginas, onde uma página precisa ser temporariamente removida da memória principal para liberar espaço para uma nova página. 
    
-   A função `writePage` armazena a página no espaço de swap, simula o atraso de escrita usando `accessDelay`, e registra a operação de substituição, facilitando o rastreamento nos logs.
+   A função `write_page` armazena a página no espaço de swap, simula o atraso de escrita usando `access_delay`, e registra a operação de substituição, facilitando o rastreamento nos logs.
 
-6. `allocateSwapSpace(size: int) int`  
+6. `allocate_swap_space(size: int) int`  
    
    Aloca um bloco de espaço no swap de tamanho especificado pelo parâmetro `size` e retorna o endereço desse espaço. Essa função é acionada quando novas páginas precisam ser movidas para o disco.
 
-7. `releaseSwapSpace(swapAddress: int) void`  
+7. `release_swap_space(swap_address: int) void`  
    
    Libera o espaço de swap alocado no endereço fornecido, permitindo que o espaço possa ser reutilizado por futuras operações de paginação. Essa função é crucial para evitar fragmentação e esgotamento do espaço de troca.
 
@@ -454,41 +439,41 @@ A estrutura `SwapArea` é projetada para gerenciar a área de swap em um simulad
    
    O tamanho total da área de swap em número de blocos / páginas. Este campo define a capacidade da área de swap.
 
-2. `SwappedPageEntry[] swappedPages`: 
+2. `SwappedPageEntry[] swapped_pages`: 
    
    Um vetor que armazena as entradas de páginas que foram movidas para a área de swap. Cada entrada contém um número de página e um ponteiro para a estrutura da página correspondente.
 
-3. `int[] freeBlocks`: 
+3. `int[] free_blocks`: 
    
    Um vetor que mantém a lista de blocos livres na área de swap. Esse campo é utilizado para gerenciar a alocação de novos blocos.
 
-4. `int entryCount`: 
+4. `int entry_count`: 
    
-   Contador do número de entradas atualmente presentes no vetor `swappedPages`. Facilita a iteração sobre as entradas e o gerenciamento do espaço ocupado.
+   Contador do número de entradas atualmente presentes no vetor `swapped_pages`. Facilita a iteração sobre as entradas e o gerenciamento do espaço ocupado.
 
-5. `int freeBlockCount`: 
+5. `int free_block_count`: 
    
    Contador do número de blocos livres disponíveis na área de swap. Isso permite uma verificação rápida da disponibilidade de espaço.
 
-6. `allocateBlock() int`: 
+6. `allocate_block() int`: 
    
    Aloca um bloco livre na área de swap e retorna o número do bloco alocado. Se não houver blocos disponíveis, é retornado o valor -1, indicando falha na alocação.
   
-7. `readBlock(blockNumber: int) Page`: 
+7. `read_block(block_number: int) Page`: 
    
-   Lê os dados de um bloco específico da área de swap identificado pelo `blockNumber`. 
+   Lê os dados de um bloco específico da área de swap identificado pelo `block_number`. 
    
    Retorna uma estrutura Page, representando os dados armazenados no bloco. A escolha de retornar a estrutura `Page` em vez de um array de caracteres ou uma estrutura `Block`, pois como que ambas as estruturas representam informações semelhantes foi decido a fim de facilitar a implementação de simplificar utilizando apenas a estrutura `Page`, porém mantendo a nomenclatura `page` para o contexto de memória virtual e `block` no contexto da area de swap.
 
-8. `writeBlock(block: Page)`: 
+8. `write_block(block: Page)`: 
    
-   Escreve os dados de uma estrutura `Page` no bloco identificado pelo `blockNumber`, substituindo quaisquer dados existentes. 
+   Escreve os dados de uma estrutura `Page` no bloco identificado pelo `block_number`, substituindo quaisquer dados existentes. 
    
    Este método é utilizado para armazenar informações de uma página quando ela é movida da memória para a área de swap. A utilização da estrutura `Page` permite que as operações de escrita se alinhem à representação de dados na memória.
 
 ### Estrutura `SwappedPageEntry`
 
-- `int pageNumber`: O número da página que foi movida para a área de swap. Este campo atua como uma chave para identificar a página armazenada.
+- `int page_number`: O número da página que foi movida para a área de swap. Este campo atua como uma chave para identificar a página armazenada.
 
 - `Page* page`: Um ponteiro para a estrutura da página que foi carregada da memória para o disco. Isso permite que a estrutura acesse diretamente os dados da página.
 
@@ -510,19 +495,19 @@ A estrutura `Process` representa um processo no simulador de paginação, inclui
    
    Um array que armazena as páginas que compõem o processo. Esse campo permite que o processo tenha acesso direto às suas páginas, facilitando operações de leitura e escrita.
 
-4. `PageTable pageTable`: 
+4. `PageTable page_table`: 
    
    Estrutura responsável pelo mapeamento das páginas lógicas do processo para frames físicos na memória. Esta tabela é fundamental para a tradução de endereços lógicos em endereços físicos, permitindo que o sistema operacional acesse os dados corretos na memória física.
 
-5. `int[] accessSequence`: 
+5. `int[] access_sequence`: 
    
    Um array que simula a sequência de acessos aos endereços de memória pelo processo. Esse campo é útil para testar o comportamento de acesso e a eficiência do gerenciamento de páginas, permitindo simulações de carga e acesso à memória.
 
-6. `getPage(pageNumber: int) Page`: 
+6. `get_page(page_number: int) Page`: 
    
    Método que retorna a página correspondente ao número fornecido. Essa função permite que o processo acesse uma página específica, facilitando a manipulação de dados e a execução de operações que dependem de páginas individuais.
 
-7. `accessAddress(address: int) void`: 
+7. `access_address(address: int) void`: 
    
    Esta função acessa um endereço de memória específico. 
    
@@ -530,7 +515,7 @@ A estrutura `Process` representa um processo no simulador de paginação, inclui
    
    Essa abordagem garante que, mesmo que um processo tenha suas páginas desalocadas, o acesso à memória seja tratado de maneira eficiente.
 
-8. `allocatePages() void`: 
+8. `allocate_pages() void`: 
    
    Esta função é responsável por alocar as páginas necessárias do processo na memória física. 
    
@@ -546,11 +531,11 @@ O `ProcessManager` é responsável pelo gerenciamento e escalonamento dos proces
 
 O `ProcessManager` gerencia o ciclo de vida dos processos, utilizando um algoritmo Round Robin para escalonamento, assegurando que todos os processos tenham acesso equitativo à CPU. Ele é responsável por criar, executar e terminar processos, garantindo a responsividade do sistema com um baixo tempo de resposta (alinhado com as decisões feitas de alocação de página na estrutura `Process`).
 
-1. `runningProcesses`: 
+1. `running_processes`: 
   
   Um array que contém todos os processos que estão atualmente em execução. Cada processo possui um identificador único e suas informações associadas.
   
-2. `readyQueue`: 
+2. `ready_queue`: 
   
   Uma fila que armazena os processos que estão prontos para serem executados. O escalonador retira processos dessa fila para execução.
   
@@ -558,19 +543,19 @@ O `ProcessManager` gerencia o ciclo de vida dos processos, utilizando um algorit
   
   Um inteiro que define o tempo máximo em nanosegundos que um processo pode usar a CPU em uma única vez antes de ser interrompido. Isso é crucial para o funcionamento do algoritmo Round Robin, garantindo que todos os processos tenham a chance de serem executados de forma equitativa.
 
-4. `createProcess(size: int)`: 
+4. `create_process(size: int)`: 
   
   Cria um novo processo com o tamanho especificado e o adiciona à fila de prontos.
 
-5. `terminateProcess(pid: int)`: 
+5. `terminate_process(pid: int)`: 
 
    Encerra o processo com o identificador fornecido. Remove o processo da lista de processos em execução e da fila de prontos, se aplicável.
 
-6. `scheduleProcess(process: Process)`: 
+6. `schedule_process(process: Process)`: 
   
   Adiciona um processo à fila de prontos para ser escalonado. O escalonador utiliza o algoritmo Round Robin para decidir a ordem de execução dos processos.
 
-7. `runScheduledProcesses()`: 
+7. `run_scheduled_processes()`: 
   
   Executa os processos na fila de prontos usando o algoritmo Round Robin. Cada processo é executado pelo tempo definido no `quantum`. Se um processo não for concluído dentro desse tempo, ele é movido para o final da fila de prontos para que o próximo processo na fila possa ser executado.
 
@@ -592,9 +577,9 @@ A classe `ConfigurationManager` gerencia um conjunto de `ConfigurationProperty` 
 
 - `properties`: Um array de `ConfigurationProperty` que armazena todas as propriedades de configuração carregadas a partir do arquivo.
 
-- `loadProperties(filePath: char[])`: Este método lê o arquivo de propriedades especificado (por exemplo, "simulator.properties") e inicializa o vetor de `ConfigurationProperty` com os parâmetros contidos nesse arquivo.
+- `load_properties(filePath: char[])`: Este método lê o arquivo de propriedades especificado (por exemplo, "simulator.properties") e inicializa o vetor de `ConfigurationProperty` com os parâmetros contidos nesse arquivo.
 
-- `getProperty(path: char[])`: Este método recebe uma chave (caminho da propriedade) e retorna o valor associado a essa chave, se ela existir nas propriedades carregadas.
+- `get_property(path: char[])`: Este método recebe uma chave (caminho da propriedade) e retorna o valor associado a essa chave, se ela existir nas propriedades carregadas.
 
 ### Exemplo
 
