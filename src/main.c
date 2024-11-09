@@ -25,10 +25,11 @@ Código fonte: https://github.com/ImGabreuw/operating-system-paging-simulation
 
 int main(int argc, char const *argv[])
 {
+    log_init("simulador.log");
 
     // Inicializa a memória física
     PhysicalMemory physical_memory;
-    physical_memory_create(&physical_memory, NUMBER_OF_FRAMES * 4096);
+    physical_memory_create(&physical_memory, NUMBER_OF_FRAMES * FRAME_SIZE);
 
     for (int i = 0; i < NUMBER_OF_FRAMES; i++)
     {
@@ -49,16 +50,16 @@ int main(int argc, char const *argv[])
     }
 
     // Divisão do processo em páginas
-    LogicalMemory logicalMemory;
-    logical_memory_create(&logicalMemory, NUMBER_OF_PAGES, PAGE_SIZE, PROCESS_SIZE);
+    LogicalMemory logical_memory;
+    logical_memory_create(&logical_memory, NUMBER_OF_PAGES, PAGE_SIZE, PROCESS_SIZE);
 
     for (int i = 0; i < NUMBER_OF_PAGES; i++)
     {
-        logicalMemory.pages[i] = (Page *)malloc(sizeof(Page));
-        page_create(logicalMemory.pages[i], i, 1);
+        logical_memory.pages[i] = (Page *)malloc(sizeof(Page));
+        page_create(logical_memory.pages[i], i, 1);
     }
 
-    process.logicalMemory = &logicalMemory;
+    process.logicalMemory = &logical_memory;
 
     // Mapeamento das páginas para frames
     for (int i = 0; i < NUMBER_OF_PAGES; i++)
@@ -67,36 +68,33 @@ int main(int argc, char const *argv[])
 
         if (allocatedFrame != NULL)
         {
-            logicalMemory.pages[i]->is_loaded = true;
+            logical_memory.pages[i]->is_loaded = true;
 
             // Adiciona o mapeamento na tabela de páginas
-            addMapping(process.pageTable, logicalMemory.pages[i]->page_number, allocatedFrame->frame_number);
-            printf("Página %d mapeada para Frame %d\n", i, allocatedFrame->frame_number);
+            addMapping(process.pageTable, logical_memory.pages[i]->page_number, allocatedFrame->frame_number);
+            log_message(LOG_INFO, "Página %d mapeada para Frame %d", i, allocatedFrame->frame_number);
         }
         else
         {
-            printf("Erro: Não há frames livres suficientes para alocar a página %d\n", i);
+            log_message(LOG_ERROR, "Não há frames livres suficientes para alocar a página %d", i);
             break;
         }
     }
 
-    logical_memory_free_pages(&logicalMemory);
-
-    for (int i = 0; i < NUMBER_OF_FRAMES; i++)
-    {
-        free(physical_memory.frames[i]);
-    }
-    free(physical_memory.frames);
+    logical_memory_free_pages(&logical_memory);
+    physical_memory_free_frames(&physical_memory);
 
     free(process.pageTable->entries);
     free(process.pageTable);
 
-    printf("Processo %d criado com sucesso e mapeado para a memória física.\n", process.pid);
+    log_message(LOG_INFO, "Processo %d criado com sucesso e mapeado para a memória física.", process.pid);
 
     // Semana 2
     // int access = 200;
-    // int physicalAccess = translateAddress(&process,&logicalMemory,access);
+    // int physicalAccess = translateAddress(&process,&logical_memory,access);
     // printf("Acesso logico %d corresponde a %d", access,physicalAccess);
+
+    log_cleanup();
 
     return EXIT_SUCCESS;
 }

@@ -45,7 +45,7 @@ void log_init(const char *filename)
         fclose(log_file);
     }
 
-    log_file = fopen(filename, "a");
+    log_file = fopen(filename, "w");
     if (log_file == NULL)
     {
         perror("Não foi possível abrir o arquivo de log");

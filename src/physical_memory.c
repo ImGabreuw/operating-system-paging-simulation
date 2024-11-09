@@ -108,3 +108,12 @@ char *read_from_frame(PhysicalMemory *physical_memory, int frame_number)
 
     return NULL;
 }
+
+void physical_memory_free_frames(PhysicalMemory *physical_memory) {
+        for (int i = 0; i < physical_memory->free_frame_count; i++)
+    {
+        free(physical_memory->frames[i]);
+    }
+
+    free(physical_memory->frames);
+}

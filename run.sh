@@ -51,3 +51,6 @@ else
 fi
 
 rm -f $OUTPUT
+
+clear
+cat $(find . -name "simulador.log" ! -path "$TEST_DIR/*")

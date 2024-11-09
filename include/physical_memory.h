@@ -59,4 +59,11 @@ int write_to_frame(PhysicalMemory *physical_memory, int frame_number, char *data
  */
 char *read_from_frame(PhysicalMemory *physical_memory, int frame_number);
 
+
+/**
+ * @brief Libera as páginas da memória física que estão vazias, tornando-as reutilizáveis.
+ * @param physical_memory Ponteiro para a estrutura PhysicalMemory.
+ */
+void physical_memory_free_frames(PhysicalMemory *physical_memory);
+
 #endif // PHYSICAL_MEMORY_H
