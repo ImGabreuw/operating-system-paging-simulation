@@ -4,47 +4,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "page.h"
 #include "logical_memory.h"
+#include "page_table.h"
 
-//PAGE TABLE ENTRY
-typedef struct{
-    int pageNumber;
-    int frameNumber;
-    bool isValid;
-    bool isDirty;
-
-}PageTableEntry;
-
-int create_pte(PageTableEntry* pte,int pageNumber, int frameNumber);
-
-void pagetable_mark_dirty(PageTableEntry* p_entry);
-
-void pagetable_mark_clean(PageTableEntry* p_entry);
-
-void validate(PageTableEntry* p_entry);
-
-void invalidate(PageTableEntry* p_entry);
-
-
-//PAGE TABLE
-typedef struct{
-    PageTableEntry** entries;
-    int numberOfPages;
-}PageTable;
-
-int create_pta(PageTable* pta, int numberOfPages);
-
-bool addMapping(PageTable *pagetable, int pageNum, int frameNum);
-
-bool removeMapping(PageTable *pagetable,int pageNum);
-
-int getFrameNumber(PageTable *pagetable,int pageNum);
-
-bool isPageValid(PageTable *pagetable,int pageNum);
+#define PROCESS_SIZE (8192) // Tamanho total do processo em bytes
+#define NUMBER_OF_PAGES (PROCESS_SIZE / PAGE_SIZE)
 
 //PROCESS
-
 typedef struct {
     int pid;
     int size;

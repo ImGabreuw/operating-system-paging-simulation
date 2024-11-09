@@ -9,6 +9,10 @@
         "config_manager.h": "c",
         "page.h": "c",
         "string.h": "c",
-        "physical_memory.h": "c"
+        "physical_memory.h": "c",
+        "page_table.h": "c",
+        "process_structures.h": "c",
+        "page_table_entry.h": "c",
+        "logical_memory.h": "c"
     }
 }

@@ -7,8 +7,6 @@
 
 #include "log.h"
 
-#define PROCESS_SIZE (8192) // Tamanho total do processo em bytes
-#define NUMBER_OF_PAGES (PROCESS_SIZE / PAGE_SIZE)
 #define PHYSICAL_MEMORY_SIZE (16384) // Tamanho total da memória física
 #define NUMBER_OF_FRAMES 4
 
@@ -39,14 +37,6 @@ int main(int argc, char const *argv[])
     // Criação do processo
     Process process;
     create_p(&process, 1, 1000, PROCESS_SIZE);
-    process.pageTable->numberOfPages = NUMBER_OF_PAGES;
-    process.pageTable->entries = (PageTableEntry **)malloc(NUMBER_OF_PAGES * sizeof(PageTableEntry *));
-
-    for (int i = 0; i < NUMBER_OF_PAGES; i++)
-    {
-        process.pageTable->entries[i] = (PageTableEntry *)malloc(NUMBER_OF_PAGES * sizeof(PageTableEntry));
-        create_pte(process.pageTable->entries[i], i, -1);
-    }
 
     // Divisão do processo em páginas
     LogicalMemory logical_memory;
@@ -70,7 +60,7 @@ int main(int argc, char const *argv[])
             logical_memory.pages[i]->is_loaded = true;
 
             // Adiciona o mapeamento na tabela de páginas
-            addMapping(process.pageTable, logical_memory.pages[i]->page_number, allocatedFrame->frame_number);
+            add_mapping(process.pageTable, logical_memory.pages[i]->page_number, allocatedFrame->frame_number);
             log_message(LOG_INFO, "Página %d mapeada para Frame %d", i, allocatedFrame->frame_number);
         }
         else
