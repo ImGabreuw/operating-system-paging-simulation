@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "physicalMemory.h"
 #include "process_structures.h"
 #include "logical_memory.h"
-#include "page.h"
+#include "physical_memory.h"
 
 #include "log.h"
 
@@ -28,13 +27,13 @@ int main(int argc, char const *argv[])
 {
 
     // Inicializa a memória física
-    PhysicalMemory physicalMemory;
-    create_pm(&physicalMemory, NUMBER_OF_FRAMES * 4096);
+    PhysicalMemory physical_memory;
+    physical_memory_create(&physical_memory, NUMBER_OF_FRAMES * 4096);
 
     for (int i = 0; i < NUMBER_OF_FRAMES; i++)
     {
-        physicalMemory.frames[i] = (Frame *)malloc(NUMBER_OF_FRAMES * sizeof(Frame));
-        create_fr(physicalMemory.frames[i], i, FRAME_SIZE);
+        physical_memory.frames[i] = (Frame *)malloc(NUMBER_OF_FRAMES * sizeof(Frame));
+        frame_create(physical_memory.frames[i], i, FRAME_SIZE);
     }
 
     // Criação do processo
@@ -64,15 +63,15 @@ int main(int argc, char const *argv[])
     // Mapeamento das páginas para frames
     for (int i = 0; i < NUMBER_OF_PAGES; i++)
     {
-        Frame *allocatedFrame = allocateFrame(&physicalMemory);
+        Frame *allocatedFrame = allocate_frame(&physical_memory);
 
         if (allocatedFrame != NULL)
         {
             logicalMemory.pages[i]->is_loaded = true;
 
             // Adiciona o mapeamento na tabela de páginas
-            addMapping(process.pageTable, logicalMemory.pages[i]->page_number, allocatedFrame->frameNumber);
-            printf("Página %d mapeada para Frame %d\n", i, allocatedFrame->frameNumber);
+            addMapping(process.pageTable, logicalMemory.pages[i]->page_number, allocatedFrame->frame_number);
+            printf("Página %d mapeada para Frame %d\n", i, allocatedFrame->frame_number);
         }
         else
         {
@@ -81,18 +80,13 @@ int main(int argc, char const *argv[])
         }
     }
 
-    // Liberando a memória alocada
-    for (int i = 0; i < NUMBER_OF_PAGES; i++)
-    {
-        free(logicalMemory.pages[i]);
-    }
-    free(logicalMemory.pages);
+    logical_memory_free_pages(&logicalMemory);
 
     for (int i = 0; i < NUMBER_OF_FRAMES; i++)
     {
-        free(physicalMemory.frames[i]);
+        free(physical_memory.frames[i]);
     }
-    free(physicalMemory.frames);
+    free(physical_memory.frames);
 
     free(process.pageTable->entries);
     free(process.pageTable);

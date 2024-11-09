@@ -2,10 +2,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "process_structures.h"
-#include "physicalMemory.h"
 
-#include "page.h"
 #include "logical_memory.h"
+#include "physical_memory.h"
 
 #define MAX_ACCESSES (1000)
 

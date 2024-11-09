@@ -39,4 +39,10 @@ Page *get_page(LogicalMemory *logical_memory, int page_number);
  */
 Page *create_pages(LogicalMemory *logical_memory, int process_size);
 
+/**
+ * Desaloca todas as páginas da memória lógica.
+ * @param logical_memory Ponteiro para a estrutura de memória lógica
+ */
+void logical_memory_free_pages(LogicalMemory *logical_memory);
+
 #endif

@@ -54,3 +54,13 @@ Page *create_pages(LogicalMemory *logical_memory, int process_size)
 
     return logical_memory->pages[0];
 }
+
+void logical_memory_free_pages(LogicalMemory *logical_memory)
+{
+    for (int i = 0; i < logical_memory->size; i++)
+    {
+        free(logical_memory->pages[i]);
+    }
+    
+    free(logical_memory->pages);
+}
