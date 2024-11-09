@@ -5,13 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
+#include <sys/time.h>
 
 static FILE *log_file = NULL;
+static struct timeval start_time; // Usa timeval para compatibilidade com sistemas mais simples
 
-/**
- * O uso de um mutex no log é suficiente para garantir a exclusão mútua durante a escrita no arquivo, evitando sobreposição de logs entre threads.
- * Não é necessário usar uma variável de condição (pthread_cond_t), pois não há dependência de estados ou gerenciamento entre threads nesse contexto.
- */
 static pthread_mutex_t log_mutex;
 
 static const char *get_current_time()
@@ -25,6 +23,19 @@ static const char *get_current_time()
 
     strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
     return buffer;
+}
+
+/**
+ * Função para obter o tempo decorrido desde a inicialização do log (em milissegundos).
+ */
+static long get_elapsed_time_ms()
+{
+    struct timeval current_time;
+    gettimeofday(&current_time, NULL); // Obtém o tempo atual em segundos e microssegundos
+
+    long seconds = current_time.tv_sec - start_time.tv_sec;
+    long microseconds = current_time.tv_usec - start_time.tv_usec;
+    return seconds * 1000 + microseconds / 1000; // Converte para milissegundos
 }
 
 void log_init(const char *filename)
@@ -42,6 +53,9 @@ void log_init(const char *filename)
     }
 
     pthread_mutex_init(&log_mutex, NULL);
+
+    // Define o tempo base do log usando gettimeofday
+    gettimeofday(&start_time, NULL);
 }
 
 void log_message(LogLevel level, const char *format, ...)
@@ -58,7 +72,9 @@ void log_message(LogLevel level, const char *format, ...)
     va_list args;
     va_start(args, format);
 
-    fprintf(log_file, "[%s] [%s] [Thread %ld] ", get_current_time(), level_strings[level], pthread_self());
+    long elapsed_time = get_elapsed_time_ms();
+
+    fprintf(log_file, "[%s] [%s] [Clock %ld ms] ", get_current_time(), level_strings[level], elapsed_time);
     vfprintf(log_file, format, args);
     fprintf(log_file, "\n");
 

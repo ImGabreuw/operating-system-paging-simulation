@@ -5,6 +5,7 @@
         ".prettierrc": "json",
         "*.tsx": "typescriptreact",
         "stdlib.h": "c",
-        "log.h": "c"
+        "log.h": "c",
+        "config_manager.h": "c"
     }
 }
