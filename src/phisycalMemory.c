@@ -28,7 +28,7 @@ void clear(Frame *f){
 }
 
 void loadPage(Page* p, Frame* f){
-    f->pageNumber = p->pageNumber;
+    f->pageNumber = p->page_number;
 }
 
 void unloadPage(Frame* f){

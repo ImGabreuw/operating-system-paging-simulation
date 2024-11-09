@@ -6,6 +6,7 @@
         "*.tsx": "typescriptreact",
         "stdlib.h": "c",
         "log.h": "c",
-        "config_manager.h": "c"
+        "config_manager.h": "c",
+        "page.h": "c"
     }
 }

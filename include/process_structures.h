@@ -3,7 +3,9 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "logicalMemory.h"
+
+#include "page.h"
+#include "logical_memory.h"
 
 //PAGE TABLE ENTRY
 typedef struct{

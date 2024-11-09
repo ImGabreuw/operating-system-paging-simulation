@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+#define PAGE_SIZE 4096
+
 /**
  * Representa uma página virtual associada a um processo.
  */

@@ -3,10 +3,11 @@
 #include <stdlib.h>
 #include "process_structures.h"
 #include "physicalMemory.h"
-#include "logicalMemory.h"
+
+#include "page.h"
+#include "logical_memory.h"
 
 #define MAX_ACCESSES (1000)
-
 
 // Metodos de PageTableEntry
 
@@ -111,25 +112,27 @@ bool isPageValid(PageTable *pagetable, int pageNum)
 }
 
 // Metodos de Processo
-int create_p(Process* p,int pid, int addressesCount, int size)
+int create_p(Process *p, int pid, int addressesCount, int size)
 {
     p->pid = pid;
     p->size = size;
-    p->pageTable = (PageTable*) malloc(sizeof(PageTable));
-    p->logicalMemory = (LogicalMemory*) malloc(sizeof(LogicalMemory));
+    p->pageTable = (PageTable *)malloc(sizeof(PageTable));
+    p->logicalMemory = (LogicalMemory *)malloc(sizeof(LogicalMemory));
     p->addressesCount = addressesCount;
-    p->accessSequence = (int *) calloc(MAX_ACCESSES,sizeof(int));
+    p->accessSequence = (int *)calloc(MAX_ACCESSES, sizeof(int));
 
     return 0;
 }
 
-//MMU: metodo de traducao
+// MMU: metodo de traducao
 
-int translateAddress(Process* p, LogicalMemory* lm, int logicalAddress){
-    int pageNum = logicalAddress/FRAME_SIZE;
-    Page* page= getPage(lm,pageNum);
-    if(page->isLoaded) return -1;
-    int offset = logicalAddress%FRAME_SIZE;
-    int frameNum = getFrameNumber(p->pageTable,pageNum);
-    return frameNum*FRAME_SIZE+offset;
+int translateAddress(Process *p, LogicalMemory *lm, int logicalAddress)
+{
+    int pageNum = logicalAddress / FRAME_SIZE;
+    Page *page = get_page(lm, pageNum);
+    if (page->is_loaded)
+        return -1;
+    int offset = logicalAddress % FRAME_SIZE;
+    int frameNum = getFrameNumber(p->pageTable, pageNum);
+    return frameNum * FRAME_SIZE + offset;
 }
