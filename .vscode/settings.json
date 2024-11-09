@@ -13,6 +13,7 @@
         "page_table.h": "c",
         "process_structures.h": "c",
         "page_table_entry.h": "c",
-        "logical_memory.h": "c"
+        "logical_memory.h": "c",
+        "memory_management_unit.h": "c"
     }
 }

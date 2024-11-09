@@ -6,11 +6,6 @@
 
 #define MAX_ACCESSES 1000
 
-/**
- * Cria um novo processo.
- * Inicializa o processo com o identificador `pid`, o número de endereços a serem acessados, e o tamanho do processo.
- * Aloca a memória necessária para a tabela de páginas e para a sequência de acessos.
- */
 int process_create(Process *process, LogicalMemory *logical_memory, int pid, int addresses_count, int size)
 {
     process->pid = pid;
@@ -28,12 +23,6 @@ int process_create(Process *process, LogicalMemory *logical_memory, int pid, int
     return 0;
 }
 
-/**
- * Acessa um endereço virtual.
- *
- * Este método tenta acessar o endereço virtual fornecido, verificando se a página está carregada na memória.
- * Se a página não estiver presente, ocorre uma falha de página e a página é carregada da memória secundária.
- */
 void access_address(Process *process, int virtual_address)
 {
     int page_number = virtual_address / PAGE_SIZE;
@@ -46,11 +35,6 @@ void access_address(Process *process, int virtual_address)
     process->access_sequence[virtual_address] = 1;
 }
 
-/**
- * Aloca as páginas necessárias para o processo.
- *
- * Este método aloca as páginas necessárias do processo na memória física.
- */
 void allocate_pages(Process *process)
 {
     for (int i = 0; i < process->size; i++)
@@ -61,4 +45,15 @@ void allocate_pages(Process *process)
             return;
         }
     }
+}
+
+void process_free_table_page(Process *process)
+{
+    for (int i = 0; i < process->page_table->number_of_pages; i++)
+    {
+        free(process->page_table->entries[i]);
+    }
+
+    free(process->page_table->entries);
+    free(process->page_table);
 }

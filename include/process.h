@@ -54,4 +54,6 @@ void access_address(Process *process, int virtual_address);
  */
 void allocate_pages(Process *process);
 
+void process_free_table_page(Process *process);
+
 #endif /* PROCESS_H */

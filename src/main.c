@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "process_structures.h"
+#include "memory_management_unit.h"
 #include "logical_memory.h"
 #include "physical_memory.h"
 #include "process.h"
@@ -71,16 +71,9 @@ int main(int argc, char const *argv[])
 
     logical_memory_free_pages(&logical_memory);
     physical_memory_free_frames(&physical_memory);
-
-    free(process.page_table->entries);
-    free(process.page_table);
+    process_free_table_page(&process);
 
     log_message(LOG_INFO, "Processo %d criado com sucesso e mapeado para a memória física.", process.pid);
-
-    // Semana 2
-    // int access = 200;
-    // int physicalAccess = translateAddress(&process,&logical_memory,access);
-    // printf("Acesso logico %d corresponde a %d", access,physicalAccess);
 
     log_cleanup();
 
