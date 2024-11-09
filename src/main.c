@@ -33,7 +33,6 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < NUMBER_OF_FRAMES; i++)
     {
-        physical_memory.frames[i] = (Frame *)malloc(NUMBER_OF_FRAMES * sizeof(Frame));
         frame_create(physical_memory.frames[i], i, FRAME_SIZE);
     }
 
