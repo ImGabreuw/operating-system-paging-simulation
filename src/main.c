@@ -4,6 +4,7 @@
 #include "process_structures.h"
 #include "logical_memory.h"
 #include "physical_memory.h"
+#include "process.h"
 
 #include "log.h"
 
@@ -34,10 +35,6 @@ int main(int argc, char const *argv[])
         frame_create(physical_memory.frames[i], i, FRAME_SIZE);
     }
 
-    // Criação do processo
-    Process process;
-    create_p(&process, 1, 1000, PROCESS_SIZE);
-
     // Divisão do processo em páginas
     LogicalMemory logical_memory;
     logical_memory_create(&logical_memory, NUMBER_OF_PAGES, PAGE_SIZE, PROCESS_SIZE);
@@ -48,7 +45,9 @@ int main(int argc, char const *argv[])
         page_create(logical_memory.pages[i], i, 1);
     }
 
-    process.logicalMemory = &logical_memory;
+    // Criação do processo
+    Process process;
+    process_create(&process, &logical_memory, 1, 1000, PROCESS_SIZE);
 
     // Mapeamento das páginas para frames
     for (int i = 0; i < NUMBER_OF_PAGES; i++)
@@ -60,7 +59,7 @@ int main(int argc, char const *argv[])
             logical_memory.pages[i]->is_loaded = true;
 
             // Adiciona o mapeamento na tabela de páginas
-            add_mapping(process.pageTable, logical_memory.pages[i]->page_number, allocatedFrame->frame_number);
+            add_mapping(process.page_table, logical_memory.pages[i]->page_number, allocatedFrame->frame_number);
             log_message(LOG_INFO, "Página %d mapeada para Frame %d", i, allocatedFrame->frame_number);
         }
         else
@@ -73,8 +72,8 @@ int main(int argc, char const *argv[])
     logical_memory_free_pages(&logical_memory);
     physical_memory_free_frames(&physical_memory);
 
-    free(process.pageTable->entries);
-    free(process.pageTable);
+    free(process.page_table->entries);
+    free(process.page_table);
 
     log_message(LOG_INFO, "Processo %d criado com sucesso e mapeado para a memória física.", process.pid);
 
