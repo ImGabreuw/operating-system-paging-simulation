@@ -72,10 +72,10 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < 200; i++)
     {
         int physicalAddress = translate_address(&process,i);
-        log_message(LOG_INFO,"Logico = %d, Físico = %d", i, physicalAddress);
+        if(translate_address != -1)log_message(LOG_INFO,"Logico = %d, Físico = %d", i, physicalAddress);
+        else log_message(LOG_ERROR,"PAGE FAULT!");
     }
         
-    
     logical_memory_free_pages(&logical_memory);
     physical_memory_free_frames(&physical_memory);
     process_free_table_page(&process);
