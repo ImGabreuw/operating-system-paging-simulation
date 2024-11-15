@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 {
     // Inicializa o gerenciador de configurações e carrega as propriedades do simulador
     ConfigurationManager config_manager;
-    load_properties(&config_manager, "simulator.properties");
+    load_properties(&config_manager, "simulador.properties");
 
     // Inicializa o log com o caminho configurado
     char *log_path = get_property(&config_manager, "log.path");
