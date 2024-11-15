@@ -41,24 +41,6 @@ typedef struct
  */
 int process_create(Process *process, LogicalMemory *logical_memory, int pid, int addresses_count, int size);
 
-/**
- * @brief Acessa um endereço virtual.
- *
- * Este método tenta acessar o endereço virtual fornecido, verificando se a página está carregada na memória.
- * Se a página não estiver presente, ocorre uma falha de página e a página é carregada da memória secundária.
- *
- * @param process Ponteiro para o processo.
- * @param virtual_address Endereço virtual a ser acessado.
- */
-void access_address(Process *process, int virtual_address);
-
-/**
- * @brief Aloca as páginas necessárias para o processo.
- *
- * Este método aloca as páginas necessárias do processo na memória física.
- */
-void allocate_pages(Process *process);
-
 void process_free_table_page(Process *process);
 
 #endif /* PROCESS_H */

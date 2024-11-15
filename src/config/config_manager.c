@@ -41,6 +41,8 @@ int load_properties(ConfigurationManager* manager, const char* filePath) {
         manager->properties_loaded++;
     }
 
+    log_message(LOG_INFO, "Foram carregadas %d configurações do simulador.", manager->properties_loaded);
+
     fclose(file);
     return 0;
 }

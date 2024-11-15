@@ -11,6 +11,8 @@ void disk_init(Disk *disk, int size, int access_delay)
     disk->size = size;
     disk->access_delay = access_delay;
     swap_area_init(&disk->swap_area, size);
+
+    log_message(LOG_INFO, "Disco inicializado com sucesso.");
 }
 
 Page *disk_read_page(Disk *disk, int page_number)

@@ -18,6 +18,9 @@ int process_manager_init(ProcessManager *manager, int max_processes, int quantum
 
     manager->quantum = quantum;
     queue_init(&manager->ready_queue);
+
+    log_message(LOG_INFO, "Gerenciador de processos inicializado com sucesso.");
+
     return EXIT_SUCCESS;
 }
 

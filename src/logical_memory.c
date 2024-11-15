@@ -2,17 +2,27 @@
 
 #include <stdlib.h>
 
+#include "log.h"
+
 int logical_memory_create(LogicalMemory *logical_memory, int size, int page_size, int process_size)
 {
     if (logical_memory == NULL || page_size <= 0)
+    {
+        log_message(LOG_ERROR, "'logical_memory' não pode ser null e o tamanho da página não pode ter valor negativo.");
         return EXIT_FAILURE;
+    }
 
     logical_memory->size = size;
     logical_memory->page_size = page_size;
     logical_memory->pages = (Page **)malloc((process_size / page_size) * sizeof(Page *));
 
     if (logical_memory->pages == NULL)
+    {
+        log_message(LOG_ERROR, "Falha ao alocar as páginas da memória virutal.");
         return EXIT_FAILURE;
+    }
+
+    log_message(LOG_INFO, "Memória lógica inicializado com sucesso.");
 
     return EXIT_SUCCESS;
 }
@@ -29,6 +39,7 @@ Page *get_page(LogicalMemory *logical_memory, int page_number)
             return logical_memory->pages[i];
         }
     }
+
     return NULL;
 }
 
@@ -61,6 +72,6 @@ void logical_memory_free_pages(LogicalMemory *logical_memory)
     {
         free(logical_memory->pages[i]);
     }
-    
+
     free(logical_memory->pages);
 }

@@ -16,6 +16,8 @@
         "logical_memory.h": "c",
         "memory_management_unit.h": "c",
         "process.h": "c",
-        "process_manager.h": "c"
+        "process_manager.h": "c",
+        "cstring": "c",
+        "cstdlib": "c"
     }
 }

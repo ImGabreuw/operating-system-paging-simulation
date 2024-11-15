@@ -14,7 +14,13 @@ int process_create(Process *process, LogicalMemory *logical_memory, int pid, int
     process->page_table = (PageTable *)malloc(sizeof(PageTable));
     page_table_create(process->page_table, NUMBER_OF_PAGES);
 
-    log_message(LOG_INFO, "Page table created successfully with %d pages for process %d.", NUMBER_OF_PAGES, pid);
+    log_message(LOG_INFO, "Tabela de páginas criada com sucesso com %d páginas para o processo %d.", NUMBER_OF_PAGES, pid);
+
+    for (int i = 0; i < NUMBER_OF_PAGES; i++)
+    {
+        logical_memory->pages[i] = (Page *)malloc(sizeof(Page));
+        page_create(logical_memory->pages[i], i, process->pid);
+    }
 
     process->quantum_time = QUANTUM;
     process->is_running = false;
@@ -23,31 +29,9 @@ int process_create(Process *process, LogicalMemory *logical_memory, int pid, int
     process->addresses_count = addresses_count;
     process->access_sequence = (int *)calloc(MAX_ACCESSES, sizeof(int));
 
-    return 0;
-}
+    log_message(LOG_INFO, "Processo '%d' criado com sucesso;", pid);
 
-void access_address(Process *process, int virtual_address)
-{
-    int page_number = virtual_address / PAGE_SIZE;
-    if (!is_page_valid(process->page_table, page_number))
-    {
-        log_message(LOG_ERROR, "To implement page fault");
-        return;
-    }
-
-    process->access_sequence[virtual_address] = 1;
-}
-
-void allocate_pages(Process *process)
-{
-    for (int i = 0; i < process->size; i++)
-    {
-        if (!is_page_valid(process->page_table, i))
-        {
-            log_message(LOG_ERROR, "To implement page allocation");
-            return;
-        }
-    }
+    return EXIT_SUCCESS;
 }
 
 void process_free_table_page(Process *process)

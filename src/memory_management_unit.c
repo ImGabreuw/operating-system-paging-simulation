@@ -11,6 +11,8 @@ void mmu_init(MemoryManagementUnit *mmu, int logical_size, int physical_size, Di
     physical_memory_create(&mmu->physical_memory, physical_size);
     mmu->disk = disk;
     mmu->process_manager = process_manager;
+
+    log_message(LOG_INFO, "MMU inicializado com sucesso.");
 }
 
 int mmu_translate_address(MemoryManagementUnit *mmu, Process *process, int virtual_address)
@@ -68,9 +70,9 @@ void mmu_handle_page_fault(MemoryManagementUnit *mmu, Process *process, int page
 
 void mmu_load_process(MemoryManagementUnit *mmu, Process *process)
 {
-    printf("Carregando processo %d...\n", process->pid);
+    log_message(LOG_INFO, "Carregando processo %d...", process->pid);
 
-    for (int i = 0; i < process->page_table->number_of_pages; i++)
+    for (int i = 0; i < NUMBER_OF_PAGES; i++)
     {
         Frame *frame = allocate_frame(&mmu->physical_memory);
         if (frame == NULL)

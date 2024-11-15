@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "logical_memory.h"
 #include "disk.h"
@@ -46,6 +47,8 @@ int physical_memory_create(PhysicalMemory *physical_memory, int size)
 
         frame_create(physical_memory->frames[i], i, FRAME_SIZE);
     }
+
+    log_message(LOG_INFO, "Memória física inicializado com sucesso.");
 
     return EXIT_SUCCESS;
 }
@@ -132,13 +135,14 @@ void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, 
 
     if (page_number == -1)
     {
-        log_message(LOG_ERROR, "Estado inválido da tabela de página. Frame de número '%d' não foi encontrado para o processo '%d'.", frame_to_replace->frame_number, process->pid);
+        log_message(LOG_ERROR, "Estado inválido da tabela de página. Quadro de número '%d' não foi encontrado para o processo '%d'.", frame_to_replace->frame_number, process->pid);
         return;
     }
 
     Page *page = get_page(process->logical_memory, page_number);
 
-    if (page == NULL) {
+    if (page == NULL)
+    {
         log_message(LOG_ERROR, "Estado inválido da tabela de página. Página de número '%d' não foi encontrado para o processo '%d'.", page_number, process->pid);
         return;
     }
@@ -174,12 +178,14 @@ void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_numbe
     Frame *frame = physical_memory->frames[frame_number];
     if (frame->is_occupied)
     {
-        log_message(LOG_ERROR, "Substituindo conteúdo do quadro %d.\n", frame_number);
+        log_message(LOG_WARNING, "Substituindo conteúdo do quadro %d.", frame_number);
     }
 
     // Carrega a nova página no quadro
-    frame->is_occupied = 1;
+    frame->is_occupied = true;
+    page->is_loaded = true;
     add_mapping(process->page_table, page->page_number, frame->frame_number);
+    sleep(physical_memory->access_delay);
 
     log_message(LOG_INFO, "Página %d carregada no quadro %d.", page->page_number, frame_number);
 }

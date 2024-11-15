@@ -9,17 +9,16 @@
 #include "process.h"
 #include "process_manager.h"
 #include "config_manager.h"
+#include "disk.h"
 #include "log.h"
 
 int main(int argc, char const *argv[])
 {
+    log_init("simulador.log");
+
     // Inicializa o gerenciador de configurações e carrega as propriedades do simulador
     ConfigurationManager config_manager;
     load_properties(&config_manager, "simulador.properties");
-
-    // Inicializa o log com o caminho configurado
-    char *log_path = get_property(&config_manager, "log.path");
-    log_init(log_path);
 
     srand(time(NULL));
 
@@ -31,7 +30,7 @@ int main(int argc, char const *argv[])
 
     Disk disk;
     int disk_size = 100;
-    int disk_access_delay = 200; // em ms
+    int disk_access_delay = 5; // em ms
     disk_init(&disk, disk_size, disk_access_delay);
 
     MemoryManagementUnit mmu;
@@ -48,42 +47,42 @@ int main(int argc, char const *argv[])
         mmu_load_process(&mmu, &processes[pid]);
     }
 
-    // Carrega os processos na memória
-    for (int i = 0; i < num_processes; i++)
-    {
-        schedule_process(&process_manager, &processes[i]);
-    }
+    // // Carrega os processos na memória
+    // for (int i = 0; i < num_processes; i++)
+    // {
+    //     schedule_process(&process_manager, &processes[i]);
+    // }
 
-    // Executa o escalonamento dos processos
-    while (true)
-    {
-        bool has_running_process = false;
+    // // Executa o escalonamento dos processos
+    // while (true)
+    // {
+    //     bool has_running_process = false;
 
-        for (int i = 0; i < process_manager.max_processes; i++)
-        {
-            if (process_manager.running_processes[i] != NULL)
-            {
-                has_running_process = true;
-            }
-        }
+    //     for (int i = 0; i < process_manager.max_processes; i++)
+    //     {
+    //         if (process_manager.running_processes[i] != NULL)
+    //         {
+    //             has_running_process = true;
+    //         }
+    //     }
 
-        if (!has_running_process)
-        {
-            break;
-        }
+    //     if (!has_running_process)
+    //     {
+    //         break;
+    //     }
 
-        run_scheduled_processes(&process_manager);
-    }
+    //     run_scheduled_processes(&process_manager);
+    // }
 
-    // Libera os recursos alocados
-    for (int i = 0; i < num_processes; i++)
-    {
-        process_free_table_page(&processes[i]);
-    }
+    // // Libera os recursos alocados
+    // for (int i = 0; i < num_processes; i++)
+    // {
+    //     process_free_table_page(&processes[i]);
+    // }
 
-    logical_memory_free_pages(&mmu.logical_memory);
-    physical_memory_free_frames(&mmu.physical_memory);
-    free_properties(&config_manager);
+    // logical_memory_free_pages(&mmu.logical_memory);
+    // physical_memory_free_frames(&mmu.physical_memory);
+    // free_properties(&config_manager);
     log_cleanup();
 
     return EXIT_SUCCESS;

@@ -17,6 +17,8 @@ void swap_area_init(SwapArea *swap_area, int size)
     {
         swap_area->free_blocks[i] = 1; // Todos os blocos inicialmente livres.
     }
+
+    log_message(LOG_INFO, "Área de swap inicializado com sucesso.");
 }
 
 int swap_area_allocate_block(SwapArea *swap_area, int size)
