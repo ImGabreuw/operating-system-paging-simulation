@@ -1,10 +1,14 @@
 #ifndef PROCESS_MANAGER_H
 #define PROCESS_MANAGER_H
 
+typedef struct MemoryManagementUnit MemoryManagementUnit;
+
+#include "memory_management_unit.h"
 #include "process_queue.h"
 
-typedef struct
+typedef struct ProcessManager
 {
+    MemoryManagementUnit *mmu;
     Process **running_processes; // Array de processos em execução
     int max_processes;           // Capacidade máxima de processos
     Queue ready_queue;           // Fila de processos prontos

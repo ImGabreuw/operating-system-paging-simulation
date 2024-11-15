@@ -2,6 +2,8 @@
 #define PHYSICAL_MEMORY_H
 
 #include "frame.h"
+#include "disk.h"
+#include "process.h"
 
 typedef struct PhysicalMemory
 {
@@ -59,6 +61,23 @@ int write_to_frame(PhysicalMemory *physical_memory, int frame_number, char *data
  */
 char *read_from_frame(PhysicalMemory *physical_memory, int frame_number);
 
+/**
+ * Substitui um quadro na memória física utilizando o algoritmo de substituição (ex.: FIFO).
+ *
+ * @param physical_memory Ponteiro para a estrutura PhysicalMemory.
+ * @param disk Ponteiro para o disco.
+ * @param page Página que precisa ser carregada.
+ */
+void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, Process *process);
+
+/**
+ * Carrega uma página em um quadro da memória física.
+ *
+ * @param physical_memory Ponteiro para a estrutura PhysicalMemory.
+ * @param frame_number Número do quadro onde a página será carregada.
+ * @param page Ponteiro para a página a ser carregada.
+ */
+void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_number, Process *process, Page *page);
 
 /**
  * @brief Libera as páginas da memória física que estão vazias, tornando-as reutilizáveis.

@@ -15,6 +15,7 @@
         "page_table_entry.h": "c",
         "logical_memory.h": "c",
         "memory_management_unit.h": "c",
-        "process.h": "c"
+        "process.h": "c",
+        "process_manager.h": "c"
     }
 }

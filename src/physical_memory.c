@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "logical_memory.h"
+#include "disk.h"
 #include "log.h"
 
 int physical_memory_create(PhysicalMemory *physical_memory, int size)
@@ -109,8 +111,82 @@ char *read_from_frame(PhysicalMemory *physical_memory, int frame_number)
     return NULL;
 }
 
-void physical_memory_free_frames(PhysicalMemory *physical_memory) {
-        for (int i = 0; i < physical_memory->free_frame_count; i++)
+void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, Process *process)
+{
+    static int replacement_index = 0;
+
+    // Seleciona o quadro a ser substituído (FIFO para este exemplo)
+    Frame *frame_to_replace = physical_memory->frames[replacement_index];
+
+    int page_number = -1;
+    for (int i = 0; i < process->page_table->number_of_pages; i++)
+    {
+        PageTableEntry *entry = process->page_table->entries[i];
+
+        if (entry->frame_number == frame_to_replace->frame_number)
+        {
+            page_number = entry->page_number;
+            break;
+        }
+    }
+
+    if (page_number == -1)
+    {
+        log_message(LOG_ERROR, "Estado inválido da tabela de página. Frame de número '%d' não foi encontrado para o processo '%d'.", frame_to_replace->frame_number, process->pid);
+        return;
+    }
+
+    Page *page = get_page(process->logical_memory, page_number);
+
+    if (page == NULL) {
+        log_message(LOG_ERROR, "Estado inválido da tabela de página. Página de número '%d' não foi encontrado para o processo '%d'.", page_number, process->pid);
+        return;
+    }
+
+    if (frame_to_replace->frame_number != -1)
+    {
+        // Escreve a página antiga de volta no disco
+        disk_write_page(disk, page);
+    }
+
+    // Marca o quadro como disponível para reutilização
+    release_frame(physical_memory, frame_to_replace->frame_number);
+    remove_mapping(process->page_table, page->page_number);
+
+    // Atualiza o índice de substituição
+    replacement_index = (replacement_index + 1) % physical_memory->size;
+}
+
+void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_number, Process *process, Page *page)
+{
+    if (frame_number < 0 || frame_number >= physical_memory->size)
+    {
+        log_message(LOG_ERROR, "Número do quadro %d é inválido.", frame_number);
+        return;
+    }
+
+    if (process->pid != page->pid)
+    {
+        log_message(LOG_ERROR, "Processo '%d' não corresponde ao ID do processo (%d) da página '%d'", process->pid, page->pid, page->page_number);
+        return;
+    }
+
+    Frame *frame = physical_memory->frames[frame_number];
+    if (frame->is_occupied)
+    {
+        log_message(LOG_ERROR, "Substituindo conteúdo do quadro %d.\n", frame_number);
+    }
+
+    // Carrega a nova página no quadro
+    frame->is_occupied = 1;
+    add_mapping(process->page_table, page->page_number, frame->frame_number);
+
+    log_message(LOG_INFO, "Página %d carregada no quadro %d.", page->page_number, frame_number);
+}
+
+void physical_memory_free_frames(PhysicalMemory *physical_memory)
+{
+    for (int i = 0; i < physical_memory->free_frame_count; i++)
     {
         free(physical_memory->frames[i]);
     }
