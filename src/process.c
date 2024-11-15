@@ -16,6 +16,9 @@ int process_create(Process *process, LogicalMemory *logical_memory, int pid, int
 
     log_message(LOG_INFO, "Page table created successfully with %d pages for process %d.", NUMBER_OF_PAGES, pid);
 
+    process->quantum_time = QUANTUM;
+    process->is_running = false;
+
     process->logical_memory = logical_memory;
     process->addresses_count = addresses_count;
     process->access_sequence = (int *)calloc(MAX_ACCESSES, sizeof(int));

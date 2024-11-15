@@ -1,9 +1,12 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
+#include <stdbool.h>
+
 #include "page_table.h"
 #include "logical_memory.h"
 
+#define QUANTUM 1000 // tempo em ms
 #define PROCESS_SIZE (20480) // Tamanho total do processo em bytes
 #define NUMBER_OF_PAGES (PROCESS_SIZE / PAGE_SIZE)
 
@@ -13,12 +16,14 @@
  */
 typedef struct
 {
-    int pid;                      /**< Identificador único do processo */
-    int size;                     /**< Tamanho total do processo em páginas */
-    PageTable *page_table;          /**< Tabela de páginas do processo */
-    int *access_sequence;          /**< Sequência de acessos aos endereços de memória */
-    int addresses_count;           /**< Contagem total de endereços acessados */
-    LogicalMemory *logical_memory; /**< Memória lógica associada ao processo */
+    int pid;                       // Identificador único do processo
+    int size;                      // Tamanho total do processo em páginas
+    PageTable *page_table;         // Tabela de páginas do processo
+    int *access_sequence;          // Sequência de acessos aos endereços de memória
+    int addresses_count;           // Contagem total de endereços acessados
+    int quantum_time;              // Tempo restante no quantum
+    bool is_running;               // Indicador se o processo está em execução
+    LogicalMemory *logical_memory; // Memória lógica associada ao processo
 } Process;
 
 /**

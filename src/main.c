@@ -50,16 +50,17 @@ int main(int argc, char const *argv[])
     }
 
     // Criação dos processos
-    Process* processes = (Process*) malloc(5 * sizeof(Process));
+    Process *processes = (Process *)malloc(5 * sizeof(Process));
     int process_pid;
-    for(process_pid = 1; process_pid <= 5; process_pid++){
-        process_create(&processes[process_pid-1], &logical_memory, process_pid, 1000*process_pid, PROCESS_SIZE);
+    for (process_pid = 1; process_pid <= 5; process_pid++)
+    {
+        process_create(&processes[process_pid - 1], &logical_memory, process_pid, 1000 * process_pid, PROCESS_SIZE);
     }
 
     // Mapeamento das páginas para frame
     for (int i = 0; i < NUMBER_OF_PAGES; i++)
     {
-        process_pid= rand()%5;
+        process_pid = rand() % 5;
         Frame *allocatedFrame = allocate_frame(&physical_memory);
 
         if (allocatedFrame != NULL)
@@ -68,7 +69,7 @@ int main(int argc, char const *argv[])
 
             // Adiciona o mapeamento na tabela de páginas
             add_mapping(processes[process_pid].page_table, logical_memory.pages[process_pid]->page_number, allocatedFrame->frame_number);
-            log_message(LOG_INFO, "Processo %d: Página %d mapeada para Frame %d",processes[process_pid].pid, i, allocatedFrame->frame_number);
+            log_message(LOG_INFO, "Processo %d: Página %d mapeada para Frame %d", processes[process_pid].pid, i, allocatedFrame->frame_number);
             sleep(physical_memory.access_delay);
         }
         else
@@ -78,31 +79,37 @@ int main(int argc, char const *argv[])
         }
     }
 
-    //Testando traducoes de endereco logico para fisico
+    // Testando traducoes de endereco logico para fisico
     int access_idx = 0;
     for (int i = 8000; i < 8200; i++)
     {
-        process_pid= rand()%5;
-        int physicalAddress = translate_address(&processes[process_pid],i);
-        if(physicalAddress != -1)log_message(LOG_INFO,"Processo %d: Logico = %d, Físico = %d",processes[process_pid].pid, i, physicalAddress);
-        else log_message(LOG_ERROR,"Processo %d: PAGE FAULT! Pagina %d nao esta alocada na memoria fisica!",processes[process_pid].pid,i/FRAME_SIZE);
+        process_pid = rand() % 5;
+        int physicalAddress = translate_address(&processes[process_pid], i);
+        if (physicalAddress != -1)
+            log_message(LOG_INFO, "Processo %d: Logico = %d, Físico = %d", processes[process_pid].pid, i, physicalAddress);
+        else
+            log_message(LOG_ERROR, "Processo %d: PAGE FAULT! Pagina %d nao esta alocada na memoria fisica!", processes[process_pid].pid, i / FRAME_SIZE);
         sleep(physical_memory.access_delay);
         processes[process_pid].access_sequence[access_idx++] = i;
     }
-        
+
     logical_memory_free_pages(&logical_memory);
     physical_memory_free_frames(&physical_memory);
-    for (process_pid = 0; process_pid < 5; process_pid++){
+    for (process_pid = 0; process_pid < 5; process_pid++)
+    {
         process_free_table_page(&processes[process_pid]);
         log_message(LOG_INFO, "Processo %d criado com sucesso e mapeado para a memória física.", processes[process_pid].pid);
     }
-    //Exibindo a lista de acessos de cada processo
-    for(process_pid = 0; process_pid < 5; process_pid++){
-        log_message(LOG_INFO,"Lista de acessos do processo %d:\n", processes[process_pid].pid);
-        for(access_idx = 0; access_idx<processes[process_pid].addresses_count; access_idx++){
-            if(processes[process_pid].access_sequence[access_idx] !=0)log_message(LOG_INFO,"%d, ",processes[process_pid].access_sequence[access_idx]);
+    // Exibindo a lista de acessos de cada processo
+    for (process_pid = 0; process_pid < 5; process_pid++)
+    {
+        log_message(LOG_INFO, "Lista de acessos do processo %d:\n", processes[process_pid].pid);
+        for (access_idx = 0; access_idx < processes[process_pid].addresses_count; access_idx++)
+        {
+            if (processes[process_pid].access_sequence[access_idx] != 0)
+                log_message(LOG_INFO, "%d, ", processes[process_pid].access_sequence[access_idx]);
         }
-        log_message(LOG_INFO,"\n");
+        log_message(LOG_INFO, "\n");
     }
     log_cleanup();
 

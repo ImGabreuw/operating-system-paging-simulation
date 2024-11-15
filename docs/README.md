@@ -115,7 +115,6 @@ classDiagram
       - Process[] running_processes
       - Queue ready_queue
       - int quantum
-      + create_process(size: int) Process
       + terminate_process(pid: int) void
       + schedule_process(process: Process)
       + run_scheduled_processes() void
@@ -544,19 +543,15 @@ Uma fila que armazena os processos que estão prontos para serem executados. O e
 
 Um inteiro que define o tempo máximo em nanosegundos que um processo pode usar a CPU em uma única vez antes de ser interrompido. Isso é crucial para o funcionamento do algoritmo Round Robin, garantindo que todos os processos tenham a chance de serem executados de forma equitativa.
 
-4. `create_process(size: int)`:
-
-Cria um novo processo com o tamanho especificado e o adiciona à fila de prontos.
-
-5. `terminate_process(pid: int)`:
+4. `terminate_process(pid: int)`:
 
    Encerra o processo com o identificador fornecido. Remove o processo da lista de processos em execução e da fila de prontos, se aplicável.
 
-6. `schedule_process(process: Process)`:
+5. `schedule_process(process: Process)`:
 
 Adiciona um processo à fila de prontos para ser escalonado. O escalonador utiliza o algoritmo Round Robin para decidir a ordem de execução dos processos.
 
-7. `run_scheduled_processes()`:
+6. `run_scheduled_processes()`:
 
 Executa os processos na fila de prontos usando o algoritmo Round Robin. Cada processo é executado pelo tempo definido no `quantum`. Se um processo não for concluído dentro desse tempo, ele é movido para o final da fila de prontos para que o próximo processo na fila possa ser executado.
 
