@@ -35,7 +35,7 @@ static long get_elapsed_time_ms()
 
     long seconds = current_time.tv_sec - start_time.tv_sec;
     long microseconds = current_time.tv_usec - start_time.tv_usec;
-    return seconds * 1000 + microseconds / 1000; // Converte para milissegundos
+    return seconds * 1000.0 + microseconds / 1000.0;
 }
 
 void log_init(const char *filename)
@@ -54,7 +54,6 @@ void log_init(const char *filename)
 
     pthread_mutex_init(&log_mutex, NULL);
 
-    // Define o tempo base do log usando gettimeofday
     gettimeofday(&start_time, NULL);
 }
 

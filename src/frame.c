@@ -10,12 +10,13 @@ int frame_create(Frame *frame, int frame_number, int frame_size)
     if (frame == NULL)
     {
         log_message(LOG_ERROR, "Invalid frame pointer. Please check the line where the Frame structure was allocated.");
+        log_message(LOG_ERROR, "Ponteiro para a estrutura de quadro inválido. Por favor, verifique a linha onde foi alocada a estrutura Frame.");
         return EXIT_FAILURE;
     }
 
     if (frame_number < -1)
     {
-        log_message(LOG_ERROR, "Frame number must be positive integers or -1. Check the parameters passed to frame_create().");
+        log_message(LOG_ERROR, "Número do quadro deve ser números positivos ou -1. Verifique os parâmetros passados para frame_create().");
         return EXIT_FAILURE;
     }
 
@@ -23,7 +24,7 @@ int frame_create(Frame *frame, int frame_number, int frame_size)
 
     if (frame_size <= 0)
     {
-        log_message(LOG_ERROR, "Size must be positive integers. Check the parameters passed to frame_create().");
+        log_message(LOG_ERROR, "O tamanho deve ser números positivos. Verifique os parâmetros passados para frame_create().");
         return EXIT_FAILURE;
     }
 
@@ -33,7 +34,7 @@ int frame_create(Frame *frame, int frame_number, int frame_size)
 
     if (frame->data == NULL)
     {
-        log_message(LOG_ERROR, "Memory allocation failed for frame data. This could indicate a memory leak or other resource issue. Please check the system resources by running './run.sh -d' with Valgrind.");
+        log_message(LOG_ERROR, "A alocação de memória falhou para os dados do quadro. Isso pode indicar um vazão de memória ou outra questão de recurso. Por favor, verifique os recursos do sistema executando './run.sh -d' com Valgrind.");
         return EXIT_FAILURE;
     }
 
