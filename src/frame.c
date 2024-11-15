@@ -40,6 +40,8 @@ int frame_create(Frame *frame, int frame_number, int frame_size)
 
     frame->is_occupied = false;
 
+    frame->allocated_process_pid = -1;
+
     return EXIT_SUCCESS;
 }
 

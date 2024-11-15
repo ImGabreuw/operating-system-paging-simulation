@@ -4,14 +4,12 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
-#include <pthread.h>
 #include <sys/time.h>
 
 static FILE *log_file = NULL;
 
 static int start_time;
 
-static pthread_mutex_t log_mutex;
 
 static const char *get_current_time()
 {
@@ -40,7 +38,6 @@ void log_init(const char *filename)
         exit(EXIT_FAILURE);
     }
 
-    pthread_mutex_init(&log_mutex, NULL);
     start_time = 0;
 }
 
@@ -53,7 +50,7 @@ void log_message(LogLevel level, const char *format, ...)
 
     const char *level_strings[] = {"INFO", "WARNING", "ERROR"};
 
-    pthread_mutex_lock(&log_mutex);
+
 
     va_list args;
     va_start(args, format);
@@ -67,7 +64,7 @@ void log_message(LogLevel level, const char *format, ...)
     
     ++start_time;
 
-    pthread_mutex_unlock(&log_mutex);
+ 
 }
 
 void log_cleanup()
@@ -78,5 +75,5 @@ void log_cleanup()
         log_file = NULL;
     }
 
-    pthread_mutex_destroy(&log_mutex);
+ 
 }

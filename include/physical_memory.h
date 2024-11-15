@@ -4,6 +4,7 @@
 #include "frame.h"
 #include "disk.h"
 #include "process.h"
+#include "process_manager.h"
 
 typedef struct PhysicalMemory
 {
@@ -68,7 +69,7 @@ char *read_from_frame(PhysicalMemory *physical_memory, int frame_number);
  * @param disk Ponteiro para o disco.
  * @param page Página que precisa ser carregada.
  */
-void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, Process *process);
+void physical_memory_replace_frame(PhysicalMemory *physical_memory, ProcessManager* process_manager, Disk *disk, Process *process);
 
 /**
  * Carrega uma página em um quadro da memória física.

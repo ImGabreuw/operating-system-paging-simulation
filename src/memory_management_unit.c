@@ -54,7 +54,7 @@ void mmu_handle_page_fault(MemoryManagementUnit *mmu, Process *process, int page
     if (frame == NULL)
     {
         log_message(LOG_WARNING, "Memória física cheia. Substituição de página necessária.");
-        physical_memory_replace_frame(&mmu->physical_memory, mmu->disk, process);
+        physical_memory_replace_frame(&mmu->physical_memory, mmu->process_manager, mmu->disk, process);
         frame = allocate_frame(&mmu->physical_memory);
     }
 
@@ -78,7 +78,7 @@ void mmu_load_process(MemoryManagementUnit *mmu, Process *process)
         if (frame == NULL)
         {
             log_message(LOG_WARNING, "Memória física cheia. Substituição de página necessária.");
-            physical_memory_replace_frame(&mmu->physical_memory, mmu->disk, process);
+            physical_memory_replace_frame(&mmu->physical_memory,mmu->process_manager, mmu->disk, process);
             frame = allocate_frame(&mmu->physical_memory);
         }
 

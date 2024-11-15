@@ -114,17 +114,27 @@ char *read_from_frame(PhysicalMemory *physical_memory, int frame_number)
     return NULL;
 }
 
-void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, Process *process)
+void physical_memory_replace_frame(PhysicalMemory *physical_memory,ProcessManager* process_manager , Disk *disk, Process *process)
 {
     static int replacement_index = 0;
 
     // Seleciona o quadro a ser substituído (FIFO para este exemplo)
     Frame *frame_to_replace = physical_memory->frames[replacement_index];
+    int allocated_process_pid = frame_to_replace->allocated_process_pid;
+    Process* allocated_process = (Process*) malloc(sizeof(Process));
+
+    for (int search_pid = 0; search_pid < process_manager->max_processes; search_pid++)
+    {
+       if(process_manager->running_processes[search_pid]->pid == allocated_process_pid) {
+            allocated_process = process_manager->running_processes[search_pid];
+       }
+    }
+
 
     int page_number = -1;
-    for (int i = 0; i < process->page_table->number_of_pages; i++)
+    for (int i = 0; i < allocated_process->page_table->number_of_pages; i++)
     {
-        PageTableEntry *entry = process->page_table->entries[i];
+        PageTableEntry *entry = allocated_process->page_table->entries[i];
 
         if (entry->frame_number == frame_to_replace->frame_number)
         {

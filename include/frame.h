@@ -11,6 +11,7 @@ typedef struct Frame
     int size;
     char *data;
     bool is_occupied;
+    int allocated_process_pid;
 } Frame;
 
 /**
