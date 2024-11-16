@@ -12,6 +12,15 @@
 #include "disk.h"
 #include "log.h"
 
+/*
+Integrantes:
+-Enzo Ribeiro-10418262
+-Gabriel Ken Kazama Geronazzo-10418247
+-Lucas Pires de Camargo Sarai-10418013
+-Lucas Zanini da Silva-104173
+CC - 04D - SO
+*/
+
 int main(int argc, char const *argv[])
 {
     log_init("simulador.log");
