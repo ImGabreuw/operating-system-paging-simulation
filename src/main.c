@@ -43,8 +43,7 @@ int main(int argc, char const *argv[])
     Process *processes = (Process *)malloc(num_processes * sizeof(Process));
     for (int pid = 0; pid < num_processes; pid++)
     {
-        process_create(&processes[pid], &mmu.logical_memory, pid, 1000 * pid, PROCESS_SIZE);
-        mmu_load_process(&mmu, &processes[pid]);
+        process_create(&processes[pid], &mmu.logical_memory, &disk,pid, 1000 * pid, PROCESS_SIZE);
     }
 
     // Carrega os processos na memória
@@ -52,17 +51,21 @@ int main(int argc, char const *argv[])
     {
         schedule_process(&process_manager, &processes[i]);
     }
-
+  
+    run_scheduled_processes(&process_manager);
+    
     // Executa o escalonamento dos processos
     while (true)
     {
         bool has_running_process = false;
 
-        for (int i = 0; i < process_manager.max_processes; i++)
+        int i = 0;
+        for (; i < process_manager.max_processes; i++)
         {
             if (process_manager.running_processes[i] != NULL)
             {
                 has_running_process = true;
+                break;
             }
         }
 
@@ -71,6 +74,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
+        mmu_load_process(&mmu, &processes[i]);
         run_scheduled_processes(&process_manager);
     }
 

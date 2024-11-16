@@ -1,12 +1,14 @@
 #ifndef MEMORY_MANAGEMENT_UNIT_H
 #define MEMORY_MANAGEMENT_UNIT_H
 
+typedef struct PhysicalMemory PhysicalMemory;
+#include "process_manager.h"
 typedef struct ProcessManager ProcessManager;
 
+
 #include "logical_memory.h"
-#include "physical_memory.h"
 #include "disk.h"
-#include "process_manager.h"
+#include "physical_memory.h"
 
 typedef struct MemoryManagementUnit
 {
@@ -59,5 +61,6 @@ void mmu_load_process(MemoryManagementUnit *mmu, Process *process);
  * @param virtual_address Endereço lógico a ser acessado.
  */
 void mmu_access_memory(MemoryManagementUnit *mmu, Process *process, int virtual_address);
+
 
 #endif // MEMORY_MANAGEMENT_UNIT_H

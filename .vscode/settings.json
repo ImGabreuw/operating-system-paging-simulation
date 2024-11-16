@@ -18,6 +18,7 @@
         "process.h": "c",
         "process_manager.h": "c",
         "cstring": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "disk.h": "c"
     }
 }

@@ -41,7 +41,7 @@ Page *swap_area_read_block(SwapArea *swap_area, int block_number)
     {
         return NULL;
     }
-
+    
     return swap_area->entries[block_number].page;
 }
 

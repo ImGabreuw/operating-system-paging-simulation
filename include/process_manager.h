@@ -3,8 +3,10 @@
 
 typedef struct MemoryManagementUnit MemoryManagementUnit;
 
+
 #include "memory_management_unit.h"
 #include "process_queue.h"
+#include "frame.h"
 
 typedef struct ProcessManager
 {
@@ -54,5 +56,16 @@ void run_scheduled_processes(ProcessManager *manager);
  * @param manager Ponteiro para a estrutura do ProcessManager.
  */
 void process_manager_cleanup(ProcessManager *manager);
+
+/** 
+ * Obtém o processo alocado no frame.
+ * 
+ * @param manager Ponteiro para a estrutura do ProcessManager.
+ * @param frame Ponteiro para a estrutura do Frame alocado  
+ * 
+ * @return Processo alocado
+ * 
+*/
+Process *get_allocated_process(ProcessManager *manager,Frame *frame);
 
 #endif // PROCESS_MANAGER_H

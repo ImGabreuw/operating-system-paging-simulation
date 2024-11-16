@@ -8,6 +8,9 @@
 #include "disk.h"
 #include "log.h"
 
+int replacement_index = 0;
+
+
 int physical_memory_create(PhysicalMemory *physical_memory, int size)
 {
     if (size <= 0)
@@ -114,21 +117,12 @@ char *read_from_frame(PhysicalMemory *physical_memory, int frame_number)
     return NULL;
 }
 
-void physical_memory_replace_frame(PhysicalMemory *physical_memory,ProcessManager* process_manager , Disk *disk, Process *process)
+void physical_memory_replace_frame(PhysicalMemory *physical_memory,Disk *disk, Process *allocated_process)
 {
-    static int replacement_index = 0;
 
     // Seleciona o quadro a ser substituído (FIFO para este exemplo)
     Frame *frame_to_replace = physical_memory->frames[replacement_index];
-    int allocated_process_pid = frame_to_replace->allocated_process_pid;
-    Process* allocated_process = (Process*) malloc(sizeof(Process));
-
-    for (int search_pid = 0; search_pid < process_manager->max_processes; search_pid++)
-    {
-       if(process_manager->running_processes[search_pid]->pid == allocated_process_pid) {
-            allocated_process = process_manager->running_processes[search_pid];
-       }
-    }
+    
 
 
     int page_number = -1;
@@ -145,15 +139,15 @@ void physical_memory_replace_frame(PhysicalMemory *physical_memory,ProcessManage
 
     if (page_number == -1)
     {
-        log_message(LOG_ERROR, "Estado inválido da tabela de página. Quadro de número '%d' não foi encontrado para o processo '%d'.", frame_to_replace->frame_number, process->pid);
+        log_message(LOG_ERROR, "Estado inválido da tabela de página. Quadro de número '%d' não foi encontrado para o processo '%d'.", frame_to_replace->frame_number, allocated_process->pid);
         return;
     }
 
-    Page *page = get_page(process->logical_memory, page_number);
+    Page *page = get_page(allocated_process->logical_memory, page_number);
 
     if (page == NULL)
     {
-        log_message(LOG_ERROR, "Estado inválido da tabela de página. Página de número '%d' não foi encontrado para o processo '%d'.", page_number, process->pid);
+        log_message(LOG_ERROR, "Estado inválido da tabela de página. Página de número '%d' não foi encontrado para o processo '%d'.", page_number, allocated_process->pid);
         return;
     }
 
@@ -165,7 +159,7 @@ void physical_memory_replace_frame(PhysicalMemory *physical_memory,ProcessManage
 
     // Marca o quadro como disponível para reutilização
     release_frame(physical_memory, frame_to_replace->frame_number);
-    remove_mapping(process->page_table, page->page_number);
+    remove_mapping(allocated_process->page_table, page->page_number);
 
     // Atualiza o índice de substituição
     replacement_index = (replacement_index + 1) % physical_memory->size;
@@ -194,6 +188,7 @@ void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_numbe
     // Carrega a nova página no quadro
     frame->is_occupied = true;
     page->is_loaded = true;
+    frame->allocated_process_pid = process->pid;
     add_mapping(process->page_table, page->page_number, frame->frame_number);
     sleep(physical_memory->access_delay);
 

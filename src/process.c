@@ -6,7 +6,7 @@
 
 #define MAX_ACCESSES 1000
 
-int process_create(Process *process, LogicalMemory *logical_memory, int pid, int addresses_count, int size)
+int process_create(Process *process, LogicalMemory *logical_memory,Disk* disk, int pid, int addresses_count, int size)
 {
     process->pid = pid;
     process->size = size;
@@ -20,6 +20,8 @@ int process_create(Process *process, LogicalMemory *logical_memory, int pid, int
     {
         logical_memory->pages[i] = (Page *)malloc(sizeof(Page));
         page_create(logical_memory->pages[i], i, process->pid);
+        disk_write_page(disk, logical_memory->pages[i]);
+
     }
 
     process->quantum_time = QUANTUM;
