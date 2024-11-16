@@ -55,7 +55,7 @@ void run_scheduled_processes(ProcessManager *manager)
         log_message(LOG_INFO, "Executando processo %d...", current->pid);
 
         int access_idx = 0;
-        for (int i = 8000; i < 8200; i++)
+        for (int i = 8000; i < 8050; i++)
         {
             mmu_access_memory(manager->mmu, current, i);
             current->access_sequence[access_idx++] = i;
