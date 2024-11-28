@@ -8,51 +8,42 @@
 #include "disk.h"
 #include "log.h"
 
+// Índice global para o algoritmo FIFO
 int replacement_index = 0;
-
 
 int physical_memory_create(PhysicalMemory *physical_memory, int size)
 {
-    if (size <= 0)
+    if (size <= 0 || size % FRAME_SIZE != 0)
     {
-        log_message(LOG_ERROR, "Invalid memory size. Must be greater than zero.");
+        log_message(LOG_ERROR, "Invalid memory size. Must be a positive multiple of FRAME_SIZE.");
         return EXIT_FAILURE;
     }
 
     physical_memory->size = size;
-
-    if (!physical_memory || !size)
-    {
-        log_message(LOG_ERROR, "Invalid parameters for function physical_memory_create().");
-        return EXIT_FAILURE;
-    }
-
     physical_memory->frame_size = FRAME_SIZE;
     physical_memory->free_frame_count = size / FRAME_SIZE;
 
-    physical_memory->frames = (Frame **)malloc(physical_memory->free_frame_count * sizeof(Frame *));
-
+    // Alocação do vetor de frames
+    physical_memory->frames = (Frame **)malloc((physical_memory->free_frame_count) * sizeof(Frame *));
     if (!physical_memory->frames)
     {
-        log_message(LOG_ERROR, "Failed to allocate memory for frames in physical memory.");
+        log_message(LOG_ERROR, "Failed to allocate memory for frames.");
         return EXIT_FAILURE;
     }
 
+    // Inicialização dos frames
     for (int i = 0; i < physical_memory->free_frame_count; i++)
     {
         physical_memory->frames[i] = (Frame *)malloc(sizeof(Frame));
-
         if (!physical_memory->frames[i])
         {
-            log_message(LOG_ERROR, "Failed to allocate memory for one of the frames in physical memory.");
+            log_message(LOG_ERROR, "Failed to allocate memory for frame %d.", i);
             return EXIT_FAILURE;
         }
-
         frame_create(physical_memory->frames[i], i, FRAME_SIZE);
     }
 
-    log_message(LOG_INFO, "Memória física inicializado com sucesso.");
-
+    log_message(LOG_INFO, "Memória física criada com sucesso. Tamanho: %d bytes.", size);
     return EXIT_SUCCESS;
 }
 
@@ -63,7 +54,7 @@ Frame *allocate_frame(PhysicalMemory *physical_memory)
         return NULL;
     }
 
-    for (int i = 0; i < physical_memory->size / physical_memory->frame_size; i++)
+    for (int i = 0; i < (physical_memory->size / FRAME_SIZE); i++)
     {
         if (!physical_memory->frames[i]->is_occupied)
         {
@@ -76,60 +67,36 @@ Frame *allocate_frame(PhysicalMemory *physical_memory)
     return NULL;
 }
 
-int get_free_frame_count(PhysicalMemory *physical_memory)
-{
-    return physical_memory->free_frame_count;
-}
-
 int release_frame(PhysicalMemory *physical_memory, int frame_number)
 {
-    if (frame_number >= 0 && frame_number < physical_memory->size / physical_memory->frame_size)
+    if (frame_number < 0 || frame_number >= (physical_memory->size / FRAME_SIZE))
     {
-        physical_memory->frames[frame_number]->is_occupied = false;
-        physical_memory->free_frame_count++;
+        log_message(LOG_ERROR, "Frame number %d is out of bounds.", frame_number);
+        return EXIT_FAILURE;
+    }
 
-        clear_frame(physical_memory->frames[frame_number]);
-
+    Frame *frame = physical_memory->frames[frame_number];
+    if (!frame->is_occupied)
+    {
+        log_message(LOG_WARNING, "Frame %d is already free.", frame_number);
         return EXIT_SUCCESS;
     }
 
-    return EXIT_FAILURE;
+    frame->is_occupied = false;
+    physical_memory->free_frame_count++;
+    clear_frame(frame);
+    return EXIT_SUCCESS;
 }
 
-int write_to_frame(PhysicalMemory *physical_memory, int frame_number, char *data)
+void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, Process *allocated_process)
 {
-    if (frame_number >= 0 && frame_number < physical_memory->size / physical_memory->frame_size)
-    {
-        set_data(physical_memory->frames[frame_number], data);
-        return EXIT_SUCCESS;
-    }
-
-    return EXIT_FAILURE;
-}
-
-char *read_from_frame(PhysicalMemory *physical_memory, int frame_number)
-{
-    if (frame_number >= 0 && frame_number < physical_memory->size / physical_memory->frame_size)
-    {
-        return get_data(physical_memory->frames[frame_number]);
-    }
-
-    return NULL;
-}
-
-void physical_memory_replace_frame(PhysicalMemory *physical_memory,Disk *disk, Process *allocated_process)
-{
-
-    // Seleciona o quadro a ser substituído (FIFO para este exemplo)
     Frame *frame_to_replace = physical_memory->frames[replacement_index];
-    
-
+    replacement_index = (replacement_index + 1) % (physical_memory->size / FRAME_SIZE);
 
     int page_number = -1;
     for (int i = 0; i < allocated_process->page_table->number_of_pages; i++)
     {
         PageTableEntry *entry = allocated_process->page_table->entries[i];
-
         if (entry->frame_number == frame_to_replace->frame_number)
         {
             page_number = entry->page_number;
@@ -139,43 +106,31 @@ void physical_memory_replace_frame(PhysicalMemory *physical_memory,Disk *disk, P
 
     if (page_number == -1)
     {
-        log_message(LOG_ERROR, "Estado inválido da tabela de página. Quadro de número '%d' não foi encontrado para o processo '%d'.", frame_to_replace->frame_number, allocated_process->pid);
+        log_message(LOG_ERROR, "Page not found for frame %d in process %d.", frame_to_replace->frame_number, allocated_process->pid);
         return;
     }
 
+    // Salva a página no disco antes de substituir
     Page *page = get_page(allocated_process->logical_memory, page_number);
-
-    if (page == NULL)
+    if (page != NULL && page->is_loaded)
     {
-        log_message(LOG_ERROR, "Estado inválido da tabela de página. Página de número '%d' não foi encontrado para o processo '%d'.", page_number, allocated_process->pid);
-        return;
-    }
-
-    if (frame_to_replace->frame_number != -1)
-    {
-        // Escreve a página antiga de volta no disco
         disk_write_page(disk, page);
+        page->is_loaded = false;
+        log_message(LOG_INFO, "Página %d do processo %d salva no disco antes de substituir.", page_number, allocated_process->pid);
     }
 
-    // Marca o quadro como disponível para reutilização
+    // Libera o frame
     release_frame(physical_memory, frame_to_replace->frame_number);
-    remove_mapping(allocated_process->page_table, page->page_number);
+    remove_mapping(allocated_process->page_table, page_number);
 
-    // Atualiza o índice de substituição
-    replacement_index = (replacement_index + 1) % physical_memory->size;
+    log_message(LOG_INFO, "Quadro %d liberado para substituição.", frame_to_replace->frame_number);
 }
 
 void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_number, Process *process, Page *page)
 {
-    if (frame_number < 0 || frame_number >= physical_memory->size)
+    if (frame_number < 0 || frame_number >= (physical_memory->size / FRAME_SIZE))
     {
         log_message(LOG_ERROR, "Número do quadro %d é inválido.", frame_number);
-        return;
-    }
-
-    if (process->pid != page->pid)
-    {
-        log_message(LOG_ERROR, "Processo '%d' não corresponde ao ID do processo (%d) da página '%d'", process->pid, page->pid, page->page_number);
         return;
     }
 
@@ -185,22 +140,44 @@ void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_numbe
         log_message(LOG_WARNING, "Substituindo conteúdo do quadro %d.", frame_number);
     }
 
-    // Carrega a nova página no quadro
+    // Carrega a nova página no frame
     frame->is_occupied = true;
-    page->is_loaded = true;
     frame->allocated_process_pid = process->pid;
-    add_mapping(process->page_table, page->page_number, frame->frame_number);
+    page->is_loaded = true;
+
+    // Atualiza a tabela de páginas do processo
+    add_mapping(process->page_table, page->page_number, frame_number);
+
     sleep(physical_memory->access_delay);
 
-    log_message(LOG_INFO, "Página %d carregada no quadro %d.", page->page_number, frame_number);
+    log_message(LOG_INFO, "Página %d do processo %d carregada no quadro %d.", page->page_number, process->pid, frame_number);
 }
 
 void physical_memory_free_frames(PhysicalMemory *physical_memory)
 {
-    for (int i = 0; i < physical_memory->free_frame_count; i++)
+    for (int i = 0; i < (physical_memory->size / FRAME_SIZE); i++)
     {
         free(physical_memory->frames[i]);
     }
-
     free(physical_memory->frames);
+
+    log_message(LOG_INFO, "Memória física liberada.");
+}
+
+void log_physical_memory_state(PhysicalMemory *physical_memory, Process **processes)
+{
+    log_message(LOG_INFO, "Estado da Memória Física:");
+
+    for (int i = 0; i < (physical_memory->size / FRAME_SIZE); i++)
+    {
+        Frame *frame = physical_memory->frames[i];
+        if (frame != NULL && frame->is_occupied)
+        {
+            log_plain_message("Frame %03d: Ocupado pelo processo %03d.\n", i, frame->allocated_process_pid);
+        }
+        else
+        {
+            log_plain_message("Frame %03d: Livre.\n", i);
+        }
+    }
 }

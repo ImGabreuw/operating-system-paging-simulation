@@ -10,7 +10,6 @@ static FILE *log_file = NULL;
 
 static int start_time;
 
-
 static const char *get_current_time()
 {
     static char buffer[20];
@@ -50,8 +49,6 @@ void log_message(LogLevel level, const char *format, ...)
 
     const char *level_strings[] = {"INFO", "WARNING", "ERROR"};
 
-
-
     va_list args;
     va_start(args, format);
 
@@ -61,10 +58,24 @@ void log_message(LogLevel level, const char *format, ...)
 
     va_end(args);
     fflush(log_file);
-    
-    ++start_time;
 
- 
+    ++start_time;
+}
+
+void log_plain_message(const char *format, ...)
+{
+    if (log_file == NULL)
+    {
+        return;
+    }
+
+    va_list args;
+    va_start(args, format);
+
+    vfprintf(log_file, format, args);
+
+    va_end(args);
+    fflush(log_file);
 }
 
 void log_cleanup()
@@ -74,6 +85,4 @@ void log_cleanup()
         fclose(log_file);
         log_file = NULL;
     }
-
- 
 }

@@ -38,13 +38,13 @@ int main(int argc, char const *argv[])
     process_manager_init(&process_manager, max_processes, quantum);
 
     Disk disk;
-    int disk_size = 100;
+    int disk_size = 30;
     int disk_access_delay = 5; // em ms
     disk_init(&disk, disk_size, disk_access_delay);
 
     MemoryManagementUnit mmu;
-    int physical_memory_size = FRAME_SIZE * 10;
-    int logical_memory_size = PAGE_SIZE * 10;
+    int physical_memory_size = FRAME_SIZE * 5;
+    int logical_memory_size = PAGE_SIZE * 5;
     mmu_init(&mmu, logical_memory_size, physical_memory_size, &disk, &process_manager);
     process_manager.mmu = &mmu;
 

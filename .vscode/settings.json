@@ -19,6 +19,7 @@
         "process_manager.h": "c",
         "cstring": "c",
         "cstdlib": "c",
-        "disk.h": "c"
+        "disk.h": "c",
+        "stdio.h": "c"
     }
 }

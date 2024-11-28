@@ -28,6 +28,15 @@ void log_init(const char *filename);
 void log_message(LogLevel level, const char *format, ...);
 
 /**
+ * Registra uma mensagem de log no arquivo, incluindo o nível de log e o ID da thread.
+ *
+ * @param level O nível da mensagem de log (INFO, WARNING, ERROR).
+ * @param format A string de formato para a mensagem de log, similar ao printf.
+ * Permite uma lista variável de argumentos.
+ */
+void log_plain_message(const char *format, ...);
+
+/**
  * Finaliza o sistema de log, fechando o arquivo de log, se aberto.
  */
 void log_cleanup();
