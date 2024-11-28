@@ -181,3 +181,7 @@ void log_physical_memory_state(PhysicalMemory *physical_memory, Process **proces
         }
     }
 }
+
+void show_physical_memory(PhysicalMemory *physical_memory)
+{
+}
