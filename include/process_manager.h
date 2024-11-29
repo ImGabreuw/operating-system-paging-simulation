@@ -10,7 +10,7 @@ typedef struct MemoryManagementUnit MemoryManagementUnit;
 typedef struct ProcessManager
 {
     MemoryManagementUnit *mmu;
-    Process **running_processes; // Array de processos em execução
+    Process *running_processes; // Array de processos em execução
     int max_processes;           // Capacidade máxima de processos
     Queue ready_queue;           // Fila de processos prontos
     int quantum;                 // Tempo máximo (em ms) para o Round Robin
@@ -50,7 +50,7 @@ void schedule_process(ProcessManager *manager, Process *process);
  *
  * @param manager Ponteiro para a estrutura do ProcessManager.
  */
-void run_scheduled_processes(ProcessManager *manager);
+void run_scheduled_processes(ProcessManager *manager, MemoryManagementUnit *mmu);
 
 /**
  * Libera todos os recursos alocados pelo ProcessManager.

@@ -44,50 +44,59 @@ int mmu_translate_address(MemoryManagementUnit *mmu, Process *process, int virtu
 
 void mmu_handle_page_fault(MemoryManagementUnit *mmu, Process *process, int page_number)
 {
-    log_message(LOG_WARNING, "Page fault ocorrido no processo %d, página %d.", process->pid, page_number);
+    log_message(LOG_WARNING, "Page fault no processo %d, página %d.", process->pid, page_number);
 
+    // Tenta alocar um quadro na memória física
     Frame *frame = allocate_frame(&mmu->physical_memory);
 
-    if (frame == NULL)
+    if (!frame)
     {
         log_message(LOG_WARNING, "Memória física cheia. Executando substituição de página.");
         Process *allocated_process = get_allocated_process(mmu->process_manager, mmu->physical_memory.frames[replacement_index]);
-
-        if (allocated_process == NULL)
+        
+        if (!allocated_process)
         {
-            log_message(LOG_ERROR, "Nenhum processo encontrado para substituição. Operação falhou.");
+            log_message(LOG_ERROR, "Nenhum processo encontrado para substituição.");
             return;
         }
 
         physical_memory_replace_frame(&mmu->physical_memory, mmu->disk, allocated_process);
+
         frame = allocate_frame(&mmu->physical_memory);
+        if (!frame)
+        {
+            log_message(LOG_ERROR, "Falha ao alocar quadro após substituição.");
+            return;
+        }
     }
 
-    if (frame == NULL)
-    {
-        log_message(LOG_ERROR, "Falha ao alocar quadro após substituição.");
-        return;
-    }
-
+    // Lê a página do disco
     Page *page = disk_read_page(mmu->disk, page_number);
-    if (page == NULL)
+    if (!page)
     {
         log_message(LOG_ERROR, "Erro ao ler página %d do disco.", page_number);
         return;
     }
 
+    // Carrega a página no quadro alocado
     physical_memory_load_frame(&mmu->physical_memory, frame->frame_number, process, page);
 
-    add_mapping(process->page_table, page_number, frame->frame_number);
-
-    log_message(LOG_INFO, "Página %d do processo %d carregada no quadro %d.", page_number, process->pid, frame->frame_number);
+    // Atualiza a tabela de páginas
+    if (add_mapping(process->page_table, page_number, frame->frame_number) == EXIT_SUCCESS)
+    {
+        log_message(LOG_INFO, "Página %d mapeada para o quadro %d com sucesso.", page_number, frame->frame_number);
+    }
+    else
+    {
+        log_message(LOG_ERROR, "Erro ao mapear a página %d para o quadro %d.", page_number, frame->frame_number);
+    }
 }
+
 
 void mmu_load_process(MemoryManagementUnit *mmu, Process *process)
 {
     log_message(LOG_INFO, "Carregando processo %d na memória...", process->pid);
-
-    for (int i = 0; i < process->logical_memory->size; i++)
+    for (int i = 0; i < process->logical_memory->size / PAGE_SIZE; i++)
     {
         Frame *frame = allocate_frame(&mmu->physical_memory);
         if (frame == NULL)

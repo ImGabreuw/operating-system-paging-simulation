@@ -34,7 +34,7 @@ int page_table_create(PageTable *page_table, int number_of_pages)
             log_message(LOG_ERROR, "Out of memory. Unable to allocate page table entry.");
             return EXIT_FAILURE;
         }
-        
+
         page_table_entry_create(entry, i, -1);
         page_table->entries[i] = entry;
     }
@@ -42,19 +42,18 @@ int page_table_create(PageTable *page_table, int number_of_pages)
     return EXIT_SUCCESS;
 }
 
-int add_mapping(PageTable *pagetable, int page_number, int frame_number)
+int add_mapping(PageTable *page_table, int page_number, int frame_number)
 {
-    for (int i = 0; i < pagetable->number_of_pages; i++)
+    for (int i = 0; i < page_table->number_of_pages; i++)
     {
-        if (pagetable->entries[i]->page_number == page_number)
+        if (page_table->entries[i]->page_number == page_number)
         {
-            pagetable->entries[i]->frame_number = frame_number;
-
-            validate(pagetable->entries[i]);
-
+            page_table->entries[i]->frame_number = frame_number;
+            page_table->entries[i]->is_valid = true; // Valida a entrada
             return EXIT_SUCCESS;
         }
     }
+    log_message(LOG_WARNING, "Página %d não encontrada na tabela de páginas.", page_number);
     return EXIT_FAILURE;
 }
 

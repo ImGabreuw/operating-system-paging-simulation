@@ -95,10 +95,12 @@ void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, 
     replacement_index = (replacement_index + 1) % (physical_memory->size / FRAME_SIZE);
 
     int page_number = -1;
+
+    // Localiza a página associada ao frame no processo
     for (int i = 0; i < allocated_process->page_table->number_of_pages; i++)
     {
         PageTableEntry *entry = allocated_process->page_table->entries[i];
-        if (entry->frame_number == frame_to_replace->frame_number)
+        if (entry && entry->frame_number == frame_to_replace->frame_number)
         {
             page_number = entry->page_number;
             break;
@@ -107,24 +109,28 @@ void physical_memory_replace_frame(PhysicalMemory *physical_memory, Disk *disk, 
 
     if (page_number == -1)
     {
-        log_message(LOG_ERROR, "Page not found for frame %d in process %d.", frame_to_replace->frame_number, allocated_process->pid);
+        log_message(LOG_ERROR, "Página associada ao quadro %d não encontrada no processo %d.", frame_to_replace->frame_number, allocated_process->pid);
         return;
     }
 
     // Salva a página no disco antes de substituir
     Page *page = get_page(allocated_process->logical_memory, page_number);
-    if (page != NULL && page->is_loaded)
+    if (page && page->is_loaded)
     {
-        disk_write_page(disk, page);
+        disk_write_page(disk, page); // Salva no disco
         page->is_loaded = false;
-        log_message(LOG_INFO, "Página %d do processo %d salva no disco antes de substituir.", page_number, allocated_process->pid);
+        log_message(LOG_INFO, "Página %d do processo %d salva no disco.", page_number, allocated_process->pid);
     }
 
-    // Libera o frame
-    release_frame(physical_memory, frame_to_replace->frame_number);
-    remove_mapping(allocated_process->page_table, page_number);
+    // Atualiza a tabela de páginas para remover o mapeamento
+    if (remove_mapping(allocated_process->page_table, page_number) == EXIT_FAILURE)
+    {
+        log_message(LOG_ERROR, "Falha ao remover o mapeamento da página %d.", page_number);
+    }
 
-    log_message(LOG_INFO, "Quadro %d liberado para substituição.", frame_to_replace->frame_number);
+    // Libera o frame para reutilização
+    release_frame(physical_memory, frame_to_replace->frame_number);
+    log_message(LOG_INFO, "Quadro %d liberado e pronto para substituição.", frame_to_replace->frame_number);
 }
 
 void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_number, Process *process, Page *page)

@@ -61,31 +61,7 @@ int main(int argc, char const *argv[])
         schedule_process(&process_manager, &processes[i]);
     }
 
-    run_scheduled_processes(&process_manager);
-
-    // Executa o escalonamento dos processos
-    while (true)
-    {
-        bool has_running_process = false;
-
-        int i = 0;
-        for (; i < process_manager.max_processes; i++)
-        {
-            if (process_manager.running_processes[i] != NULL)
-            {
-                has_running_process = true;
-                break;
-            }
-        }
-
-        if (!has_running_process)
-        {
-            break;
-        }
-
-        mmu_load_process(&mmu, &processes[i]);
-        run_scheduled_processes(&process_manager);
-    }
+    run_scheduled_processes(&process_manager, &mmu);
 
     // Libera os recursos alocados
     for (int i = 0; i < num_processes; i++)
