@@ -1,0 +1,868 @@
+[2024-11-29 01:25:43] [INFO] [Clock 0] Foram carregadas 10 configurações do simulador.
+[2024-11-29 01:25:43] [INFO] [Clock 1] Gerenciador de processos inicializado com sucesso.
+[2024-11-29 01:25:43] [INFO] [Clock 2] Área de swap inicializado com sucesso.
+[2024-11-29 01:25:43] [INFO] [Clock 3] Disco inicializado com sucesso.
+[2024-11-29 01:25:43] [INFO] [Clock 4] Memória lógica inicializado com sucesso.
+[2024-11-29 01:25:43] [INFO] [Clock 5] Memória física criada com sucesso. Tamanho: 32768 bytes.
+[2024-11-29 01:25:43] [INFO] [Clock 6] MMU inicializado com sucesso.
+[2024-11-29 01:25:43] [INFO] [Clock 7] Tabela de páginas criada com sucesso com 5 páginas para o processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 8] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 9] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 10] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 11] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 12] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 13] Processo '0' criado com sucesso;
+[2024-11-29 01:25:43] [INFO] [Clock 14] Tabela de páginas criada com sucesso com 5 páginas para o processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 15] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 16] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 17] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 18] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 19] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 20] Processo '1' criado com sucesso;
+[2024-11-29 01:25:43] [INFO] [Clock 21] Tabela de páginas criada com sucesso com 5 páginas para o processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 22] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 23] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 24] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 25] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 26] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 27] Processo '2' criado com sucesso;
+[2024-11-29 01:25:43] [INFO] [Clock 28] Tabela de páginas criada com sucesso com 5 páginas para o processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 29] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 30] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 31] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 32] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 33] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 34] Processo '3' criado com sucesso;
+[2024-11-29 01:25:43] [INFO] [Clock 35] Tabela de páginas criada com sucesso com 5 páginas para o processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 36] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 37] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 38] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 39] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 40] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 41] Processo '4' criado com sucesso;
+[2024-11-29 01:25:43] [INFO] [Clock 42] Carregando processo 0 na memória...
+[2024-11-29 01:25:43] [INFO] [Clock 43] Estado da Memória Física:
+ ----------- 
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 44] Substituindo conteúdo do quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 45] Página 0 do processo 0 carregada no quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 46] Página 0 carregada no quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 47] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 48] Substituindo conteúdo do quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 49] Página 1 do processo 0 carregada no quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 50] Página 1 carregada no quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 51] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 52] Substituindo conteúdo do quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 53] Página 2 do processo 0 carregada no quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 54] Página 2 carregada no quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 55] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| --------- |
+| --------- |
+| --------- |
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 56] Substituindo conteúdo do quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 57] Página 3 do processo 0 carregada no quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 58] Página 3 carregada no quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 59] Executando processo 0...
+[2024-11-29 01:25:43] [INFO] [Clock 60] Acessando endereço lógico 8000 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 61] Endereço lógico 8000 traduzido para endereço físico 8000.
+[2024-11-29 01:25:43] [INFO] [Clock 62] Acessando endereço lógico 8001 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 63] Endereço lógico 8001 traduzido para endereço físico 8001.
+[2024-11-29 01:25:43] [INFO] [Clock 64] Acessando endereço lógico 8002 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 65] Endereço lógico 8002 traduzido para endereço físico 8002.
+[2024-11-29 01:25:43] [INFO] [Clock 66] Acessando endereço lógico 8003 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 67] Endereço lógico 8003 traduzido para endereço físico 8003.
+[2024-11-29 01:25:43] [INFO] [Clock 68] Acessando endereço lógico 8004 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 69] Endereço lógico 8004 traduzido para endereço físico 8004.
+[2024-11-29 01:25:43] [INFO] [Clock 70] Acessando endereço lógico 8005 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 71] Endereço lógico 8005 traduzido para endereço físico 8005.
+[2024-11-29 01:25:43] [INFO] [Clock 72] Acessando endereço lógico 8006 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 73] Endereço lógico 8006 traduzido para endereço físico 8006.
+[2024-11-29 01:25:43] [INFO] [Clock 74] Acessando endereço lógico 8007 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 75] Endereço lógico 8007 traduzido para endereço físico 8007.
+[2024-11-29 01:25:43] [INFO] [Clock 76] Acessando endereço lógico 8008 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 77] Endereço lógico 8008 traduzido para endereço físico 8008.
+[2024-11-29 01:25:43] [INFO] [Clock 78] Acessando endereço lógico 8009 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 79] Endereço lógico 8009 traduzido para endereço físico 8009.
+[2024-11-29 01:25:43] [INFO] [Clock 80] Acessando endereço lógico 8010 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 81] Endereço lógico 8010 traduzido para endereço físico 8010.
+[2024-11-29 01:25:43] [INFO] [Clock 82] Acessando endereço lógico 8011 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 83] Endereço lógico 8011 traduzido para endereço físico 8011.
+[2024-11-29 01:25:43] [INFO] [Clock 84] Acessando endereço lógico 8012 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 85] Endereço lógico 8012 traduzido para endereço físico 8012.
+[2024-11-29 01:25:43] [INFO] [Clock 86] Acessando endereço lógico 8013 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 87] Endereço lógico 8013 traduzido para endereço físico 8013.
+[2024-11-29 01:25:43] [INFO] [Clock 88] Acessando endereço lógico 8014 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 89] Endereço lógico 8014 traduzido para endereço físico 8014.
+[2024-11-29 01:25:43] [INFO] [Clock 90] Acessando endereço lógico 8015 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 91] Endereço lógico 8015 traduzido para endereço físico 8015.
+[2024-11-29 01:25:43] [INFO] [Clock 92] Acessando endereço lógico 8016 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 93] Endereço lógico 8016 traduzido para endereço físico 8016.
+[2024-11-29 01:25:43] [INFO] [Clock 94] Acessando endereço lógico 8017 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 95] Endereço lógico 8017 traduzido para endereço físico 8017.
+[2024-11-29 01:25:43] [INFO] [Clock 96] Acessando endereço lógico 8018 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 97] Endereço lógico 8018 traduzido para endereço físico 8018.
+[2024-11-29 01:25:43] [INFO] [Clock 98] Acessando endereço lógico 8019 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 99] Endereço lógico 8019 traduzido para endereço físico 8019.
+[2024-11-29 01:25:43] [INFO] [Clock 100] Acessando endereço lógico 8020 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 101] Endereço lógico 8020 traduzido para endereço físico 8020.
+[2024-11-29 01:25:43] [INFO] [Clock 102] Acessando endereço lógico 8021 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 103] Endereço lógico 8021 traduzido para endereço físico 8021.
+[2024-11-29 01:25:43] [INFO] [Clock 104] Acessando endereço lógico 8022 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 105] Endereço lógico 8022 traduzido para endereço físico 8022.
+[2024-11-29 01:25:43] [INFO] [Clock 106] Acessando endereço lógico 8023 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 107] Endereço lógico 8023 traduzido para endereço físico 8023.
+[2024-11-29 01:25:43] [INFO] [Clock 108] Acessando endereço lógico 8024 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 109] Endereço lógico 8024 traduzido para endereço físico 8024.
+[2024-11-29 01:25:43] [INFO] [Clock 110] Acessando endereço lógico 8025 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 111] Endereço lógico 8025 traduzido para endereço físico 8025.
+[2024-11-29 01:25:43] [INFO] [Clock 112] Acessando endereço lógico 8026 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 113] Endereço lógico 8026 traduzido para endereço físico 8026.
+[2024-11-29 01:25:43] [INFO] [Clock 114] Acessando endereço lógico 8027 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 115] Endereço lógico 8027 traduzido para endereço físico 8027.
+[2024-11-29 01:25:43] [INFO] [Clock 116] Acessando endereço lógico 8028 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 117] Endereço lógico 8028 traduzido para endereço físico 8028.
+[2024-11-29 01:25:43] [INFO] [Clock 118] Acessando endereço lógico 8029 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 119] Endereço lógico 8029 traduzido para endereço físico 8029.
+[2024-11-29 01:25:43] [INFO] [Clock 120] Acessando endereço lógico 8030 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 121] Endereço lógico 8030 traduzido para endereço físico 8030.
+[2024-11-29 01:25:43] [INFO] [Clock 122] Acessando endereço lógico 8031 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 123] Endereço lógico 8031 traduzido para endereço físico 8031.
+[2024-11-29 01:25:43] [INFO] [Clock 124] Acessando endereço lógico 8032 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 125] Endereço lógico 8032 traduzido para endereço físico 8032.
+[2024-11-29 01:25:43] [INFO] [Clock 126] Acessando endereço lógico 8033 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 127] Endereço lógico 8033 traduzido para endereço físico 8033.
+[2024-11-29 01:25:43] [INFO] [Clock 128] Acessando endereço lógico 8034 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 129] Endereço lógico 8034 traduzido para endereço físico 8034.
+[2024-11-29 01:25:43] [INFO] [Clock 130] Acessando endereço lógico 8035 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 131] Endereço lógico 8035 traduzido para endereço físico 8035.
+[2024-11-29 01:25:43] [INFO] [Clock 132] Acessando endereço lógico 8036 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 133] Endereço lógico 8036 traduzido para endereço físico 8036.
+[2024-11-29 01:25:43] [INFO] [Clock 134] Acessando endereço lógico 8037 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 135] Endereço lógico 8037 traduzido para endereço físico 8037.
+[2024-11-29 01:25:43] [INFO] [Clock 136] Acessando endereço lógico 8038 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 137] Endereço lógico 8038 traduzido para endereço físico 8038.
+[2024-11-29 01:25:43] [INFO] [Clock 138] Acessando endereço lógico 8039 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 139] Endereço lógico 8039 traduzido para endereço físico 8039.
+[2024-11-29 01:25:43] [INFO] [Clock 140] Acessando endereço lógico 8040 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 141] Endereço lógico 8040 traduzido para endereço físico 8040.
+[2024-11-29 01:25:43] [INFO] [Clock 142] Acessando endereço lógico 8041 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 143] Endereço lógico 8041 traduzido para endereço físico 8041.
+[2024-11-29 01:25:43] [INFO] [Clock 144] Acessando endereço lógico 8042 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 145] Endereço lógico 8042 traduzido para endereço físico 8042.
+[2024-11-29 01:25:43] [INFO] [Clock 146] Acessando endereço lógico 8043 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 147] Endereço lógico 8043 traduzido para endereço físico 8043.
+[2024-11-29 01:25:43] [INFO] [Clock 148] Acessando endereço lógico 8044 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 149] Endereço lógico 8044 traduzido para endereço físico 8044.
+[2024-11-29 01:25:43] [INFO] [Clock 150] Acessando endereço lógico 8045 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 151] Endereço lógico 8045 traduzido para endereço físico 8045.
+[2024-11-29 01:25:43] [INFO] [Clock 152] Acessando endereço lógico 8046 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 153] Endereço lógico 8046 traduzido para endereço físico 8046.
+[2024-11-29 01:25:43] [INFO] [Clock 154] Acessando endereço lógico 8047 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 155] Endereço lógico 8047 traduzido para endereço físico 8047.
+[2024-11-29 01:25:43] [INFO] [Clock 156] Acessando endereço lógico 8048 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 157] Endereço lógico 8048 traduzido para endereço físico 8048.
+[2024-11-29 01:25:43] [INFO] [Clock 158] Acessando endereço lógico 8049 no processo 0.
+[2024-11-29 01:25:43] [INFO] [Clock 159] Endereço lógico 8049 traduzido para endereço físico 8049.
+[2024-11-29 01:25:43] [INFO] [Clock 160] Carregando processo 1 na memória...
+[2024-11-29 01:25:43] [INFO] [Clock 161] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| --------- |
+| --------- |
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 162] Substituindo conteúdo do quadro 4.
+[2024-11-29 01:25:43] [INFO] [Clock 163] Página 0 do processo 1 carregada no quadro 4.
+[2024-11-29 01:25:43] [INFO] [Clock 164] Página 0 carregada no quadro 4.
+[2024-11-29 01:25:43] [INFO] [Clock 165] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| --------- |
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 166] Substituindo conteúdo do quadro 5.
+[2024-11-29 01:25:43] [INFO] [Clock 167] Página 1 do processo 1 carregada no quadro 5.
+[2024-11-29 01:25:43] [INFO] [Clock 168] Página 1 carregada no quadro 5.
+[2024-11-29 01:25:43] [INFO] [Clock 169] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| --------- |
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 170] Substituindo conteúdo do quadro 6.
+[2024-11-29 01:25:43] [INFO] [Clock 171] Página 2 do processo 1 carregada no quadro 6.
+[2024-11-29 01:25:43] [INFO] [Clock 172] Página 2 carregada no quadro 6.
+[2024-11-29 01:25:43] [INFO] [Clock 173] Estado da Memória Física:
+ ----------- 
+| P000 - 00 | # Frame 0 -> Página 0 do Processo 0
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 174] Substituindo conteúdo do quadro 7.
+[2024-11-29 01:25:43] [INFO] [Clock 175] Página 3 do processo 1 carregada no quadro 7.
+[2024-11-29 01:25:43] [INFO] [Clock 176] Página 3 carregada no quadro 7.
+[2024-11-29 01:25:43] [INFO] [Clock 177] Executando processo 1...
+[2024-11-29 01:25:43] [INFO] [Clock 178] Acessando endereço lógico 8000 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 179] Endereço lógico 8000 traduzido para endereço físico 24384.
+[2024-11-29 01:25:43] [INFO] [Clock 180] Acessando endereço lógico 8001 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 181] Endereço lógico 8001 traduzido para endereço físico 24385.
+[2024-11-29 01:25:43] [INFO] [Clock 182] Acessando endereço lógico 8002 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 183] Endereço lógico 8002 traduzido para endereço físico 24386.
+[2024-11-29 01:25:43] [INFO] [Clock 184] Acessando endereço lógico 8003 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 185] Endereço lógico 8003 traduzido para endereço físico 24387.
+[2024-11-29 01:25:43] [INFO] [Clock 186] Acessando endereço lógico 8004 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 187] Endereço lógico 8004 traduzido para endereço físico 24388.
+[2024-11-29 01:25:43] [INFO] [Clock 188] Acessando endereço lógico 8005 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 189] Endereço lógico 8005 traduzido para endereço físico 24389.
+[2024-11-29 01:25:43] [INFO] [Clock 190] Acessando endereço lógico 8006 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 191] Endereço lógico 8006 traduzido para endereço físico 24390.
+[2024-11-29 01:25:43] [INFO] [Clock 192] Acessando endereço lógico 8007 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 193] Endereço lógico 8007 traduzido para endereço físico 24391.
+[2024-11-29 01:25:43] [INFO] [Clock 194] Acessando endereço lógico 8008 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 195] Endereço lógico 8008 traduzido para endereço físico 24392.
+[2024-11-29 01:25:43] [INFO] [Clock 196] Acessando endereço lógico 8009 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 197] Endereço lógico 8009 traduzido para endereço físico 24393.
+[2024-11-29 01:25:43] [INFO] [Clock 198] Acessando endereço lógico 8010 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 199] Endereço lógico 8010 traduzido para endereço físico 24394.
+[2024-11-29 01:25:43] [INFO] [Clock 200] Acessando endereço lógico 8011 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 201] Endereço lógico 8011 traduzido para endereço físico 24395.
+[2024-11-29 01:25:43] [INFO] [Clock 202] Acessando endereço lógico 8012 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 203] Endereço lógico 8012 traduzido para endereço físico 24396.
+[2024-11-29 01:25:43] [INFO] [Clock 204] Acessando endereço lógico 8013 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 205] Endereço lógico 8013 traduzido para endereço físico 24397.
+[2024-11-29 01:25:43] [INFO] [Clock 206] Acessando endereço lógico 8014 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 207] Endereço lógico 8014 traduzido para endereço físico 24398.
+[2024-11-29 01:25:43] [INFO] [Clock 208] Acessando endereço lógico 8015 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 209] Endereço lógico 8015 traduzido para endereço físico 24399.
+[2024-11-29 01:25:43] [INFO] [Clock 210] Acessando endereço lógico 8016 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 211] Endereço lógico 8016 traduzido para endereço físico 24400.
+[2024-11-29 01:25:43] [INFO] [Clock 212] Acessando endereço lógico 8017 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 213] Endereço lógico 8017 traduzido para endereço físico 24401.
+[2024-11-29 01:25:43] [INFO] [Clock 214] Acessando endereço lógico 8018 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 215] Endereço lógico 8018 traduzido para endereço físico 24402.
+[2024-11-29 01:25:43] [INFO] [Clock 216] Acessando endereço lógico 8019 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 217] Endereço lógico 8019 traduzido para endereço físico 24403.
+[2024-11-29 01:25:43] [INFO] [Clock 218] Acessando endereço lógico 8020 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 219] Endereço lógico 8020 traduzido para endereço físico 24404.
+[2024-11-29 01:25:43] [INFO] [Clock 220] Acessando endereço lógico 8021 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 221] Endereço lógico 8021 traduzido para endereço físico 24405.
+[2024-11-29 01:25:43] [INFO] [Clock 222] Acessando endereço lógico 8022 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 223] Endereço lógico 8022 traduzido para endereço físico 24406.
+[2024-11-29 01:25:43] [INFO] [Clock 224] Acessando endereço lógico 8023 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 225] Endereço lógico 8023 traduzido para endereço físico 24407.
+[2024-11-29 01:25:43] [INFO] [Clock 226] Acessando endereço lógico 8024 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 227] Endereço lógico 8024 traduzido para endereço físico 24408.
+[2024-11-29 01:25:43] [INFO] [Clock 228] Acessando endereço lógico 8025 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 229] Endereço lógico 8025 traduzido para endereço físico 24409.
+[2024-11-29 01:25:43] [INFO] [Clock 230] Acessando endereço lógico 8026 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 231] Endereço lógico 8026 traduzido para endereço físico 24410.
+[2024-11-29 01:25:43] [INFO] [Clock 232] Acessando endereço lógico 8027 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 233] Endereço lógico 8027 traduzido para endereço físico 24411.
+[2024-11-29 01:25:43] [INFO] [Clock 234] Acessando endereço lógico 8028 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 235] Endereço lógico 8028 traduzido para endereço físico 24412.
+[2024-11-29 01:25:43] [INFO] [Clock 236] Acessando endereço lógico 8029 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 237] Endereço lógico 8029 traduzido para endereço físico 24413.
+[2024-11-29 01:25:43] [INFO] [Clock 238] Acessando endereço lógico 8030 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 239] Endereço lógico 8030 traduzido para endereço físico 24414.
+[2024-11-29 01:25:43] [INFO] [Clock 240] Acessando endereço lógico 8031 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 241] Endereço lógico 8031 traduzido para endereço físico 24415.
+[2024-11-29 01:25:43] [INFO] [Clock 242] Acessando endereço lógico 8032 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 243] Endereço lógico 8032 traduzido para endereço físico 24416.
+[2024-11-29 01:25:43] [INFO] [Clock 244] Acessando endereço lógico 8033 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 245] Endereço lógico 8033 traduzido para endereço físico 24417.
+[2024-11-29 01:25:43] [INFO] [Clock 246] Acessando endereço lógico 8034 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 247] Endereço lógico 8034 traduzido para endereço físico 24418.
+[2024-11-29 01:25:43] [INFO] [Clock 248] Acessando endereço lógico 8035 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 249] Endereço lógico 8035 traduzido para endereço físico 24419.
+[2024-11-29 01:25:43] [INFO] [Clock 250] Acessando endereço lógico 8036 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 251] Endereço lógico 8036 traduzido para endereço físico 24420.
+[2024-11-29 01:25:43] [INFO] [Clock 252] Acessando endereço lógico 8037 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 253] Endereço lógico 8037 traduzido para endereço físico 24421.
+[2024-11-29 01:25:43] [INFO] [Clock 254] Acessando endereço lógico 8038 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 255] Endereço lógico 8038 traduzido para endereço físico 24422.
+[2024-11-29 01:25:43] [INFO] [Clock 256] Acessando endereço lógico 8039 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 257] Endereço lógico 8039 traduzido para endereço físico 24423.
+[2024-11-29 01:25:43] [INFO] [Clock 258] Acessando endereço lógico 8040 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 259] Endereço lógico 8040 traduzido para endereço físico 24424.
+[2024-11-29 01:25:43] [INFO] [Clock 260] Acessando endereço lógico 8041 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 261] Endereço lógico 8041 traduzido para endereço físico 24425.
+[2024-11-29 01:25:43] [INFO] [Clock 262] Acessando endereço lógico 8042 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 263] Endereço lógico 8042 traduzido para endereço físico 24426.
+[2024-11-29 01:25:43] [INFO] [Clock 264] Acessando endereço lógico 8043 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 265] Endereço lógico 8043 traduzido para endereço físico 24427.
+[2024-11-29 01:25:43] [INFO] [Clock 266] Acessando endereço lógico 8044 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 267] Endereço lógico 8044 traduzido para endereço físico 24428.
+[2024-11-29 01:25:43] [INFO] [Clock 268] Acessando endereço lógico 8045 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 269] Endereço lógico 8045 traduzido para endereço físico 24429.
+[2024-11-29 01:25:43] [INFO] [Clock 270] Acessando endereço lógico 8046 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 271] Endereço lógico 8046 traduzido para endereço físico 24430.
+[2024-11-29 01:25:43] [INFO] [Clock 272] Acessando endereço lógico 8047 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 273] Endereço lógico 8047 traduzido para endereço físico 24431.
+[2024-11-29 01:25:43] [INFO] [Clock 274] Acessando endereço lógico 8048 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 275] Endereço lógico 8048 traduzido para endereço físico 24432.
+[2024-11-29 01:25:43] [INFO] [Clock 276] Acessando endereço lógico 8049 no processo 1.
+[2024-11-29 01:25:43] [INFO] [Clock 277] Endereço lógico 8049 traduzido para endereço físico 24433.
+[2024-11-29 01:25:43] [INFO] [Clock 278] Carregando processo 2 na memória...
+[2024-11-29 01:25:43] [WARNING] [Clock 279] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 280] Processo 0 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 281] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 282] Página 0 do processo 0 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 283] Quadro 0 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 284] Estado da Memória Física:
+ ----------- 
+| P001 - 00 | # Frame 1 -> Página 1 do Processo 0
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 285] Substituindo conteúdo do quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 286] Página 0 do processo 2 carregada no quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 287] Página 0 carregada no quadro 0.
+[2024-11-29 01:25:43] [WARNING] [Clock 288] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 289] Processo 0 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 290] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 291] Página 1 do processo 0 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 292] Quadro 1 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 293] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P002 - 00 | # Frame 2 -> Página 2 do Processo 0
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 294] Substituindo conteúdo do quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 295] Página 1 do processo 2 carregada no quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 296] Página 1 carregada no quadro 1.
+[2024-11-29 01:25:43] [WARNING] [Clock 297] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 298] Processo 0 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 299] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 300] Página 2 do processo 0 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 301] Quadro 2 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 302] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P003 - 00 | # Frame 3 -> Página 3 do Processo 0
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 303] Substituindo conteúdo do quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 304] Página 2 do processo 2 carregada no quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 305] Página 2 carregada no quadro 2.
+[2024-11-29 01:25:43] [WARNING] [Clock 306] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 307] Processo 0 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 308] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 309] Página 3 do processo 0 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 310] Quadro 3 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 311] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P000 - 01 | # Frame 4 -> Página 0 do Processo 1
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 312] Substituindo conteúdo do quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 313] Página 3 do processo 2 carregada no quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 314] Página 3 carregada no quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 315] Executando processo 2...
+[2024-11-29 01:25:43] [INFO] [Clock 316] Acessando endereço lógico 8000 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 317] Endereço lógico 8000 traduzido para endereço físico 8000.
+[2024-11-29 01:25:43] [INFO] [Clock 318] Acessando endereço lógico 8001 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 319] Endereço lógico 8001 traduzido para endereço físico 8001.
+[2024-11-29 01:25:43] [INFO] [Clock 320] Acessando endereço lógico 8002 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 321] Endereço lógico 8002 traduzido para endereço físico 8002.
+[2024-11-29 01:25:43] [INFO] [Clock 322] Acessando endereço lógico 8003 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 323] Endereço lógico 8003 traduzido para endereço físico 8003.
+[2024-11-29 01:25:43] [INFO] [Clock 324] Acessando endereço lógico 8004 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 325] Endereço lógico 8004 traduzido para endereço físico 8004.
+[2024-11-29 01:25:43] [INFO] [Clock 326] Acessando endereço lógico 8005 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 327] Endereço lógico 8005 traduzido para endereço físico 8005.
+[2024-11-29 01:25:43] [INFO] [Clock 328] Acessando endereço lógico 8006 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 329] Endereço lógico 8006 traduzido para endereço físico 8006.
+[2024-11-29 01:25:43] [INFO] [Clock 330] Acessando endereço lógico 8007 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 331] Endereço lógico 8007 traduzido para endereço físico 8007.
+[2024-11-29 01:25:43] [INFO] [Clock 332] Acessando endereço lógico 8008 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 333] Endereço lógico 8008 traduzido para endereço físico 8008.
+[2024-11-29 01:25:43] [INFO] [Clock 334] Acessando endereço lógico 8009 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 335] Endereço lógico 8009 traduzido para endereço físico 8009.
+[2024-11-29 01:25:43] [INFO] [Clock 336] Acessando endereço lógico 8010 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 337] Endereço lógico 8010 traduzido para endereço físico 8010.
+[2024-11-29 01:25:43] [INFO] [Clock 338] Acessando endereço lógico 8011 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 339] Endereço lógico 8011 traduzido para endereço físico 8011.
+[2024-11-29 01:25:43] [INFO] [Clock 340] Acessando endereço lógico 8012 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 341] Endereço lógico 8012 traduzido para endereço físico 8012.
+[2024-11-29 01:25:43] [INFO] [Clock 342] Acessando endereço lógico 8013 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 343] Endereço lógico 8013 traduzido para endereço físico 8013.
+[2024-11-29 01:25:43] [INFO] [Clock 344] Acessando endereço lógico 8014 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 345] Endereço lógico 8014 traduzido para endereço físico 8014.
+[2024-11-29 01:25:43] [INFO] [Clock 346] Acessando endereço lógico 8015 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 347] Endereço lógico 8015 traduzido para endereço físico 8015.
+[2024-11-29 01:25:43] [INFO] [Clock 348] Acessando endereço lógico 8016 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 349] Endereço lógico 8016 traduzido para endereço físico 8016.
+[2024-11-29 01:25:43] [INFO] [Clock 350] Acessando endereço lógico 8017 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 351] Endereço lógico 8017 traduzido para endereço físico 8017.
+[2024-11-29 01:25:43] [INFO] [Clock 352] Acessando endereço lógico 8018 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 353] Endereço lógico 8018 traduzido para endereço físico 8018.
+[2024-11-29 01:25:43] [INFO] [Clock 354] Acessando endereço lógico 8019 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 355] Endereço lógico 8019 traduzido para endereço físico 8019.
+[2024-11-29 01:25:43] [INFO] [Clock 356] Acessando endereço lógico 8020 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 357] Endereço lógico 8020 traduzido para endereço físico 8020.
+[2024-11-29 01:25:43] [INFO] [Clock 358] Acessando endereço lógico 8021 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 359] Endereço lógico 8021 traduzido para endereço físico 8021.
+[2024-11-29 01:25:43] [INFO] [Clock 360] Acessando endereço lógico 8022 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 361] Endereço lógico 8022 traduzido para endereço físico 8022.
+[2024-11-29 01:25:43] [INFO] [Clock 362] Acessando endereço lógico 8023 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 363] Endereço lógico 8023 traduzido para endereço físico 8023.
+[2024-11-29 01:25:43] [INFO] [Clock 364] Acessando endereço lógico 8024 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 365] Endereço lógico 8024 traduzido para endereço físico 8024.
+[2024-11-29 01:25:43] [INFO] [Clock 366] Acessando endereço lógico 8025 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 367] Endereço lógico 8025 traduzido para endereço físico 8025.
+[2024-11-29 01:25:43] [INFO] [Clock 368] Acessando endereço lógico 8026 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 369] Endereço lógico 8026 traduzido para endereço físico 8026.
+[2024-11-29 01:25:43] [INFO] [Clock 370] Acessando endereço lógico 8027 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 371] Endereço lógico 8027 traduzido para endereço físico 8027.
+[2024-11-29 01:25:43] [INFO] [Clock 372] Acessando endereço lógico 8028 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 373] Endereço lógico 8028 traduzido para endereço físico 8028.
+[2024-11-29 01:25:43] [INFO] [Clock 374] Acessando endereço lógico 8029 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 375] Endereço lógico 8029 traduzido para endereço físico 8029.
+[2024-11-29 01:25:43] [INFO] [Clock 376] Acessando endereço lógico 8030 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 377] Endereço lógico 8030 traduzido para endereço físico 8030.
+[2024-11-29 01:25:43] [INFO] [Clock 378] Acessando endereço lógico 8031 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 379] Endereço lógico 8031 traduzido para endereço físico 8031.
+[2024-11-29 01:25:43] [INFO] [Clock 380] Acessando endereço lógico 8032 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 381] Endereço lógico 8032 traduzido para endereço físico 8032.
+[2024-11-29 01:25:43] [INFO] [Clock 382] Acessando endereço lógico 8033 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 383] Endereço lógico 8033 traduzido para endereço físico 8033.
+[2024-11-29 01:25:43] [INFO] [Clock 384] Acessando endereço lógico 8034 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 385] Endereço lógico 8034 traduzido para endereço físico 8034.
+[2024-11-29 01:25:43] [INFO] [Clock 386] Acessando endereço lógico 8035 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 387] Endereço lógico 8035 traduzido para endereço físico 8035.
+[2024-11-29 01:25:43] [INFO] [Clock 388] Acessando endereço lógico 8036 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 389] Endereço lógico 8036 traduzido para endereço físico 8036.
+[2024-11-29 01:25:43] [INFO] [Clock 390] Acessando endereço lógico 8037 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 391] Endereço lógico 8037 traduzido para endereço físico 8037.
+[2024-11-29 01:25:43] [INFO] [Clock 392] Acessando endereço lógico 8038 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 393] Endereço lógico 8038 traduzido para endereço físico 8038.
+[2024-11-29 01:25:43] [INFO] [Clock 394] Acessando endereço lógico 8039 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 395] Endereço lógico 8039 traduzido para endereço físico 8039.
+[2024-11-29 01:25:43] [INFO] [Clock 396] Acessando endereço lógico 8040 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 397] Endereço lógico 8040 traduzido para endereço físico 8040.
+[2024-11-29 01:25:43] [INFO] [Clock 398] Acessando endereço lógico 8041 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 399] Endereço lógico 8041 traduzido para endereço físico 8041.
+[2024-11-29 01:25:43] [INFO] [Clock 400] Acessando endereço lógico 8042 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 401] Endereço lógico 8042 traduzido para endereço físico 8042.
+[2024-11-29 01:25:43] [INFO] [Clock 402] Acessando endereço lógico 8043 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 403] Endereço lógico 8043 traduzido para endereço físico 8043.
+[2024-11-29 01:25:43] [INFO] [Clock 404] Acessando endereço lógico 8044 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 405] Endereço lógico 8044 traduzido para endereço físico 8044.
+[2024-11-29 01:25:43] [INFO] [Clock 406] Acessando endereço lógico 8045 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 407] Endereço lógico 8045 traduzido para endereço físico 8045.
+[2024-11-29 01:25:43] [INFO] [Clock 408] Acessando endereço lógico 8046 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 409] Endereço lógico 8046 traduzido para endereço físico 8046.
+[2024-11-29 01:25:43] [INFO] [Clock 410] Acessando endereço lógico 8047 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 411] Endereço lógico 8047 traduzido para endereço físico 8047.
+[2024-11-29 01:25:43] [INFO] [Clock 412] Acessando endereço lógico 8048 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 413] Endereço lógico 8048 traduzido para endereço físico 8048.
+[2024-11-29 01:25:43] [INFO] [Clock 414] Acessando endereço lógico 8049 no processo 2.
+[2024-11-29 01:25:43] [INFO] [Clock 415] Endereço lógico 8049 traduzido para endereço físico 8049.
+[2024-11-29 01:25:43] [INFO] [Clock 416] Carregando processo 3 na memória...
+[2024-11-29 01:25:43] [WARNING] [Clock 417] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 418] Processo 1 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 419] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 420] Página 0 do processo 1 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 421] Quadro 4 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 422] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P001 - 01 | # Frame 5 -> Página 1 do Processo 1
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 423] Substituindo conteúdo do quadro 4.
+[2024-11-29 01:25:43] [INFO] [Clock 424] Página 0 do processo 3 carregada no quadro 4.
+[2024-11-29 01:25:43] [INFO] [Clock 425] Página 0 carregada no quadro 4.
+[2024-11-29 01:25:43] [WARNING] [Clock 426] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 427] Processo 1 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 428] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 429] Página 1 do processo 1 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 430] Quadro 5 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 431] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P002 - 01 | # Frame 6 -> Página 2 do Processo 1
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 432] Substituindo conteúdo do quadro 5.
+[2024-11-29 01:25:43] [INFO] [Clock 433] Página 1 do processo 3 carregada no quadro 5.
+[2024-11-29 01:25:43] [INFO] [Clock 434] Página 1 carregada no quadro 5.
+[2024-11-29 01:25:43] [WARNING] [Clock 435] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 436] Processo 1 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 437] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 438] Página 2 do processo 1 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 439] Quadro 6 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 440] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P001 - 03 | # Frame 5 -> Página 1 do Processo 3
+| P003 - 01 | # Frame 7 -> Página 3 do Processo 1
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 441] Substituindo conteúdo do quadro 6.
+[2024-11-29 01:25:43] [INFO] [Clock 442] Página 2 do processo 3 carregada no quadro 6.
+[2024-11-29 01:25:43] [INFO] [Clock 443] Página 2 carregada no quadro 6.
+[2024-11-29 01:25:43] [WARNING] [Clock 444] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 445] Processo 1 encontrado!
+[2024-11-29 01:25:43] [INFO] [Clock 446] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 447] Página 3 do processo 1 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 448] Quadro 7 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 449] Estado da Memória Física:
+ ----------- 
+| P000 - 02 | # Frame 0 -> Página 0 do Processo 2
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P001 - 03 | # Frame 5 -> Página 1 do Processo 3
+| P002 - 03 | # Frame 6 -> Página 2 do Processo 3
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 450] Substituindo conteúdo do quadro 7.
+[2024-11-29 01:25:43] [INFO] [Clock 451] Página 3 do processo 3 carregada no quadro 7.
+[2024-11-29 01:25:43] [INFO] [Clock 452] Página 3 carregada no quadro 7.
+[2024-11-29 01:25:43] [INFO] [Clock 453] Executando processo 3...
+[2024-11-29 01:25:43] [INFO] [Clock 454] Acessando endereço lógico 8000 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 455] Endereço lógico 8000 traduzido para endereço físico 24384.
+[2024-11-29 01:25:43] [INFO] [Clock 456] Acessando endereço lógico 8001 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 457] Endereço lógico 8001 traduzido para endereço físico 24385.
+[2024-11-29 01:25:43] [INFO] [Clock 458] Acessando endereço lógico 8002 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 459] Endereço lógico 8002 traduzido para endereço físico 24386.
+[2024-11-29 01:25:43] [INFO] [Clock 460] Acessando endereço lógico 8003 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 461] Endereço lógico 8003 traduzido para endereço físico 24387.
+[2024-11-29 01:25:43] [INFO] [Clock 462] Acessando endereço lógico 8004 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 463] Endereço lógico 8004 traduzido para endereço físico 24388.
+[2024-11-29 01:25:43] [INFO] [Clock 464] Acessando endereço lógico 8005 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 465] Endereço lógico 8005 traduzido para endereço físico 24389.
+[2024-11-29 01:25:43] [INFO] [Clock 466] Acessando endereço lógico 8006 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 467] Endereço lógico 8006 traduzido para endereço físico 24390.
+[2024-11-29 01:25:43] [INFO] [Clock 468] Acessando endereço lógico 8007 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 469] Endereço lógico 8007 traduzido para endereço físico 24391.
+[2024-11-29 01:25:43] [INFO] [Clock 470] Acessando endereço lógico 8008 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 471] Endereço lógico 8008 traduzido para endereço físico 24392.
+[2024-11-29 01:25:43] [INFO] [Clock 472] Acessando endereço lógico 8009 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 473] Endereço lógico 8009 traduzido para endereço físico 24393.
+[2024-11-29 01:25:43] [INFO] [Clock 474] Acessando endereço lógico 8010 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 475] Endereço lógico 8010 traduzido para endereço físico 24394.
+[2024-11-29 01:25:43] [INFO] [Clock 476] Acessando endereço lógico 8011 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 477] Endereço lógico 8011 traduzido para endereço físico 24395.
+[2024-11-29 01:25:43] [INFO] [Clock 478] Acessando endereço lógico 8012 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 479] Endereço lógico 8012 traduzido para endereço físico 24396.
+[2024-11-29 01:25:43] [INFO] [Clock 480] Acessando endereço lógico 8013 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 481] Endereço lógico 8013 traduzido para endereço físico 24397.
+[2024-11-29 01:25:43] [INFO] [Clock 482] Acessando endereço lógico 8014 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 483] Endereço lógico 8014 traduzido para endereço físico 24398.
+[2024-11-29 01:25:43] [INFO] [Clock 484] Acessando endereço lógico 8015 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 485] Endereço lógico 8015 traduzido para endereço físico 24399.
+[2024-11-29 01:25:43] [INFO] [Clock 486] Acessando endereço lógico 8016 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 487] Endereço lógico 8016 traduzido para endereço físico 24400.
+[2024-11-29 01:25:43] [INFO] [Clock 488] Acessando endereço lógico 8017 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 489] Endereço lógico 8017 traduzido para endereço físico 24401.
+[2024-11-29 01:25:43] [INFO] [Clock 490] Acessando endereço lógico 8018 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 491] Endereço lógico 8018 traduzido para endereço físico 24402.
+[2024-11-29 01:25:43] [INFO] [Clock 492] Acessando endereço lógico 8019 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 493] Endereço lógico 8019 traduzido para endereço físico 24403.
+[2024-11-29 01:25:43] [INFO] [Clock 494] Acessando endereço lógico 8020 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 495] Endereço lógico 8020 traduzido para endereço físico 24404.
+[2024-11-29 01:25:43] [INFO] [Clock 496] Acessando endereço lógico 8021 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 497] Endereço lógico 8021 traduzido para endereço físico 24405.
+[2024-11-29 01:25:43] [INFO] [Clock 498] Acessando endereço lógico 8022 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 499] Endereço lógico 8022 traduzido para endereço físico 24406.
+[2024-11-29 01:25:43] [INFO] [Clock 500] Acessando endereço lógico 8023 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 501] Endereço lógico 8023 traduzido para endereço físico 24407.
+[2024-11-29 01:25:43] [INFO] [Clock 502] Acessando endereço lógico 8024 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 503] Endereço lógico 8024 traduzido para endereço físico 24408.
+[2024-11-29 01:25:43] [INFO] [Clock 504] Acessando endereço lógico 8025 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 505] Endereço lógico 8025 traduzido para endereço físico 24409.
+[2024-11-29 01:25:43] [INFO] [Clock 506] Acessando endereço lógico 8026 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 507] Endereço lógico 8026 traduzido para endereço físico 24410.
+[2024-11-29 01:25:43] [INFO] [Clock 508] Acessando endereço lógico 8027 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 509] Endereço lógico 8027 traduzido para endereço físico 24411.
+[2024-11-29 01:25:43] [INFO] [Clock 510] Acessando endereço lógico 8028 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 511] Endereço lógico 8028 traduzido para endereço físico 24412.
+[2024-11-29 01:25:43] [INFO] [Clock 512] Acessando endereço lógico 8029 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 513] Endereço lógico 8029 traduzido para endereço físico 24413.
+[2024-11-29 01:25:43] [INFO] [Clock 514] Acessando endereço lógico 8030 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 515] Endereço lógico 8030 traduzido para endereço físico 24414.
+[2024-11-29 01:25:43] [INFO] [Clock 516] Acessando endereço lógico 8031 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 517] Endereço lógico 8031 traduzido para endereço físico 24415.
+[2024-11-29 01:25:43] [INFO] [Clock 518] Acessando endereço lógico 8032 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 519] Endereço lógico 8032 traduzido para endereço físico 24416.
+[2024-11-29 01:25:43] [INFO] [Clock 520] Acessando endereço lógico 8033 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 521] Endereço lógico 8033 traduzido para endereço físico 24417.
+[2024-11-29 01:25:43] [INFO] [Clock 522] Acessando endereço lógico 8034 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 523] Endereço lógico 8034 traduzido para endereço físico 24418.
+[2024-11-29 01:25:43] [INFO] [Clock 524] Acessando endereço lógico 8035 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 525] Endereço lógico 8035 traduzido para endereço físico 24419.
+[2024-11-29 01:25:43] [INFO] [Clock 526] Acessando endereço lógico 8036 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 527] Endereço lógico 8036 traduzido para endereço físico 24420.
+[2024-11-29 01:25:43] [INFO] [Clock 528] Acessando endereço lógico 8037 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 529] Endereço lógico 8037 traduzido para endereço físico 24421.
+[2024-11-29 01:25:43] [INFO] [Clock 530] Acessando endereço lógico 8038 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 531] Endereço lógico 8038 traduzido para endereço físico 24422.
+[2024-11-29 01:25:43] [INFO] [Clock 532] Acessando endereço lógico 8039 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 533] Endereço lógico 8039 traduzido para endereço físico 24423.
+[2024-11-29 01:25:43] [INFO] [Clock 534] Acessando endereço lógico 8040 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 535] Endereço lógico 8040 traduzido para endereço físico 24424.
+[2024-11-29 01:25:43] [INFO] [Clock 536] Acessando endereço lógico 8041 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 537] Endereço lógico 8041 traduzido para endereço físico 24425.
+[2024-11-29 01:25:43] [INFO] [Clock 538] Acessando endereço lógico 8042 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 539] Endereço lógico 8042 traduzido para endereço físico 24426.
+[2024-11-29 01:25:43] [INFO] [Clock 540] Acessando endereço lógico 8043 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 541] Endereço lógico 8043 traduzido para endereço físico 24427.
+[2024-11-29 01:25:43] [INFO] [Clock 542] Acessando endereço lógico 8044 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 543] Endereço lógico 8044 traduzido para endereço físico 24428.
+[2024-11-29 01:25:43] [INFO] [Clock 544] Acessando endereço lógico 8045 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 545] Endereço lógico 8045 traduzido para endereço físico 24429.
+[2024-11-29 01:25:43] [INFO] [Clock 546] Acessando endereço lógico 8046 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 547] Endereço lógico 8046 traduzido para endereço físico 24430.
+[2024-11-29 01:25:43] [INFO] [Clock 548] Acessando endereço lógico 8047 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 549] Endereço lógico 8047 traduzido para endereço físico 24431.
+[2024-11-29 01:25:43] [INFO] [Clock 550] Acessando endereço lógico 8048 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 551] Endereço lógico 8048 traduzido para endereço físico 24432.
+[2024-11-29 01:25:43] [INFO] [Clock 552] Acessando endereço lógico 8049 no processo 3.
+[2024-11-29 01:25:43] [INFO] [Clock 553] Endereço lógico 8049 traduzido para endereço físico 24433.
+[2024-11-29 01:25:43] [INFO] [Clock 554] Carregando processo 4 na memória...
+[2024-11-29 01:25:43] [WARNING] [Clock 555] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 556] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 557] Página 0 do processo 2 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 558] Quadro 0 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 559] Estado da Memória Física:
+ ----------- 
+| P001 - 02 | # Frame 1 -> Página 1 do Processo 2
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P001 - 03 | # Frame 5 -> Página 1 do Processo 3
+| P002 - 03 | # Frame 6 -> Página 2 do Processo 3
+| P003 - 03 | # Frame 7 -> Página 3 do Processo 3
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 560] Substituindo conteúdo do quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 561] Página 0 do processo 4 carregada no quadro 0.
+[2024-11-29 01:25:43] [INFO] [Clock 562] Página 0 carregada no quadro 0.
+[2024-11-29 01:25:43] [WARNING] [Clock 563] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 564] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 565] Página 1 do processo 2 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 566] Quadro 1 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 567] Estado da Memória Física:
+ ----------- 
+| P000 - 04 | # Frame 0 -> Página 0 do Processo 4
+| P002 - 02 | # Frame 2 -> Página 2 do Processo 2
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P001 - 03 | # Frame 5 -> Página 1 do Processo 3
+| P002 - 03 | # Frame 6 -> Página 2 do Processo 3
+| P003 - 03 | # Frame 7 -> Página 3 do Processo 3
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 568] Substituindo conteúdo do quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 569] Página 1 do processo 4 carregada no quadro 1.
+[2024-11-29 01:25:43] [INFO] [Clock 570] Página 1 carregada no quadro 1.
+[2024-11-29 01:25:43] [WARNING] [Clock 571] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 572] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 573] Página 2 do processo 2 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 574] Quadro 2 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 575] Estado da Memória Física:
+ ----------- 
+| P000 - 04 | # Frame 0 -> Página 0 do Processo 4
+| P001 - 04 | # Frame 1 -> Página 1 do Processo 4
+| P003 - 02 | # Frame 3 -> Página 3 do Processo 2
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P001 - 03 | # Frame 5 -> Página 1 do Processo 3
+| P002 - 03 | # Frame 6 -> Página 2 do Processo 3
+| P003 - 03 | # Frame 7 -> Página 3 do Processo 3
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 576] Substituindo conteúdo do quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 577] Página 2 do processo 4 carregada no quadro 2.
+[2024-11-29 01:25:43] [INFO] [Clock 578] Página 2 carregada no quadro 2.
+[2024-11-29 01:25:43] [WARNING] [Clock 579] Memória cheia durante carregamento. Executando substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 580] Simulando atraso de escrita de 100 ms...
+[2024-11-29 01:25:43] [INFO] [Clock 581] Página 3 do processo 2 salva no disco.
+[2024-11-29 01:25:43] [INFO] [Clock 582] Quadro 3 liberado e pronto para substituição.
+[2024-11-29 01:25:43] [INFO] [Clock 583] Estado da Memória Física:
+ ----------- 
+| P000 - 04 | # Frame 0 -> Página 0 do Processo 4
+| P001 - 04 | # Frame 1 -> Página 1 do Processo 4
+| P002 - 04 | # Frame 2 -> Página 2 do Processo 4
+| P000 - 03 | # Frame 4 -> Página 0 do Processo 3
+| P001 - 03 | # Frame 5 -> Página 1 do Processo 3
+| P002 - 03 | # Frame 6 -> Página 2 do Processo 3
+| P003 - 03 | # Frame 7 -> Página 3 do Processo 3
+ ----------- 
+[2024-11-29 01:25:43] [WARNING] [Clock 584] Substituindo conteúdo do quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 585] Página 3 do processo 4 carregada no quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 586] Página 3 carregada no quadro 3.
+[2024-11-29 01:25:43] [INFO] [Clock 587] Executando processo 4...
+[2024-11-29 01:25:43] [INFO] [Clock 588] Acessando endereço lógico 8000 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 589] Endereço lógico 8000 traduzido para endereço físico 8000.
+[2024-11-29 01:25:43] [INFO] [Clock 590] Acessando endereço lógico 8001 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 591] Endereço lógico 8001 traduzido para endereço físico 8001.
+[2024-11-29 01:25:43] [INFO] [Clock 592] Acessando endereço lógico 8002 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 593] Endereço lógico 8002 traduzido para endereço físico 8002.
+[2024-11-29 01:25:43] [INFO] [Clock 594] Acessando endereço lógico 8003 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 595] Endereço lógico 8003 traduzido para endereço físico 8003.
+[2024-11-29 01:25:43] [INFO] [Clock 596] Acessando endereço lógico 8004 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 597] Endereço lógico 8004 traduzido para endereço físico 8004.
+[2024-11-29 01:25:43] [INFO] [Clock 598] Acessando endereço lógico 8005 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 599] Endereço lógico 8005 traduzido para endereço físico 8005.
+[2024-11-29 01:25:43] [INFO] [Clock 600] Acessando endereço lógico 8006 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 601] Endereço lógico 8006 traduzido para endereço físico 8006.
+[2024-11-29 01:25:43] [INFO] [Clock 602] Acessando endereço lógico 8007 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 603] Endereço lógico 8007 traduzido para endereço físico 8007.
+[2024-11-29 01:25:43] [INFO] [Clock 604] Acessando endereço lógico 8008 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 605] Endereço lógico 8008 traduzido para endereço físico 8008.
+[2024-11-29 01:25:43] [INFO] [Clock 606] Acessando endereço lógico 8009 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 607] Endereço lógico 8009 traduzido para endereço físico 8009.
+[2024-11-29 01:25:43] [INFO] [Clock 608] Acessando endereço lógico 8010 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 609] Endereço lógico 8010 traduzido para endereço físico 8010.
+[2024-11-29 01:25:43] [INFO] [Clock 610] Acessando endereço lógico 8011 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 611] Endereço lógico 8011 traduzido para endereço físico 8011.
+[2024-11-29 01:25:43] [INFO] [Clock 612] Acessando endereço lógico 8012 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 613] Endereço lógico 8012 traduzido para endereço físico 8012.
+[2024-11-29 01:25:43] [INFO] [Clock 614] Acessando endereço lógico 8013 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 615] Endereço lógico 8013 traduzido para endereço físico 8013.
+[2024-11-29 01:25:43] [INFO] [Clock 616] Acessando endereço lógico 8014 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 617] Endereço lógico 8014 traduzido para endereço físico 8014.
+[2024-11-29 01:25:43] [INFO] [Clock 618] Acessando endereço lógico 8015 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 619] Endereço lógico 8015 traduzido para endereço físico 8015.
+[2024-11-29 01:25:43] [INFO] [Clock 620] Acessando endereço lógico 8016 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 621] Endereço lógico 8016 traduzido para endereço físico 8016.
+[2024-11-29 01:25:43] [INFO] [Clock 622] Acessando endereço lógico 8017 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 623] Endereço lógico 8017 traduzido para endereço físico 8017.
+[2024-11-29 01:25:43] [INFO] [Clock 624] Acessando endereço lógico 8018 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 625] Endereço lógico 8018 traduzido para endereço físico 8018.
+[2024-11-29 01:25:43] [INFO] [Clock 626] Acessando endereço lógico 8019 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 627] Endereço lógico 8019 traduzido para endereço físico 8019.
+[2024-11-29 01:25:43] [INFO] [Clock 628] Acessando endereço lógico 8020 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 629] Endereço lógico 8020 traduzido para endereço físico 8020.
+[2024-11-29 01:25:43] [INFO] [Clock 630] Acessando endereço lógico 8021 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 631] Endereço lógico 8021 traduzido para endereço físico 8021.
+[2024-11-29 01:25:43] [INFO] [Clock 632] Acessando endereço lógico 8022 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 633] Endereço lógico 8022 traduzido para endereço físico 8022.
+[2024-11-29 01:25:43] [INFO] [Clock 634] Acessando endereço lógico 8023 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 635] Endereço lógico 8023 traduzido para endereço físico 8023.
+[2024-11-29 01:25:43] [INFO] [Clock 636] Acessando endereço lógico 8024 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 637] Endereço lógico 8024 traduzido para endereço físico 8024.
+[2024-11-29 01:25:43] [INFO] [Clock 638] Acessando endereço lógico 8025 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 639] Endereço lógico 8025 traduzido para endereço físico 8025.
+[2024-11-29 01:25:43] [INFO] [Clock 640] Acessando endereço lógico 8026 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 641] Endereço lógico 8026 traduzido para endereço físico 8026.
+[2024-11-29 01:25:43] [INFO] [Clock 642] Acessando endereço lógico 8027 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 643] Endereço lógico 8027 traduzido para endereço físico 8027.
+[2024-11-29 01:25:43] [INFO] [Clock 644] Acessando endereço lógico 8028 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 645] Endereço lógico 8028 traduzido para endereço físico 8028.
+[2024-11-29 01:25:43] [INFO] [Clock 646] Acessando endereço lógico 8029 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 647] Endereço lógico 8029 traduzido para endereço físico 8029.
+[2024-11-29 01:25:43] [INFO] [Clock 648] Acessando endereço lógico 8030 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 649] Endereço lógico 8030 traduzido para endereço físico 8030.
+[2024-11-29 01:25:43] [INFO] [Clock 650] Acessando endereço lógico 8031 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 651] Endereço lógico 8031 traduzido para endereço físico 8031.
+[2024-11-29 01:25:43] [INFO] [Clock 652] Acessando endereço lógico 8032 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 653] Endereço lógico 8032 traduzido para endereço físico 8032.
+[2024-11-29 01:25:43] [INFO] [Clock 654] Acessando endereço lógico 8033 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 655] Endereço lógico 8033 traduzido para endereço físico 8033.
+[2024-11-29 01:25:43] [INFO] [Clock 656] Acessando endereço lógico 8034 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 657] Endereço lógico 8034 traduzido para endereço físico 8034.
+[2024-11-29 01:25:43] [INFO] [Clock 658] Acessando endereço lógico 8035 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 659] Endereço lógico 8035 traduzido para endereço físico 8035.
+[2024-11-29 01:25:43] [INFO] [Clock 660] Acessando endereço lógico 8036 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 661] Endereço lógico 8036 traduzido para endereço físico 8036.
+[2024-11-29 01:25:43] [INFO] [Clock 662] Acessando endereço lógico 8037 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 663] Endereço lógico 8037 traduzido para endereço físico 8037.
+[2024-11-29 01:25:43] [INFO] [Clock 664] Acessando endereço lógico 8038 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 665] Endereço lógico 8038 traduzido para endereço físico 8038.
+[2024-11-29 01:25:43] [INFO] [Clock 666] Acessando endereço lógico 8039 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 667] Endereço lógico 8039 traduzido para endereço físico 8039.
+[2024-11-29 01:25:43] [INFO] [Clock 668] Acessando endereço lógico 8040 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 669] Endereço lógico 8040 traduzido para endereço físico 8040.
+[2024-11-29 01:25:43] [INFO] [Clock 670] Acessando endereço lógico 8041 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 671] Endereço lógico 8041 traduzido para endereço físico 8041.
+[2024-11-29 01:25:43] [INFO] [Clock 672] Acessando endereço lógico 8042 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 673] Endereço lógico 8042 traduzido para endereço físico 8042.
+[2024-11-29 01:25:43] [INFO] [Clock 674] Acessando endereço lógico 8043 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 675] Endereço lógico 8043 traduzido para endereço físico 8043.
+[2024-11-29 01:25:43] [INFO] [Clock 676] Acessando endereço lógico 8044 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 677] Endereço lógico 8044 traduzido para endereço físico 8044.
+[2024-11-29 01:25:43] [INFO] [Clock 678] Acessando endereço lógico 8045 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 679] Endereço lógico 8045 traduzido para endereço físico 8045.
+[2024-11-29 01:25:43] [INFO] [Clock 680] Acessando endereço lógico 8046 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 681] Endereço lógico 8046 traduzido para endereço físico 8046.
+[2024-11-29 01:25:43] [INFO] [Clock 682] Acessando endereço lógico 8047 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 683] Endereço lógico 8047 traduzido para endereço físico 8047.
+[2024-11-29 01:25:43] [INFO] [Clock 684] Acessando endereço lógico 8048 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 685] Endereço lógico 8048 traduzido para endereço físico 8048.
+[2024-11-29 01:25:43] [INFO] [Clock 686] Acessando endereço lógico 8049 no processo 4.
+[2024-11-29 01:25:43] [INFO] [Clock 687] Endereço lógico 8049 traduzido para endereço físico 8049.
