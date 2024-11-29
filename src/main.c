@@ -33,18 +33,18 @@ int main(int argc, char const *argv[])
 
     // Cria o gerenciador de processos
     ProcessManager process_manager;
-    int max_processes = 5;
-    int quantum = QUANTUM; // em ms
+    int max_processes = atoi(get_property(&config_manager, "processes.max"));
+    int quantum = atoi(get_property(&config_manager, "processes.quantum")); // em ms
     process_manager_init(&process_manager, max_processes, quantum);
 
     Disk disk;
-    int disk_size = 30;
-    int disk_access_delay = 5; // em ms
+    int disk_size = atoi(get_property(&config_manager, "disk.size"));
+    int disk_access_delay = atoi(get_property(&config_manager, "disk.delay")); // em ms
     disk_init(&disk, disk_size, disk_access_delay);
 
     MemoryManagementUnit mmu;
-    int physical_memory_size = FRAME_SIZE * 5;
-    int logical_memory_size = PAGE_SIZE * 5;
+    int physical_memory_size = FRAME_SIZE * atoi(get_property(&config_manager, "memory.physical"));;
+    int logical_memory_size = PAGE_SIZE * atoi(get_property(&config_manager, "memory.logical"));;
     mmu_init(&mmu, logical_memory_size, physical_memory_size, &disk, &process_manager);
     process_manager.mmu = &mmu;
 

@@ -30,7 +30,7 @@ int load_properties(ConfigurationManager* manager, const char* filePath);
  * @param path Caminho da propriedade a ser buscada.
  * @return Ponteiro para o valor da propriedade, ou NULL se não for encontrada.
  */
-void* get_property(ConfigurationManager* manager, const char* path);
+char* get_property(ConfigurationManager* manager, const char* path);
 
 /**
  * Libera a memória alocada para os valores das propriedades.
