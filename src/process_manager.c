@@ -52,7 +52,9 @@ void run_scheduled_processes(ProcessManager *manager, MemoryManagementUnit *mmu)
 {
     Queue *queue = &manager->ready_queue;
 
-    while (!queue_is_empty(queue))
+    int count = 0;
+    int max_scheduling = 5;
+    while (count++ < max_scheduling)
     {
         Process *current = queue_dequeue(queue);
 
