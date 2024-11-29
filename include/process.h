@@ -7,7 +7,7 @@
 #include "logical_memory.h"
 #include "disk.h"
 
-#define QUANTUM 1000 // tempo em ms
+#define QUANTUM 1000                 // tempo em ms
 #define PROCESS_SIZE (5 * PAGE_SIZE) // Tamanho total do processo em bytes
 #define NUMBER_OF_PAGES (PROCESS_SIZE / PAGE_SIZE)
 
@@ -40,7 +40,7 @@ typedef struct
  * @param logical_memory Ponteiro para a estrutura da memória lógica
  * @return 0 se o processo for criado com sucesso.
  */
-int process_create(Process *process, LogicalMemory *logical_memory, Disk* disk, int pid, int addresses_count, int size);
+int process_create(Process *process, LogicalMemory *logical_memory, Disk *disk, int pid, int addresses_count, int size);
 
 void process_free_table_page(Process *process);
 

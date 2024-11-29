@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 #include "logical_memory.h"
+#include "process_manager.h"
 #include "disk.h"
 #include "log.h"
 
@@ -137,6 +138,7 @@ void physical_memory_load_frame(PhysicalMemory *physical_memory, int frame_numbe
     Frame *frame = physical_memory->frames[frame_number];
     if (frame->is_occupied)
     {
+        log_physical_memory_state(physical_memory);
         log_message(LOG_WARNING, "Substituindo conteúdo do quadro %d.", frame_number);
     }
 
@@ -164,24 +166,45 @@ void physical_memory_free_frames(PhysicalMemory *physical_memory)
     log_message(LOG_INFO, "Memória física liberada.");
 }
 
-void log_physical_memory_state(PhysicalMemory *physical_memory, Process **processes)
+void log_physical_memory_state(PhysicalMemory *physical_memory)
 {
     log_message(LOG_INFO, "Estado da Memória Física:");
 
+    log_plain_message(" ----------- \n");
     for (int i = 0; i < (physical_memory->size / FRAME_SIZE); i++)
     {
         Frame *frame = physical_memory->frames[i];
         if (frame != NULL && frame->is_occupied)
         {
-            log_plain_message("Frame %03d: Ocupado pelo processo %03d.\n", i, frame->allocated_process_pid);
+            bool found = false;
+
+            for (int j = 0; j < num_processes; j++)
+            {
+                for (int k = 0; k < processes[j].page_table->number_of_pages; k++)
+                {
+                    if (processes[j].page_table->entries[k] == NULL)
+                    {
+                        continue;
+                    }
+
+                    if (processes[j].page_table->entries[k]->frame_number == frame->frame_number)
+                    {
+                        log_plain_message("| P%03d - %02d | # Frame %d -> Página %d do Processo %d\n",
+                                          processes[j].page_table->entries[k]->page_number, frame->allocated_process_pid,
+                                          frame->frame_number, processes[j].page_table->entries[k]->page_number, frame->allocated_process_pid);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                    break;
+            }
         }
         else
         {
-            log_plain_message("Frame %03d: Livre.\n", i);
+            log_plain_message("| --------- |\n");
         }
     }
-}
-
-void show_physical_memory(PhysicalMemory *physical_memory)
-{
+    log_plain_message(" ----------- \n");
 }

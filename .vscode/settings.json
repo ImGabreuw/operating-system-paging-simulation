@@ -20,6 +20,7 @@
         "cstring": "c",
         "cstdlib": "c",
         "disk.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "process_queue.h": "c"
     }
 }

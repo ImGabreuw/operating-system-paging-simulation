@@ -48,11 +48,11 @@ int main(int argc, char const *argv[])
     mmu_init(&mmu, logical_memory_size, physical_memory_size, &disk, &process_manager);
     process_manager.mmu = &mmu;
 
-    int num_processes = 5;
-    Process *processes = (Process *)malloc(num_processes * sizeof(Process));
+    num_processes = 5;
+    processes = (Process *)malloc(num_processes * sizeof(Process));
     for (int pid = 0; pid < num_processes; pid++)
     {
-        process_create(&processes[pid], &mmu.logical_memory, &disk,pid, 1000 * pid, PROCESS_SIZE);
+        process_create(&processes[pid], &mmu.logical_memory, &disk, pid, 1000 * pid, PROCESS_SIZE);
     }
 
     // Carrega os processos na memória
@@ -60,9 +60,9 @@ int main(int argc, char const *argv[])
     {
         schedule_process(&process_manager, &processes[i]);
     }
-  
+
     run_scheduled_processes(&process_manager);
-    
+
     // Executa o escalonamento dos processos
     while (true)
     {

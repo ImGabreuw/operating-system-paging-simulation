@@ -5,6 +5,9 @@
 
 #include "log.h"
 
+Process *processes = NULL;
+int num_processes = 0;
+
 int process_manager_init(ProcessManager *manager, int max_processes, int quantum)
 {
     manager->max_processes = max_processes;

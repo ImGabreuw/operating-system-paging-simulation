@@ -91,6 +91,6 @@ void physical_memory_free_frames(PhysicalMemory *physical_memory);
  * @brief Registra o estado da memória física no arquivo de log.
  * @param physical_memory Ponteiro para a estrutura PhysicalMemory.
  */
-void log_physical_memory_state(PhysicalMemory *physical_memory, Process **processes);
+void log_physical_memory_state(PhysicalMemory *physical_memory);
 
 #endif // PHYSICAL_MEMORY_H
